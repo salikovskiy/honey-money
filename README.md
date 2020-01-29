@@ -1,6 +1,4 @@
 ## Honey Money
-```Bootcamp 16 🔥```
-
 
 >[Інструція по Git(Github)](https://drive.google.com/file/d/1eVWN5VVkT7ViW-0REDOYaSQPfHUDNu2y/view?usp=sharing)
 
