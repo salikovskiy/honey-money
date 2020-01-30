@@ -10,11 +10,12 @@
 
 .main {
   padding-top: 100px;
-  height: 720px;
   background-image: url('../../assets/img/svg/rectangle.svg');
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  padding-bottom: 45px;
+  min-height: 70vh;
 }
 
 .main::before {
@@ -60,6 +61,7 @@
   font-family: 'Caveat', cursive;
   font-size: 20px;
   font-weight: 700;
+  text-align: center;
 }
 
 .footer {

@@ -22,7 +22,6 @@ class AuthPage extends Component {
             <p className="p">Контролируй свой бюджет</p>
           </div>
         </main>
-        <footer className="footer"></footer>
       </>
     );
   }
