@@ -1,7 +1,10 @@
-import React from "react";
+import React from 'react';
+import './App.css';
+import { useRoute } from '../routes';
 
 const App = () => {
-  return <div>app</div>;
+  const route = useRoute(true);
+  return route;
 };
 
 export default App;
