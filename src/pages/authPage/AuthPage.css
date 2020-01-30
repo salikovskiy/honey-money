@@ -1,0 +1,68 @@
+.header {
+  width: 100%;
+  padding: 15px 0;
+}
+
+.image {
+  width: 150px;
+  margin: 0 20px;
+}
+
+.main {
+  padding-top: 100px;
+  height: 720px;
+  background-image: url('../../assets/img/svg/rectangle.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.main::before {
+  content: '';
+  width: 60px;
+  height: 135px;
+  position: absolute;
+  right: 0;
+  top: 30px;
+  background-image: url('../../assets/img/wings.png');
+}
+
+.container {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  position: relative;
+  margin-left: 20px;
+  text-shadow: 6.553px 4.589px 3px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+}
+
+.h2::before {
+  text-shadow: none;
+  content: 'Honey';
+  position: absolute;
+  top: -73px;
+  left: -3px;
+  font-size: 80px;
+  color: #d9dce4;
+}
+
+.letter {
+  color: #ff6c00;
+}
+
+.p {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.footer {
+  height: 50px;
+  background-color: #f5f7fa;
+}
