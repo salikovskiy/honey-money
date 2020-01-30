@@ -1,5 +1,6 @@
 import React from 'react';
+import DashboardMenu from '../../components/DashboardMenu/DashboardMenu';
 
-const DashboardPage = () => <h2>DashboardPage</h2>;
+const DashboardPage = () => <DashboardMenu />;
 
 export default DashboardPage;

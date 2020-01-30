@@ -1,0 +1,53 @@
+.dashMenu__container {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 320px;
+  height: 290px;
+  background-color: rgb(244, 246, 251);
+}
+
+.dashMenu__text {
+  display: flex;
+  justify-content: space-between;
+  min-width: 220px;
+  padding: 15px 20px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border: solid 1px #fff;
+  border-radius: 25px;
+}
+
+.dashMenu__title {
+  display: block;
+  color: #000;
+  font-weight: 700;
+  width: 70px;
+}
+
+.dashMenu__balance {
+  display: block;
+  color: #000;
+  font-weight: 700;
+  width: 70px;
+}
+
+.dashMenu__incomeBtn {
+  min-width: 130;
+  height: 40;
+  color: #fff;
+  background-color: #e96105;
+  font-family: 'Roboto', sans-serif;
+  padding: 12px 18px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.dashMenu__linkTo {
+  width: 40px;
+  height: 40px;
+  border: solid 1px #fff;
+  border-radius: 25px;
+}
