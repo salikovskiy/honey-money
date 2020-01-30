@@ -7,3 +7,5 @@
 >[Макети, шрифти та зображення](https://drive.google.com/open?id=1dRbuWibWA7KzJvGwVjgPMPFqL9ea72bu)
 
 >[Структура компонентів](https://drive.google.com/file/d/11AzMZKc2hJw2uCkFejJcD1Jo9e-iuzlw/view?usp=sharing)
+
+>[Backlog](https://drive.google.com/file/d/1fKpZREgyVuV9IvpnXcGBntaiJ9jFNnUA/view?usp=sharing)
