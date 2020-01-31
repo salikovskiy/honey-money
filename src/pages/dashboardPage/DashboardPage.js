@@ -1,5 +1,35 @@
-import React from 'react';
-import Summary from '../../components/Dashboard/summary/summary';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import services from '../../services/services';
+import { getTransactions, postIncome } from '../../redux/operations';
+import getDateNow from '../../utilities/getDateNow';
 
-const DashboardPage = () => <h2>DashboardPage</h2>;
-export default DashboardPage;
+class DashboardPage extends Component {
+  state = {
+    isOpenModalIncome: false,
+  };
+
+  onChangeModalIncome = () => {
+    this.setState(state => ({ isOpenModalIncome: !state.isOpenModalIncome }));
+  };
+
+  componentDidMount = () => {
+    //     console.log(this.props.finance);
+    console.log(getDateNow());
+    // this.props.getTransactions();
+  };
+
+  render() {
+    // services.addIncome().then(data => console.log(data));
+    return <h2>DashboardPage</h2>;
+  }
+}
+
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = {
+  getTransactions,
+  postIncome,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);
