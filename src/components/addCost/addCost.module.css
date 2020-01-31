@@ -1,0 +1,46 @@
+body {
+  background-color: grey;
+}
+.container {
+  position: relative;
+  width: 320px;
+  height: 468px;
+  border-radius: 25px;
+  background-color: #fff;
+  padding: 42px 20px 50px;
+}
+
+.close {
+  position: absolute;
+  right: 28px;
+  top: 20px;
+  width: 14px;
+  height: 14px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 14px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+.title {
+  font-size: 22px;
+  margin: 0 auto;
+  text-align: center;
+  color: rgba(0, 0, 0, 255);
+  margin-bottom: 22px;
+}
