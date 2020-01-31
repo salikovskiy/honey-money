@@ -2,30 +2,31 @@ import React, { Component } from 'react';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import logo from '../../assets/img/logo/svg/logo_146x34.svg';
 
-import './AuthPage.css';
+import css from './AuthPage.module.css';
 
 class AuthPage extends Component {
   state = {};
   render() {
     return (
       <>
-        <header className="header">
+        <header className={css.header}>
           <a href="/">
-            <img src={logo} alt="honey-money-logo" className="image" />
+            <img src={logo} alt="honey-money-logo" className={css.image} />
           </a>
         </header>
-        <main className="main">
-          <div className="container">
-            <h2 className="h2">
-              <span className="letter">M</span>oney
+        <main className={css.main}>
+          <div className={css.container}>
+            <h2 className={css.h2}>
+              <span className={css.letter}>M</span>oney
             </h2>
-            <h2 className="desktop-h2">
-              Finance <span className="desktop-span">app</span>
+            <h2 className={css.desktoph2}>
+              Finance <span className={css.desktopSpan}>app</span>
             </h2>
 
             <AuthForm />
-            <p className="p">
-              Контролируй свой бюджет <span className="table-text">с нами</span>
+            <p className={css.p}>
+              Контролируй свой бюджет{' '}
+              <span className={css.tableText}>с нами</span>
             </p>
           </div>
         </main>

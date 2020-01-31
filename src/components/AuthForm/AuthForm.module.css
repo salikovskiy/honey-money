@@ -41,7 +41,7 @@
   color: #a6abb9;
 }
 
-.button-orange {
+.buttonOrange {
   font-family: 'Roboto', sans-serif;
   color: #fff;
   border-radius: 50px;
@@ -55,8 +55,8 @@
   outline: none;
 }
 
-.button-orange:hover,
-.button-orange:active {
+.buttonOrange:hover,
+.buttonOrange:active {
   background-color: #e25e00;
 }
 
@@ -89,7 +89,7 @@
 }
 
 @media (min-width: 1280px) {
-  .button-orange {
+  .buttonOrange {
     width: 155px;
   }
   .button {
