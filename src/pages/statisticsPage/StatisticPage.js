@@ -1,10 +1,10 @@
 import React from 'react';
-import StatisticsMenu from '../../components/statisticsMenu/StatisticsMenu';
+//import StatisticsMenu from '../../components/statisticsMenu/StatisticsMenu';
 
 const StatisticPage = () => (
   <>
     <h2>StatisticPage</h2>
-    <StatisticsMenu />
+    {/* <StatisticsMenu /> */}
   </>
 );
 
