@@ -27,13 +27,13 @@ html {
     padding-left: 28px;
     background-image: url('../../assets/icons/arrow_back/keyboard_backspace-24px.svg');
     background-repeat: no-repeat;
-    height: 22px;
+    height: 24px;
     background-color: transparent;
     border: none;
     margin-bottom: 14px;
 }
 
-.statisticsMenu_goBack_span {
+.statisticsMenu_goBack_pre {
     display: none;
 }
 
@@ -180,8 +180,11 @@ html {
         margin-right: 84px;
     }
 
-    .statisticsMenu_goBack_span {
+    .statisticsMenu_goBack_pre {
         display: inline-block;
+        font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        color: rgba(82, 85, 95, 0.749);
     }
 
     .statisticsMenu_dateBalance_wrap {
