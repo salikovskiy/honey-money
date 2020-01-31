@@ -82,13 +82,10 @@
     position: relative;
   }
 
-  .container-wr {
+  .container {
     width: 320px;
     margin: 0 auto;
   }
-}
-
-@media (min-width: 1280px) {
   .buttonOrange {
     width: 155px;
   }

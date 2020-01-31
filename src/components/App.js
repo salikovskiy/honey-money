@@ -3,7 +3,7 @@ import './App.css';
 import { useRoute } from '../routes';
 
 const App = () => {
-  const route = useRoute(true);
+  const route = useRoute(false);
   return route;
 };
 
