@@ -88,5 +88,11 @@
   }
 }
 
-@media (min-width: 1240px) {
+@media (min-width: 1280px) {
+  .button-orange {
+    width: 155px;
+  }
+  .button {
+    width: 155px;
+  }
 }
