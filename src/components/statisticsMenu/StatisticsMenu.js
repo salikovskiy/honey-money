@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './statisticsMenu.module.css';
-import getDateNow from '../../utilities/getDateNow';
+//import getDateNow from '../../utilities/getDateNow';
 
 class StatisticsMenu extends Component {
   state = {};
@@ -25,7 +25,7 @@ class StatisticsMenu extends Component {
           </button>
           <div className={styles.statisticsMenu_dateBalance_wrap}>
             <p className={styles.statisticsMenu_dateBalance_text}>
-              Баланс на {getDateNow()}:
+              Баланс на 31.01.2020:
             </p>
             <p className={styles.statisticsMenu_dateBalance_value}>
               150,000.00 грн
