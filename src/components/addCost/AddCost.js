@@ -4,6 +4,7 @@ import shortId from 'shortid';
 // import Select from "react-select";
 import onFormatDate from '../../utilities/formatDate';
 import css from './addCost.module.css';
+import calendar from '../../assets/img/svg/calendar.svg';
 
 class AddCost extends Component {
   state = {
@@ -51,8 +52,16 @@ class AddCost extends Component {
   };
 
   onChangeInput = e => {
-    const result =
-      e.target.name === 'amountCost' ? Number(e.target.value) : e.target.value;
+    let result = '';
+    if (e.target.name === 'amountCost') {
+      if (!isNaN(e.target.value)) {
+        result = Number.parseFloat(e.target.value);
+      }
+    } else {
+      result = e.target.value;
+    }
+    // const result =
+    //   e.target.name === 'amountCost' ? Number(e.target.value) : e.target.value;
     this.setState({
       [e.target.name]: result,
     });
@@ -71,7 +80,7 @@ class AddCost extends Component {
         <h3 className={css.title}>Ввести расход</h3>
         <span className={css.close}></span>
         <button onClick={this.onOpenCalendar} className={css.cal}>
-          Cal
+          <img src={calendar} alt="cal" />
         </button>
         {openCalendar && (
           <Calendar
@@ -80,29 +89,41 @@ class AddCost extends Component {
             minDate={dateRegistration}
           />
         )}
-        <p>{formatDate}</p>
-        <form onSubmit={this.onAddCost}>
-          <input
-            required
-            tipe="text"
-            placeholder="Ввести расходы..."
-            name="descriptionCost"
-            onChange={this.onChangeInput}
-            value={descriptionCost}
-          ></input>
-          <input
-            required
-            tipe="text"
-            placeholder="00.00 грн"
-            name="amountCost"
-            onChange={this.onChangeInput}
-            value={amountCost}
-            pattern="[0-9]+([.][0-9]{1,2}){0,1}"
-          ></input>
-          <button type="submit">Подтвердить</button>
-          <button type="reset" onClick={this.onResetForm}>
-            Очистить
-          </button>
+        <span className={css.formatDate}>{formatDate}</span>
+        <form className={css.form} onSubmit={this.onAddCost}>
+          <div className={css.formOverlay}>
+            <input
+              className={css.inputDescription}
+              required
+              tipe="text"
+              placeholder="Ввести расходы..."
+              name="descriptionCost"
+              onChange={this.onChangeInput}
+              value={descriptionCost}
+            ></input>
+            <input
+              className={css.inputAmount}
+              required
+              tipe="text"
+              placeholder="00.00 грн"
+              name="amountCost"
+              onChange={this.onChangeInput}
+              value={amountCost}
+              pattern="[0-9]+([.][0-9]{1,2}){0,1}"
+            ></input>
+          </div>
+          <div className={css.overlayBtn}>
+            <button className={`${css.btn} ${css.btnSubmit}`} type="submit">
+              Подтвердить
+            </button>
+            <button
+              className={`${css.btn} ${css.btnReset}`}
+              type="reset"
+              onClick={this.onResetForm}
+            >
+              Очистить
+            </button>
+          </div>
         </form>
       </div>
     );
