@@ -14,7 +14,7 @@ html {
     width: 280px;
     margin: 0 auto;
     padding-top: 20px;
-    /* background-color: rgb(238, 235, 235); */
+    /* background-color: rgb(238, 235, 235);*/
 
 }
 
@@ -33,7 +33,7 @@ html {
     margin-bottom: 14px;
 }
 
-.statisticsMenu_goBack_span {
+.statisticsMenu_goBack_pre {
     display: none;
 }
 
@@ -180,7 +180,7 @@ html {
         margin-right: 84px;
     }
 
-    .statisticsMenu_goBack_span {
+    .statisticsMenu_goBack_pre {
         display: inline-block;
     }
 
