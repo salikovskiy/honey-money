@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { createBrowserHistory } from 'history';
 import styles from './statisticsMenu.module.css';
 import moment from 'moment';
 import 'moment/locale/ru';
 
-moment.locale('ru');
 const dateNow = moment().format();
 
 class StatisticsMenu extends Component {
@@ -13,10 +13,12 @@ class StatisticsMenu extends Component {
     dateRegistration: '2019-09-30T18:22:59.462Z',
   };
 
-  // handleGoBack = () => {
-  //   //this.props.history.push('/dashboard');
-  //   //this.props.history.goBack();
-  // };
+  handleGoBack = () => {
+    //this.props.history.push('/dashboard');
+    //this.props.history.goBack();
+    //createBrowserHistory().push('/dashboard');
+    createBrowserHistory().goBack();
+  };
 
   handleMonthChange = e => {
     if (e.target.name === 'leftBtn') {
