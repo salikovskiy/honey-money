@@ -95,6 +95,18 @@ html {
     background-position: center;
 }
 
+.statisticsMenu_calendar_monthsBtn_left_dis {
+    display: block;
+    background-image: url('../../assets/icons/arrow_rightDisabled/arrow_right-24px.svg');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    transform: rotate(180deg);
+    background-color: transparent;
+    border: none;
+    background-position: center;
+}
+
 .statisticsMenu_calendar_months {
     font-size: 13px;
     font-weight: bold;
@@ -109,6 +121,17 @@ html {
 .statisticsMenu_calendar_monthsBtn_right {
     display: block;
     background-image: url('../../assets/icons/arrow_right/arrow_right-24px.svg');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    background-position: center;
+}
+
+.statisticsMenu_calendar_monthsBtn_right_dis {
+    display: block;
+    background-image: url('../../assets/icons/arrow_rightDisabled/arrow_right-24px.svg');
     background-repeat: no-repeat;
     width: 20px;
     height: 20px;
