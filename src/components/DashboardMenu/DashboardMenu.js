@@ -5,10 +5,10 @@ import css from './dashboardMenu.module.css';
 const DashboardMenu = () => {
   return (
     <div className={css.dashMenu__container}>
-      <div className={css.dashMenu__text}>
-        <h2 className={css.dashMenu__title}>БАЛАНС:</h2>
-        <span className={css.dashMenu__balance}>00.00 грн</span>
-      </div>
+      <form method="post" className={css.balance__form}>
+        <label className={css.balance__label}>БАЛАНС:</label>
+        <input className={css.balance__input} placeholder="00.00 грн"></input>
+      </form>
       <button className={css.dashMenu__incomeBtn}>Ввести доход</button>
       <div className={css.dashMenu__linkContainer}>
         <Link to="/statistics" className={css.dashMenu__linkTo}>
