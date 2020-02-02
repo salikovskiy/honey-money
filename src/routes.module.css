@@ -1,0 +1,14 @@
+.container {
+  background-image: url('./assets/img/BG/BgMobyle.png');
+  background-size: 100% 290px;
+  width: 100vw;
+  /* height: 100vh; */
+  background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    background-image: url('./assets/img/BG/HeaderBgTable.png');
+    background-size: 100% 520px;
+  }
+}
