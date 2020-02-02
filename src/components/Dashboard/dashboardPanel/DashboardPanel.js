@@ -3,6 +3,24 @@ import PropTypes from 'prop-types';
 import styles from './dashboardPanel.module.css';
 import TableExample from '../summary/summary';
 import AddCost from '../../addCost/AddCost';
+import moment from 'moment';
+import 'moment/locale/ru';
+
+const dateNow = moment().format();
+
+const monthsSummary = [
+  moment(),
+  moment(),
+  moment(),
+  moment(),
+  moment(),
+  moment(),
+]
+  .map((date, index) => date.subtract(index, 'months'))
+  .map(date => date._d)
+  .map(date => moment(date).format('MMMM YYYY'));
+
+console.log(monthsSummary);
 
 const DashboardPanel = () => (
   <div className={styles.dashboardPanel}>
