@@ -1,0 +1,202 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+.modalIncome {
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  border: solid 1px grey;
+  align-items: center;
+  border-radius: 25px;
+  box-shadow: 9.5px 16.454px 38px 0px;
+}
+/* ================ close crosschair */
+.close {
+  position: absolute;
+  right: 27px;
+  top: 20px;
+  width: 15px;
+  height: 15px;
+  opacity: 0.5;
+  padding: 10px;
+}
+.close:active {
+  transform: translateY(2px);
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 16px;
+  width: 3px;
+  background-color: #959595;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+/* ===================== */
+.addIncomeTittle {
+  font-family: sans-serif, monospace;
+  font-weight: bold;
+  font-size: 21px;
+  padding: 50px 0 30px 0;
+}
+.calendarIcon {
+  width: 25px;
+  height: 25px;
+  /* background: url("fallback-image.png") no-repeat center; */
+  background-image: url('./calendar.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.calendarIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff6c00;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.dateLine {
+  font-weight: 700;
+  font-size: 14px;
+  color: #ff6c00;
+  margin-bottom: 20px;
+}
+.inptAddIncome {
+  width: 160px;
+  height: 40px;
+  border-width: 1px;
+  border-color: rgb(149, 149, 149);
+  border-style: solid;
+  border-radius: 6px;
+  margin-bottom: 30px;
+}
+.inptAddIncome::placeholder {
+  text-align: center;
+  font-size: 14px;
+}
+.inptAddIncome:focus::placeholder {
+  color: transparent;
+  transition: 0.5s;
+}
+/* ====================BTN Modal==================== */
+.btnWrapper {
+  display: flex;
+  margin-bottom: 50px;
+}
+.btn {
+  display: block;
+  border: none;
+  width: 138px;
+  height: 40px;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  outline: none;
+}
+
+.btnAddIncome {
+  background-color: #ff6c00;
+  color: white;
+  margin-right: 4px;
+}
+
+.btnAddIncome:hover {
+  background-color: #df6107;
+  transition: 0.2s;
+}
+
+.btnAddIncome:active {
+  background-color: #df6107;
+  box-shadow: 0 3px #666;
+  transform: translateY(2px);
+}
+
+.btnReset {
+  background-color: #f5f7fa;
+  color: rgba(0, 0, 0, 255);
+}
+
+.btnReset:hover {
+  background-color: #dee1e6;
+  transition: 0.2s;
+}
+
+.btnReset:active {
+  background-color: #dee1e6;
+  box-shadow: 0 3px #666;
+  transform: translateY(2px);
+}
+
+/* .btnAddIncome {
+  font-size: 14px;
+  width: 138px;
+  height: 40px;
+  background-color: f5f7fa;
+  color: #000000;
+
+  border: none;
+  border-radius: 6px;
+  box-shadow: 1px 1.732px 3px 0px;
+  margin-right: 5px;
+}
+
+.btnAddIncome:hover {
+  background-color: #ff6c00;
+  color: #fff;
+  transition: 0.2s;
+}
+.btnAddcost:active {
+  background-color: #ff6c00;
+  box-shadow: 0 3px #666;
+  transform: translateY(2px);
+}
+ */
+@media (min-width: 768px) {
+  .modalIncome {
+    width: 478px;
+    height: 286px;
+  }
+  .calendarDesk {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .calendarIconWrapper {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+  .dateLine {
+    margin-bottom: 0;
+    margin-right: 40px;
+  }
+  .inptAddIncome {
+    margin-bottom: 0;
+  }
+  .btnAddIncome {
+    margin-right: 10px;
+  }
+}
