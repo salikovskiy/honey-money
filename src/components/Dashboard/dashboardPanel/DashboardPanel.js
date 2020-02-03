@@ -10,12 +10,12 @@ import services from '../../../services/services';
 //const dateNow = moment().format();
 
 const monthsSummary = [
-  moment(new Date()),
-  moment(new Date()),
-  moment(new Date()),
-  moment(new Date()),
-  moment(new Date()),
-  moment(new Date()),
+  moment(),
+  moment(),
+  moment(),
+  moment(),
+  moment(),
+  moment(),
 ]
   .map((date, index) => date.subtract(index, 'months'))
   .map(date => moment(date).format('YYYYMM'));
@@ -46,7 +46,7 @@ class DashboardPanel extends Component {
     const balance = this.props.balance;
     const dateRegistration = this.props.dateRegistration;
     const token = this.props.token;
-    //console.log(dateRegistration);
+    //console.log(summary);
     return (
       <div className={styles.dashboardPanel}>
         {window.innerWidth < 768 ? (
