@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import css from './css/addIncome.module.css';
 import Calendar from 'react-calendar';
-
-const getDateNow = () => {
-  const day = new Date().getDate();
-  const month = new Date().getMonth();
-  const year = new Date().getFullYear();
-  const dateNow = `${day}.${month + 1}.${year}`;
-  return dateNow;
-};
+//import Moment from 'react-moment';
+var moment = require('moment');
 
 class AddIncome extends Component {
   state = {
@@ -39,11 +33,16 @@ class AddIncome extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let value = parseFloat(Number(this.state.value).toFixed(2));
-    this.props.income({
-      amount: value,
-      date: this.state.date,
-    });
-    this.handleClearForm();
+    if (value > 0) {
+      this.props.income({
+        amount: value,
+        date: moment(this.state.date).format('MM.DD.YYYY'),
+      });
+      this.handleClearForm();
+      alert(`Вы внесли ${value} на баланс!`);
+    } else {
+      alert('Внесите положительный баланс!');
+    }
   };
   pickDate = async () => {
     await this.onChange();
@@ -83,7 +82,9 @@ class AddIncome extends Component {
                   />
                 )}
 
-                <span className={css.dateLine}>{getDateNow()}</span>
+                <span className={css.dateLine}>
+                  {moment(this.state.date).format('MM.DD.YYYY')}
+                </span>
 
                 <input
                   className={css.inptAddIncome}
@@ -117,32 +118,3 @@ class AddIncome extends Component {
 }
 
 export default AddIncome;
-
-// const AddIncome = ({ closeModal, value, handleChange }) => (
-//   <>
-//     <div className={css.overlay}>
-//       <div className={css.modalIncome}>
-//         <span onClick={closeModal} className={css.close}></span>
-//         <h2 className={css.addIncomeTittle}>Ввести доход</h2>
-//         <div className={css.calendarDesk}>
-//           <div className={css.calendarIconWrapper}>
-//             <i className={css.calendarIcon}></i>
-//           </div>
-//           <span className={css.dateLine}>25.01.2020</span>
-//           <input
-//             className={css.inptAddIncome}
-//             placeholder="введите сумму"
-//             value={value}
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <div className={css.btnWrapper}>
-//           <button className={`${css.btnAddIncome} ${css.btn}`}>Ввод</button>
-//           <button className={`${css.btnReset} ${css.btn}`}>Очистить</button>
-//         </div>
-//       </div>
-//     </div>
-//   </>
-// );
-
-// export default AddIncome;
