@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import Type from './types';
+import { getUser } from './selectors';
+const initState = { authError: null, createdAt: '' };
 
 const costs = (state = [], { type, payload }) => {
   switch (type) {
@@ -33,38 +35,74 @@ const balance = (state = 0, { type, payload }) => {
 
 const dateNow = (state = '', { type, payload }) => {
   switch (type) {
-    case(Type.DATE_NOW):
-    return payload.date
+    case Type.DATE_NOW:
+      return payload.date;
     default:
       return state;
   }
 };
 
-const token = (state = '', { type, payload }) => {
-  switch (type) {
-    default:
-      return state;
-  }
-};
+// const error = (state = '', { type, payload }) => {
+//   switch (type) {
+//     default:
+//       return state;
+//   }
+// };
 
 const error = (state = '', { type, payload }) => {
   switch (type) {
     case Type.FETCH_ERROR:
       return payload.error;
-      case Type.FETCH_START:
-      case Type.GET_BALANCE_SUCCESS:
-      case Type.GET_COSTS_SUCCESS:
-        return state = ''
+    case Type.FETCH_START:
+    case Type.GET_BALANCE_SUCCESS:
+    case Type.GET_COSTS_SUCCESS:
+      return (state = '');
+    default:
+      return state;
+  }
+};
+const authReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'LOGIN_ERROR':
+      console.log('login failed');
+      return {
+        ...state,
+        authError: action.err.message,
+        token: '',
+      };
+    case 'LOGIN_SUCCESS':
+      console.log('login success');
+      console.log('action', action);
+      return {
+        ...state,
+        authError: null,
+        token: getUser(action).token,
+        createdAt: getUser(action).userData.createdAt,
+      };
+    case 'SIGNUP_SUCCESS':
+      console.log('signup success');
+      console.log(action);
+      return {
+        ...state,
+        authError: null,
+        token: getUser(action).token,
+      };
+    case 'SIGNUP_ERROR':
+      console.log('signup error');
+      return {
+        ...state,
+        authError: action.err.message,
+      };
     default:
       return state;
   }
 };
 
 export default combineReducers({
+  authReducer,
   costs,
   balance,
   isLoading,
   dateNow,
-  token,
   error,
 });
