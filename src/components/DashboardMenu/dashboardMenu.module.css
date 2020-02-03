@@ -6,8 +6,6 @@
   justify-content: center;
   min-width: 100vw;
   padding-top: 45px;
-  background-color: rgb(244, 246, 251);
-  border-bottom-left-radius: 140px;
 }
 
 .balance__wrapper {
@@ -102,8 +100,6 @@
     align-items: center;
     min-width: 100vw;
     padding: 40px 20px;
-    background-color: rgb(244, 246, 251);
-    border-radius: 0px;
   }
 
   .balance__wrapper {
@@ -183,9 +179,7 @@
     flex-direction: row;
     min-width: 730px;
     padding: 40px 95px 40px 460px;
-    background-color: rgb(244, 246, 251);
     border-radius: 0px;
-    border-bottom-left-radius: 140px;
   }
 
   .balance__wrapper {
