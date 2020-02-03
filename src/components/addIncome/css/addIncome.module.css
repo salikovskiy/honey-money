@@ -12,7 +12,7 @@
 }
 .calendar {
   position: absolute;
-  left: 50px;
+  left: 0px;
 }
 .modalIncome {
   background-color: #fff;
@@ -46,6 +46,7 @@
   height: 15px;
   opacity: 0.5;
   padding: 10px;
+  z-index: 10;
 }
 .close:active {
   transform: translateY(2px);
@@ -174,34 +175,14 @@
   transform: translateY(2px);
 }
 
-/* .btnAddIncome {
-  font-size: 14px;
-  width: 138px;
-  height: 40px;
-  background-color: f5f7fa;
-  color: #000000;
-
-  border: none;
-  border-radius: 6px;
-  box-shadow: 1px 1.732px 3px 0px;
-  margin-right: 5px;
-}
-
-.btnAddIncome:hover {
-  background-color: #ff6c00;
-  color: #fff;
-  transition: 0.2s;
-}
-.btnAddcost:active {
-  background-color: #ff6c00;
-  box-shadow: 0 3px #666;
-  transform: translateY(2px);
-}
- */
 @media (min-width: 768px) {
   .modalIncome {
     width: 478px;
     height: 286px;
+  }
+  .calendar {
+    position: absolute;
+    top: 150px;
   }
   .calendarDesk {
     display: flex;
