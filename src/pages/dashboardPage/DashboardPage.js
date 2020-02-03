@@ -1,5 +1,6 @@
 import React from 'react';
+import DashboardTable from '../../components/dashboardTable/DashboardTable';
 
-const DashboardPage = () => <h2>DashboardPage</h2>;
+const DashboardPage = () => <DashboardTable />;
 
 export default DashboardPage;
