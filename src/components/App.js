@@ -14,6 +14,12 @@ const App = props => {
     </>
   );
 };
-const mapStateToProps = state => state;
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    token: state.finance.authReducer.token,
+    createdAt: state.finance.authReducer.createdAt,
+  };
+};
 
 export default connect(mapStateToProps)(App);
