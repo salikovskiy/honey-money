@@ -1,0 +1,186 @@
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 2px solid red 10px;
+  border: 80%;
+}
+
+.categoryWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 75px;
+  /* height: 95px; */
+  align-items: center;
+  margin-right: 40px;
+}
+
+.categoryWrapper:nth-child(3n + 3) {
+  margin-right: 0px;
+}
+
+.categoryAmount {
+  font-family: Roboto-Regular, sans-serif;
+  font-size: 11px;
+  line-height: 30px;
+  color: #52555f;
+  margin: 0 auto;
+}
+.svgWrapper {
+  width: 58px;
+  height: 47px;
+  border-radius: 30px;
+  position: relative;
+  background-color: #f4f6fb;
+}
+
+.categoryIcon {
+  width: 55px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.categoryName {
+  margin: 0 auto;
+  /* padding-bottom: 48px; */
+  font-family: Roboto-Bold, sans-serif;
+  font-size: 10px;
+  /* line-height: 30px; */
+  color: #52555f;
+  text-transform: uppercase;
+}
+
+/* .amountWrap {
+    display: flex;
+    flex-wrap: wrap;
+  } */
+
+/* .listItem {
+    position: relative;
+    background-color: #f4f6fb;
+    height: 47px;
+    width: 58px;
+    border-radius: 30%;
+    margin-right: 10px;
+    margin-left: 30px;
+    cursor: pointer;
+  } */
+
+/* .categoryWrapper:nth-child(n + 10) {
+    margin-left: 33px;
+  }
+  .listItem:hover {
+    background-color: #fdc49e;
+  } */
+
+/* .productsPos {
+    width: 57px;
+    transform: translate(58%, -15%);
+  }
+  
+  .alcoholPos {
+    width: 55px;
+    transform: translate(50%, -14%);
+  }
+  
+  .entertaimentPos {
+    width: 53px;
+    transform: translate(68%, -1%);
+  }
+  
+  .healthPos {
+    width: 53px;
+    transform: translate(65%, -10%);
+  }
+  
+  .transportPos {
+    width: 53px;
+    transform: translate(62%, 1%);
+  }
+  
+  .householdPos {
+    width: 61px;
+    transform: translate(48%, -4%);
+  }
+  
+  .toolsPos {
+    width: 45px;
+    transform: translate(78%, 2%);
+  }
+  
+  .invorcePos {
+    width: 50px;
+    transform: translate(70%, -4%);
+  }
+  
+  .hobbyPos {
+    width: 54px;
+    transform: translate(64%, -14%);
+  }
+  
+  .learningPos {
+    width: 55px;
+    transform: translate(58%, -10%);
+  }
+  
+  .otherPos {
+    width: 53px;
+    transform: translate(62%, -6%);
+  } */
+
+/* SVG CLASSES */
+/* .productsIcon {
+    width: 57px;
+    transform: translate(58%, -15%);
+  }
+  
+  .alcoholIcon {
+    width: 55px;
+    transform: translate(50%, -14%);
+  }
+  
+  .entertaimentIcon {
+    width: 53px;
+    transform: translate(68%, -1%);
+  }
+  
+  .healthIcon {
+    width: 53px;
+    transform: translate(65%, -10%);
+  }
+  
+  .transportIcon {
+    width: 53px;
+    transform: translate(62%, 1%);
+  }
+  
+  .householdIcon {
+    width: 61px;
+    transform: translate(48%, -4%);
+  }
+  
+  .toolsIcon {
+    width: 45px;
+    transform: translate(78%, 2%);
+  }
+  
+  .invorceIcon {
+    width: 50px;
+    transform: translate(70%, -4%);
+  }
+  
+  .hobbyIcon {
+    width: 54px;
+    transform: translate(64%, -14%);
+  }
+  
+  .learningIcon {
+    width: 55px;
+    transform: translate(58%, -10%);
+  }
+  
+  .otherIcon {
+    width: 53px;
+    transform: translate(62%, -6%);
+  } */
