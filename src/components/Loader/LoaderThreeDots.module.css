@@ -1,0 +1,18 @@
+.LoaderConteiner {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.overlayLoader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000026;
+  z-index: 2;
+}
