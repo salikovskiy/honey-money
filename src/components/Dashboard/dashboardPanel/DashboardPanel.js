@@ -20,8 +20,8 @@ const monthsSummary = [
   moment(),
 ]
   .map((date, index) => date.subtract(index, 'months'))
-  //.map(date => (moment(date).format('YYYYMM')));
-  .map(date => moment(date._d).format('MMMM YYYY')); ////строка????
+  .map(date => moment(date).format('YYYYMM'));
+//.map(date => moment(date._d).format('MMMM YYYY')); ////строка????
 
 console.log(monthsSummary);
 
@@ -43,7 +43,15 @@ class DashboardPanel extends Component {
       .then(data => this.setState({ costs: data.data.costs }));
   }
 
+  handleGetSummary=()=>{
+    monthsSummary.map(monthTable=>{
+      return{month:monthTable, amount:this.state.costs.map(cost=> moment(cost.date).format('YYYYMM')===monthTable?console.log(monthTable, cost.amount):console.log("noooo")) 
+        }
+      })
+  }
+
   render() {
+    this.handleGetSummary()
     console.log(this.state.costs);
     return (
       <div className={styles.dashboardPanel}>
