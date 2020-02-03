@@ -1,0 +1,41 @@
+.wrapper {
+	margin: 0 auto;
+	width: 320px;
+	min-height: 100vh;
+	background-color: red;
+	padding-bottom: 49px;
+	background-color: var(--bg-color-light-blue);
+
+}
+
+.header {
+	background-color: var(--bg-color-white);
+
+	height: 57px;
+}
+
+.statistic_menu {
+	background-color: var(--bg-color-light-blue);
+
+	height: 160px;
+}
+
+.statistic_amounts {
+	border: 1px solid red;
+	border-radius: 0 0 0 100px;
+	background-color: var(--bg-color-light-blue);
+
+	height: 130px;
+}
+
+.categories_list {
+	background-color: var(--bg-color-white);
+
+	height: 600px;
+}
+
+.chart {
+	background-color: var(--bg-color-white);
+
+	height: 572px;
+}
