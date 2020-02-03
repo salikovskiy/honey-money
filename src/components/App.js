@@ -4,7 +4,7 @@ import { useRoute } from '../routes';
 import { connect } from 'react-redux';
 
 const App = props => {
-  const route = useRoute(true);
+  const route = useRoute(props.token);
   return route;
 };
 

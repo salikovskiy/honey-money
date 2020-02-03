@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { getUser } from './selectors';
 const initState = { authError: null, createdAt: '' };
 
 const costs = (state = [], { type, payload }) => {
@@ -50,8 +51,8 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         authError: null,
-        token: action.responce.data.user.token,
-        createdAt: action.responce.data.user.userData.createdAt,
+        token: getUser(action).token,
+        createdAt: getUser(action).userData.createdAt,
       };
     case 'SIGNUP_SUCCESS':
       console.log('signup success');
@@ -59,7 +60,7 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         authError: null,
-        token: action.responce.data.user.token,
+        token: getUser(action).token,
       };
     case 'SIGNUP_ERROR':
       console.log('signup error');
