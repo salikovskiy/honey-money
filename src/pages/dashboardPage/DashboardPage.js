@@ -4,6 +4,7 @@ import { getTransactions, postIncome } from '../../redux/operations';
 import { addDateNow } from '../../redux/actions';
 import getDateNow from '../../utilities/getDateNow';
 import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardPanel';
+import AddIncome from '../../components/addIncome/AddIncome';
 
 class DashboardPage extends Component {
   state = {
@@ -21,10 +22,13 @@ class DashboardPage extends Component {
   };
 
   render() {
-
+    const { isOpenModalIncome } = this.state;
     return (
       <>
         <h2>DashboardPage</h2>
+        {isOpenModalIncome && (
+          <AddIncome closeModal={this.onChangeModalIncome} />
+        )}
         <DashboardPanel />
       </>
     );
