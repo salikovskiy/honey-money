@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-const initState = { authError: null, token: null };
+const initState = { authError: null, createdAt: '' };
 
 const costs = (state = [], { type, payload }) => {
   switch (type) {
@@ -28,13 +28,6 @@ const dateNow = (state = '', { type, payload }) => {
   }
 };
 
-const token = (state = '', { type, payload }) => {
-  switch (type) {
-    default:
-      return state;
-  }
-};
-
 const error = (state = '', { type, payload }) => {
   switch (type) {
     default:
@@ -53,10 +46,12 @@ const authReducer = (state = initState, action) => {
       };
     case 'LOGIN_SUCCESS':
       console.log('login success');
+      console.log('action', action);
       return {
         ...state,
         authError: null,
         token: action.responce.data.user.token,
+        createdAt: action.responce.data.user.userData.createdAt,
       };
     case 'SIGNUP_SUCCESS':
       console.log('signup success');
@@ -83,6 +78,5 @@ export default combineReducers({
   balance,
   isLoading,
   dateNow,
-  token,
   error,
 });

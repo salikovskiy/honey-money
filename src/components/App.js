@@ -4,13 +4,14 @@ import { useRoute } from '../routes';
 import { connect } from 'react-redux';
 
 const App = props => {
-  const route = useRoute(false);
+  const route = useRoute(true);
   return route;
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
     token: state.finance.authReducer.token,
+    createdAt: state.finance.authReducer.createdAt,
   };
 };
 
