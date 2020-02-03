@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+const initState = { authError: null, token: null };
 
 const costs = (state = [], { type, payload }) => {
   switch (type) {
@@ -41,7 +42,43 @@ const error = (state = '', { type, payload }) => {
   }
 };
 
+const authReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'LOGIN_ERROR':
+      console.log('login failed');
+      return {
+        ...state,
+        authError: action.err.message,
+        token: '',
+      };
+    case 'LOGIN_SUCCESS':
+      console.log('login success');
+      return {
+        ...state,
+        authError: null,
+        token: action.responce.data.user.token,
+      };
+    case 'SIGNUP_SUCCESS':
+      console.log('signup success');
+      console.log(action);
+      return {
+        ...state,
+        authError: null,
+        token: action.responce.data.user.token,
+      };
+    case 'SIGNUP_ERROR':
+      console.log('signup error');
+      return {
+        ...state,
+        authError: action.err.message,
+      };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
+  authReducer,
   costs,
   balance,
   isLoading,
