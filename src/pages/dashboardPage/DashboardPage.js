@@ -4,7 +4,7 @@ import { getTransactions, postIncome } from '../../redux/operations';
 import { addDateNow } from '../../redux/actions';
 import getDateNow from '../../utilities/getDateNow';
 import DashboardMenu from '../../components/DashboardMenu/DashboardMenu';
-// import DashboardPanel from '../../components/Dashboard/dashboardPanel';
+import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardPanel';
 import AddIncome from '../../components/addIncome/AddIncome';
 
 class DashboardPage extends Component {
@@ -31,7 +31,7 @@ class DashboardPage extends Component {
         {isOpenModalIncome && (
           <AddIncome closeModal={this.onChangeModalIncome} />
         )}
-        {/* <DashboardPanel /> */}
+        <DashboardPanel />
       </>
     );
   }
