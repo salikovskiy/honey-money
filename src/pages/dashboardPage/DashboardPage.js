@@ -3,12 +3,9 @@ import { connect } from 'react-redux';
 import { getTransactions, postIncome } from '../../redux/operations';
 import { addDateNow } from '../../redux/actions';
 import getDateNow from '../../utilities/getDateNow';
-<<<<<<< HEAD
 import DashboardMenu from '../../components/DashboardMenu/DashboardMenu';
-=======
-import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardPanel';
+// import DashboardPanel from '../../components/Dashboard/dashboardPanel';
 import AddIncome from '../../components/addIncome/AddIncome';
->>>>>>> dev
 
 class DashboardPage extends Component {
   state = {
@@ -26,21 +23,17 @@ class DashboardPage extends Component {
   };
 
   render() {
-<<<<<<< HEAD
-    // services.addIncome().then(data => console.log(data));
-    return <DashboardMenu />;
-=======
     const { isOpenModalIncome } = this.state;
     return (
       <>
         <h2>DashboardPage</h2>
+        <DashboardMenu />
         {isOpenModalIncome && (
           <AddIncome closeModal={this.onChangeModalIncome} />
         )}
-        <DashboardPanel />
+        {/* <DashboardPanel /> */}
       </>
     );
->>>>>>> dev
   }
 }
 
