@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import services from '../../services/services';
 import { getTransactions, postIncome } from '../../redux/operations';
+import { addDateNow } from '../../redux/actions';
 import getDateNow from '../../utilities/getDateNow';
+import DashboardMenu from '../../components/DashboardMenu/DashboardMenu';
 import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardPanel';
+import AddIncome from '../../components/addIncome/AddIncome';
 
 class DashboardPage extends Component {
   state = {
@@ -15,17 +17,26 @@ class DashboardPage extends Component {
   };
 
   componentDidMount = () => {
-    //     console.log(this.props.finance);
-    console.log(getDateNow());
-    // this.props.getTransactions();
+    console.log(this.props.finance);
+    this.props.addDateNow(getDateNow());
+    this.props.getTransactions();
   };
 
   render() {
-    // services.addIncome().then(data => console.log(data));
+    const { isOpenModalIncome } = this.state;
     return (
       <>
         <h2>DashboardPage</h2>
-        <DashboardPanel />
+        <DashboardMenu />
+        {isOpenModalIncome && (
+          <AddIncome closeModal={this.onChangeModalIncome} />
+        )}
+        <DashboardPanel
+          costs={this.props.finance.costs}
+          balance={this.props.finance.balance}
+          dateRegistration={this.props.finance.authReducer.createdAt}
+          token={this.props.finance.authReducer.token}
+        />
       </>
     );
   }
@@ -36,6 +47,7 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = {
   getTransactions,
   postIncome,
+  addDateNow,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

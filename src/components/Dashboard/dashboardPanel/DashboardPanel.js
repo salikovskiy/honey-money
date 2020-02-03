@@ -9,86 +9,44 @@ import services from '../../../services/services';
 
 //const dateNow = moment().format();
 
-///Для Дениса - объект с месяцем и расходом за месяц
-
 const monthsSummary = [
-  moment(),
-  moment(),
-  moment(),
-  moment(),
-  moment(),
-  moment(),
+  moment(new Date()),
+  moment(new Date()),
+  moment(new Date()),
+  moment(new Date()),
+  moment(new Date()),
+  moment(new Date()),
 ]
   .map((date, index) => date.subtract(index, 'months'))
   .map(date => moment(date).format('YYYYMM'));
-//.map(date => moment(date._d).format('MMMM YYYY')); ////строка????
-
-console.log(monthsSummary);
-
-///получаем дату расходов
-///нужно сравнить ее с датой, сложить расходы и отрисовать. КАК??????
-
-// {this.state.costs.map(cost => moment(cost.date).format('YYYYMM'))}
 
 class DashboardPanel extends Component {
-  state = {
-    costs: [],
-  };
-
-  componentDidMount() {
-    services
-      .getAllTransactions(
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMzMxZTlmZDhlYTczMmRjMDUyZjg4ZSIsImlhdCI6MTU4MDQwODQ3OX0.jsQIyYLooWf1ryjqXuzrKLQ8Rcxb1nSxJw1IuFmqYV0',
-      )
-      .then(data => {
-        this.setState({ costs: data.data.costs });
-      });
-  }
-
   handleGetSummary = () => {
-    let summ = {};
-    const arr = [];
-
-    monthsSummary.map(monthTable => {
+    const summary = monthsSummary.map(monthTable => {
       return {
-        month: monthTable,
-        amount: this.state.costs.reduce((acc, cost) => {
-          // return moment(cost.date).format('YYYYMM') === monthTable
-          //   ? acc + cost.amount
-          //   : acc;
-          if (moment(cost.date).format('YYYYMM') === monthTable) {
-            console.log('acc', acc);
-            console.log(acc + cost.amount);
-            if (acc >= 0) {
-              summ[monthTable] = acc + cost.amount;
-              arr.push(summ);
-            }
-
-            return acc + cost.amount;
-          } else return acc;
+        month: moment(monthTable, 'YYYYMM').format('MMMM YYYY'),
+        amount: this.props.costs.reduce((acc, cost) => {
+          return monthTable === moment(cost.date).format('YYYYMM')
+            ? acc + cost.amount
+            : acc;
         }, 0),
-
-        // map(cost => {
-        //   if (moment(cost.date).format('YYYYMM') === monthTable) {
-        //     console.log((summ += cost.amount));
-        //     count[monthTable] = summ += cost.amount;
-        //   }
-
-        //   moment(cost.date).format('YYYYMM') === monthTable
-        //   ? console.log(monthTable, cost.amount)
-        //   : console.log('noooo'),
-        // }),
       };
-
-      //);
     });
-
-    return summ;
+    return summary;
   };
+  /////////////////////???????????????????????функция для Оли
+  handleAddCosts = (token, obj) => {
+    services.addCosts(token, obj);
+  };
+
+  ////////////для Богдана???????????????
 
   render() {
-    console.log('--- summ ---', this.handleGetSummary());
-    console.log(this.state.costs);
+    const summary = this.handleGetSummary();
+    const balance = this.props.balance;
+    const dateRegistration = this.props.dateRegistration;
+    const token = this.props.token;
+    //console.log(dateRegistration);
     return (
       <div className={styles.dashboardPanel}>
         {window.innerWidth < 768 ? (
@@ -97,38 +55,22 @@ class DashboardPanel extends Component {
           </button>
         ) : (
           <div className={styles.dashboardPanel_addCost}>
-            <AddCost />
+            <AddCost
+              balance={balance}
+              dateRegistration={dateRegistration}
+              token={token}
+            />
           </div>
         )}
         <div className={styles.dashboardPanel_wrap}>
           <div className={styles.dashboardPanel_Bogdan}></div>
           <div className={styles.dashboardPanel_tableExample}>
-            <TableExample />
+            <TableExample summary={summary} />
           </div>
         </div>
       </div>
     );
   }
 }
-
-// const DashboardPanel = () => (
-//   <div className={styles.dashboardPanel}>
-//     {window.innerWidth < 768 ? (
-//       <button className={styles.dashboardPanelBtnMobile} type="button">
-//         Ввести расход
-//       </button>
-//     ) : (
-//       <div className={styles.dashboardPanel_addCost}>
-//         <AddCost />
-//       </div>
-//     )}
-//     <div className={styles.dashboardPanel_wrap}>
-//       <div className={styles.dashboardPanel_Bogdan}></div>
-//       <div className={styles.dashboardPanel_tableExample}>
-//         <TableExample />
-//       </div>
-//     </div>
-//   </div>
-// );
 
 export default DashboardPanel;
