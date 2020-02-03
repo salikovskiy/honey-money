@@ -18,6 +18,10 @@ html {
 
 }
 
+* {
+    outline: none;
+}
+
 .statisticsMenu_goBack {
     display: block;
     font-size: 11px;
@@ -77,10 +81,16 @@ html {
     margin-bottom: 10px;
 }
 
+.statisticsMenu_calendar_wrap {
+    width: 168px;
+    margin: 0 auto
+}
+
 .statisticsMenu_calendar_monthsWrap {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    width: 168px;
 }
 
 .statisticsMenu_calendar_monthsBtn_left {

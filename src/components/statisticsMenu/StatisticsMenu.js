@@ -72,10 +72,12 @@ class StatisticsMenu extends Component {
               150,000.00 грн
             </p>
           </div>
+
           <div className={styles.statisticsMenu_calendar_wrap}>
             <p className={styles.statisticsMenu_calendar_text}>
               Текущий период:
             </p>
+
             <div className={styles.statisticsMenu_calendar_monthsWrap}>
               <button
                 className={
