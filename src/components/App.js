@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 const App = props => {
   const route = useRoute(true);
-  const isLoading = props.finance.isLoading;
+  const isLoading = props.isLoading;
   return (
     <>
       {isLoading && <Loader />}
@@ -19,6 +19,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     token: state.finance.authReducer.token,
     createdAt: state.finance.authReducer.createdAt,
+    isLoading: state.finance.isLoading,
   };
 };
 

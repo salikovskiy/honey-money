@@ -1,18 +1,15 @@
 .LoaderConteiner {
-  display: flex;
-  justify-content: center;
-  background-color: transparent;
   position: absolute;
-  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .overlayLoader {
   position: fixed;
+  top: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #00000026;
-  z-index: 2;
 }
