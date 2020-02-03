@@ -13,7 +13,7 @@ export default {
       return data;
     } catch (error) {
       console.log(error);
-      throw new Error(error);
+      throw new Error(error)
     }
   },
   async addIncome(token, arr) {
@@ -29,4 +29,20 @@ export default {
       throw new Error(error);
     }
   },
+
+  async addCosts(token, obj) {
+    try {
+      const data = await axios.post('/costs', obj, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  },
+
+
 };
