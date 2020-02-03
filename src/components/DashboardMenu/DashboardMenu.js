@@ -11,7 +11,7 @@ const notyfMessage = notyf.error(
   'Привет! Для начала работы внеси текущий баланс своего счета! Ты не можешь тратить деньги пока их у тебя нет :)',
 );
 
-const DashboardMenu = ( props ) => (
+const DashboardMenu = ({ props }) => (
   <div className={css.dashMenu__container}>
     {moment().format('YYYYMMDD') !== moment({ props }).format('YYYYMMDD') &&
     props.balance === 0
@@ -24,7 +24,7 @@ const DashboardMenu = ( props ) => (
       <span className={css.balance__value}>00.00 грн</span>
     </div>
 
-    <button className={css.dashMenu__incomeBtn} onClick={()=>props.changeModal()}>Ввести доход</button>
+    <button className={css.dashMenu__incomeBtn}>Ввести доход</button>
     <div className={css.dashMenu__linkContainer}>
       <NavLink to="/statistics" className={css.dashMenu__linkTo}>
         <svg

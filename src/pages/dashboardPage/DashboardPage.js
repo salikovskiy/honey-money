@@ -24,14 +24,22 @@ class DashboardPage extends Component {
 
   render() {
     const { isOpenModalIncome } = this.state;
-    const date = this.props.finance.authReducer.createdAt
-    const postIncome=  this.props.postIncome
+    const date = this.props.finance.authReducer.createdAt;
+    const postIncome = this.props.postIncome;
+    const balance = this.props.finance.balance;
     return (
       <>
         <h2>DashboardPage</h2>
-        <DashboardMenu changeModal={this.onChangeModalIncome} />
+        <DashboardMenu
+          changeModal={this.onChangeModalIncome}
+          balance={balance}
+        />
         {isOpenModalIncome && (
-          <AddIncome closeModal={this.onChangeModalIncome} date={date} addIncome={postIncome} />
+          <AddIncome
+            closeModal={this.onChangeModalIncome}
+            date={date}
+            addIncome={postIncome}
+          />
         )}
         <DashboardPanel />
       </>
