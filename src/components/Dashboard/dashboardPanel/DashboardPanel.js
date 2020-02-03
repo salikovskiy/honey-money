@@ -40,24 +40,54 @@ class DashboardPanel extends Component {
       .getAllTransactions(
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMzMxZTlmZDhlYTczMmRjMDUyZjg4ZSIsImlhdCI6MTU4MDQwODQ3OX0.jsQIyYLooWf1ryjqXuzrKLQ8Rcxb1nSxJw1IuFmqYV0',
       )
-      .then(data => this.setState({ costs: data.data.costs }));
+      .then(data => {
+        this.setState({ costs: data.data.costs });
+      });
   }
 
   handleGetSummary = () => {
+    let summ = {};
+    const arr = [];
+
     monthsSummary.map(monthTable => {
       return {
         month: monthTable,
-        amount: this.state.costs.map(cost =>
-          moment(cost.date).format('YYYYMM') === monthTable
-            ? console.log(monthTable, cost.amount)
-            : console.log('noooo'),
-        ),
+        amount: this.state.costs.reduce((acc, cost) => {
+          // return moment(cost.date).format('YYYYMM') === monthTable
+          //   ? acc + cost.amount
+          //   : acc;
+          if (moment(cost.date).format('YYYYMM') === monthTable) {
+            console.log('acc', acc);
+            console.log(acc + cost.amount);
+            if (acc >= 0) {
+              summ[monthTable] = acc + cost.amount;
+              arr.push(summ);
+            }
+
+            return acc + cost.amount;
+          } else return acc;
+        }, 0),
+
+        // map(cost => {
+        //   if (moment(cost.date).format('YYYYMM') === monthTable) {
+        //     console.log((summ += cost.amount));
+        //     count[monthTable] = summ += cost.amount;
+        //   }
+
+        //   moment(cost.date).format('YYYYMM') === monthTable
+        //   ? console.log(monthTable, cost.amount)
+        //   : console.log('noooo'),
+        // }),
       };
+
+      //);
     });
+
+    return summ;
   };
 
   render() {
-    this.handleGetSummary();
+    console.log('--- summ ---', this.handleGetSummary());
     console.log(this.state.costs);
     return (
       <div className={styles.dashboardPanel}>
