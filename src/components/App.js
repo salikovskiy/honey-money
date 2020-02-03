@@ -1,10 +1,18 @@
 // import React from 'react';
 import './App.css';
 import { useRoute } from '../routes';
+import { connect } from 'react-redux';
 
-const App = () => {
-  const route = useRoute(true);
+const App = props => {
+  const route = useRoute(props.token);
   return route;
 };
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    token: state.finance.authReducer.token,
+    createdAt: state.finance.authReducer.createdAt,
+  };
+};
+
+export default connect(mapStateToProps)(App);
