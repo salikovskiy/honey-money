@@ -30,9 +30,9 @@ export default {
     }
   },
 
-  async addCosts(token, arr) {
+  async addCosts(token, obj) {
     try {
-      const data = await axios.post('/costs', arr, {
+      const data = await axios.post('/costs', obj, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
