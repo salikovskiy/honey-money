@@ -5,7 +5,7 @@ import Loader from './../components/Loader/LoaderThreeDots';
 import { connect } from 'react-redux';
 
 const App = props => {
-  const route = useRoute(true);
+  const route = useRoute(props.token);
   const isLoading = props.isLoading;
   return (
     <>
