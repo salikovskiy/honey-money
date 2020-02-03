@@ -10,7 +10,7 @@
   border-bottom-left-radius: 140px;
 }
 
-.balance__form {
+.balance__wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -23,7 +23,7 @@
   border-radius: 25px;
 }
 
-.balance__label {
+.balance__title {
   display: block;
   width: 80px;
   color: #000;
@@ -31,8 +31,7 @@
   font-weight: 700;
 }
 
-.balance__input,
-textarea {
+.balance__value {
   display: block;
   outline: none;
   width: 80px;
@@ -107,7 +106,7 @@ textarea {
     border-radius: 0px;
   }
 
-  .balance__form {
+  .balance__wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -121,15 +120,14 @@ textarea {
     border-radius: 25px;
   }
 
-  .balance__label {
+  .balance__title {
     display: block;
     color: #000;
     font-size: 16px;
     font-weight: 700;
   }
 
-  .balance__input,
-  textarea {
+  .balance__value {
     display: block;
     outline: none;
     width: 80px;
@@ -139,13 +137,6 @@ textarea {
     border-image: none;
     border: none;
     background-color: transparent;
-  }
-
-  .dashMenu__balance {
-    display: block;
-    color: #000;
-    font-weight: 700;
-    font-size: 16px;
   }
 
   .dashMenu__incomeBtn {
@@ -197,7 +188,7 @@ textarea {
     border-bottom-left-radius: 140px;
   }
 
-  .dashMenu__text {
+  .balance__wrapper {
     display: flex;
     justify-content: space-between;
     min-width: 220px;
@@ -209,14 +200,14 @@ textarea {
     border-radius: 25px;
   }
 
-  .dashMenu__title {
+  .balance__title {
     display: block;
     color: #000;
     font-size: 16px;
     font-weight: 700;
   }
 
-  .dashMenu__balance {
+  .balance__value {
     display: block;
     color: #000;
     font-weight: 700;
