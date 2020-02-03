@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import s from './StatisticsPage.module.css';
+import StatisticsMenu from '../../components/statisticsMenu/StatisticsMenu';
+import CategoriesList from '../../components/CategoriesList/CategoriesList';
 
 class StatisticsPage extends Component {
-  state: {};
   render() {
     return (
       <div className={s.wrapper}>
         <div className={s.header}>Header</div>
-        <div className={s.statistic_menu}>StatisticMenu</div>
+        <StatisticsMenu />
         <div className={s.statistic_amounts}>StatisticAmounts</div>
-        <div className={s.categories_list}>CategoriesList</div>
+        <CategoriesList />
         <div className={s.chart}>Chart</div>
       </div>
     );

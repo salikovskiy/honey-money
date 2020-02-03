@@ -2,16 +2,23 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import AuthPage from './pages/authPage/AuthPage';
 import DashboardPage from './pages/dashboardPage/DashboardPage';
-import StatisticsPage from './pages/StatisticsPage/StatisticsPage';
+import StatisticPage from './pages/statisticsPage/StatisticsPage';
+import Footer from './components/footer/Footer';
+import css from './routes.module.css';
 
 export const useRoute = isAuth => {
   if (isAuth) {
     return (
-      <Switch>
-        <Route path="/dashboard" component={DashboardPage} />
-        <Route path="/statistics" component={StatisticsPage} />
-        <Redirect to="/dashboard" />
-      </Switch>
+      <>
+        <div className={css.container}>
+          <Switch>
+            <Route path="/dashboard" component={DashboardPage} />
+            <Route path="/statistics" component={StatisticPage} />
+            <Redirect to="/dashboard" />
+          </Switch>
+        </div>
+        <Footer />
+      </>
     );
   }
   return (
