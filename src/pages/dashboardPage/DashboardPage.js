@@ -27,7 +27,7 @@ class DashboardPage extends Component {
     return (
       <>
         <h2>DashboardPage</h2>
-        <DashboardMenu />
+        <DashboardMenu changeModal={this.onChangeModalIncome} />
         {isOpenModalIncome && (
           <AddIncome closeModal={this.onChangeModalIncome} />
         )}
