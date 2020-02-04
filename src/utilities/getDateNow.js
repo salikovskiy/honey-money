@@ -6,7 +6,8 @@ const getDateNow = () => {
   };
   const number = new Date().getDate();
   const year = new Date().getFullYear();
-  const dateNow = `${moun()}.${number}.${year}`;
+  //const dateNow = `${moun()}.${number}.${year}`;
+  const dateNow = `${number}.${moun()}.${year}`;
   return dateNow;
 };
 
