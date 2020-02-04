@@ -9,11 +9,11 @@
 }
 
 .error {
-  margin-top: 20px;
+  margin-top: 30px;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   text-align: center;
-  color: red;
+  color: #d8000c;
 }
 
 .label {
@@ -42,6 +42,10 @@
 .input:active {
   border-radius: 50px;
   border: 2px solid #ff6c00;
+}
+
+.input:valid {
+  border: 2px solid lightgreen;
 }
 
 .input::placeholder {

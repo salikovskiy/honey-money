@@ -19,13 +19,20 @@ class AuthForm extends Component {
 
   rules = {
     email: 'required|email',
-    password: 'required|min:4',
+    password: 'required|min:6',
   };
 
   handleChange = e => {
-    this.setState({
-      [e.target.id]: e.target.value,
-    });
+    validate(e.target.value, this.rules)
+      .then(
+        this.setState({
+          [e.target.id]: e.target.value,
+        }),
+      )
+      .catch(err => {
+        const error = err[0].message;
+        this.setState({ error });
+      });
   };
 
   handleLogIn = e => {
@@ -73,6 +80,7 @@ class AuthForm extends Component {
               Электронная почта
             </label>
             <input
+              required
               onChange={this.handleChange}
               type="email"
               id="email"
@@ -83,6 +91,8 @@ class AuthForm extends Component {
               Пароль
             </label>
             <input
+              required
+              pattern="^[a-zA-Z0-9]{6,}$"
               id="password"
               type="password"
               className={css.input}
