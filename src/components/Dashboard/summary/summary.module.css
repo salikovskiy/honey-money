@@ -39,6 +39,10 @@
   text-transform: uppercase;
 }
 
+.mounth:first-letter {
+  text-transform: uppercase;
+}
+
 .price {
   font-family: 'Roboto', sans-serif;
   color: #52555f;
