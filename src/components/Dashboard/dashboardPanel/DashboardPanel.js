@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './dashboardPanel.module.css';
 import TableExample from '../summary/summary';
 import AddCost from '../../addCost/AddCost';

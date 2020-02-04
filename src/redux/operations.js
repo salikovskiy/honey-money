@@ -44,7 +44,7 @@ export const postCosts = obj => async (dispatch, getState) => {
       getState().finance.authReducer.token,
       obj,
     );
-    // await dispatch(getBalanceSuccess(response.data.balance));
+    await dispatch(getBalanceSuccess(response.data.balance));
   } catch (error) {
     dispatch(fetchError(error.message));
     console.log(error);
