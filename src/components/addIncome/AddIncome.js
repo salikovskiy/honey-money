@@ -34,12 +34,13 @@ class AddIncome extends Component {
     e.preventDefault();
     let value = parseFloat(Number(this.state.value).toFixed(2));
     if (value > 0) {
-      this.props.income({
+      this.props.addIncome({
         amount: value,
         date: moment(this.state.date).format('MM.DD.YYYY'),
       });
       this.handleClearForm();
-      alert(`Вы внесли ${value} на баланс!`);
+      this.props.closeModal();
+      // alert(`Вы внесли ${value} на баланс!`);
     } else {
       alert('Внесите положительный баланс!');
     }
