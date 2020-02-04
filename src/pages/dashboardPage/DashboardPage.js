@@ -5,6 +5,7 @@ import { addDateNow } from '../../redux/actions';
 import getDateNow from '../../utilities/getDateNow';
 import DashboardMenu from '../../components/DashboardMenu/DashboardMenu';
 import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardPanel';
+import DashboardTable from '../../components/dashboardTable/DashboardTable';
 import AddIncome from '../../components/addIncome/AddIncome';
 
 class DashboardPage extends Component {
@@ -27,7 +28,7 @@ class DashboardPage extends Component {
     const date = this.props.finance.authReducer.createdAt;
     const postIncome = this.props.postIncome;
     const balance = this.props.finance.balance;
-    const postCosts =  this.props.postCosts
+    const postCosts = this.props.postCosts;
     return (
       <>
         <h2>DashboardPage</h2>
