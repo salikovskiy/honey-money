@@ -6,8 +6,9 @@ import AddCost from '../../addCost/AddCost';
 import moment from 'moment';
 import 'moment/locale/ru';
 import services from '../../../services/services';
+import { connect } from 'react-redux';
 
-//const dateNow = moment().format();
+let date = moment().format();
 
 const monthsSummary = [
   moment(),
@@ -25,7 +26,7 @@ class DashboardPanel extends Component {
     const summary = monthsSummary.map(monthTable => {
       return {
         month: moment(monthTable, 'YYYYMM').format('MMMM YYYY'),
-        amount: this.props.costs.reduce((acc, cost) => {
+        amount: this.props.finance.costs.reduce((acc, cost) => {
           return monthTable === moment(cost.date).format('YYYYMM')
             ? acc + cost.amount
             : acc;
@@ -34,19 +35,20 @@ class DashboardPanel extends Component {
     });
     return summary;
   };
+
   /////////////////////???????????????????????функция для Оли
-  handleAddCosts = (token, obj) => {
-    services.addCosts(token, obj);
+
+  handleGetDate = e => {
+    console.log(e.target.dataset.month);
   };
 
   ////////////для Богдана???????????????
 
   render() {
+    const { balance, dateRegistration } = this.props.finance;
+    console.log(this.props.finance);
     const summary = this.handleGetSummary();
-    const balance = this.props.balance;
-    const dateRegistration = this.props.dateRegistration;
-    const token = this.props.token;
-    //console.log(summary);
+    console.log(balance);
     return (
       <div className={styles.dashboardPanel}>
         {window.innerWidth < 768 ? (
@@ -55,17 +57,25 @@ class DashboardPanel extends Component {
           </button>
         ) : (
           <div className={styles.dashboardPanel_addCost}>
-            <AddCost
-              balance={balance}
-              dateRegistration={dateRegistration}
-              token={token}
-            />
+            <AddCost balance={balance} dateRegistration={dateRegistration} />
           </div>
         )}
         <div className={styles.dashboardPanel_wrap}>
-          <div className={styles.dashboardPanel_Bogdan}></div>
+          <div className={styles.dashboardPanel_Bogdan}>
+            {/* {summary.map(date => (
+              <div
+                data-month={moment(date.month, 'MMMM YYYY').format('YYYYMM')}
+                onClick={this.handleGetDate}
+              >
+                test
+              </div>
+            ))} */}
+          </div>
           <div className={styles.dashboardPanel_tableExample}>
-            <TableExample summary={summary} />
+            <TableExample
+              summary={summary}
+              handleGetDate={this.handleGetDate}
+            />
           </div>
         </div>
       </div>
@@ -73,4 +83,8 @@ class DashboardPanel extends Component {
   }
 }
 
-export default DashboardPanel;
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPanel);

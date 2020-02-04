@@ -31,12 +31,7 @@ class DashboardPage extends Component {
         {isOpenModalIncome && (
           <AddIncome closeModal={this.onChangeModalIncome} />
         )}
-        <DashboardPanel
-          costs={this.props.finance.costs}
-          balance={this.props.finance.balance}
-          dateRegistration={this.props.finance.authReducer.createdAt}
-          token={this.props.finance.authReducer.token}
-        />
+        <DashboardPanel />
       </>
     );
   }
