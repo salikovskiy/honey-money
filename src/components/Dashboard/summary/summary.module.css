@@ -31,6 +31,9 @@
 
   padding: 17px 17px;
 }
+.mounth:first-letter {
+  text-transform: uppercase;
+}
 
 .mounth:first-letter {
   text-transform: uppercase;
