@@ -1,0 +1,133 @@
+.StatisticAmountsContainer {
+  flex-wrap: wrap;
+  width: 87.5%;
+  height: 84px;
+  margin: 0 auto 64px;
+}
+
+.AmountContainer {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 13px;
+  font-family: 'Roboto';
+  color: #52555f;
+  line-height: 3.462;
+  background-color: #ffffff;
+  border-radius: 25px;
+  box-shadow: 0px 7px 30px 0px #aab2c580;
+}
+
+.AmountCost {
+  text-align: center;
+}
+
+.TotalAmountCost {
+  color: #e96105;
+  font-variant-numeric: slashed-zero;
+}
+
+.figure {
+  background-color: #f4f6fb;
+  color: #f4f6fb;
+  height: 64px;
+  width: 2px;
+  margin-top: 10px;
+}
+
+.AmountIncome {
+  text-align: center;
+}
+
+.TotalAmountIncome {
+  color: #447b46;
+  font-variant-numeric: slashed-zero;
+}
+
+.Доходы_расходы {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 320px;
+  height: 1565px;
+  z-index: 59;
+}
+.Фигура_2 {
+  background-color: rgb(244, 246, 251);
+  position: absolute;
+  left: 159px;
+  top: 247px;
+  width: 2px;
+  height: 64px;
+  z-index: 58;
+}
+.Доходы {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 320px;
+  height: 1565px;
+  z-index: 57;
+}
+.Доходы:_ {
+  font-size: 13px;
+  font-family: 'Roboto';
+  color: rgb(82, 85, 95);
+  line-height: 3.462;
+  text-align: center;
+  position: absolute;
+  left: 198.734px;
+  top: 289.876px;
+  z-index: 56;
+}
+.___45_000_00_грн_ {
+  font-size: 13px;
+  font-family: 'Roboto';
+  color: rgb(68, 123, 70);
+  line-height: 3.462;
+  text-align: center;
+  position: absolute;
+  left: 173.825px;
+  top: 309.876px;
+  z-index: 55;
+}
+.Расходы {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 320px;
+  height: 1565px;
+  z-index: 53;
+}
+.Расходы:_ {
+  font-size: 13px;
+  font-family: 'Roboto';
+  color: rgb(82, 85, 95);
+  line-height: 3.462;
+  text-align: center;
+  position: absolute;
+  left: 56.531px;
+  top: 289.876px;
+  z-index: 52;
+}
+.___18_000_00_грн_ {
+  font-size: 13px;
+  font-family: 'Roboto';
+  color: rgb(233, 97, 5);
+  line-height: 3.462;
+  text-align: center;
+  position: absolute;
+  left: 35.809px;
+  top: 309.876px;
+  z-index: 51;
+}
+.Прямоугольник__скругл__углы_11 {
+  border-radius: 25px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 7px 30px 0px rgba(170, 178, 197, 0.5);
+  position: absolute;
+  left: 20px;
+  top: 237px;
+  width: 280px;
+  height: 84px;
+  z-index: 49;
+}
