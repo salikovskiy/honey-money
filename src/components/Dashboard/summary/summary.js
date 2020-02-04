@@ -7,7 +7,7 @@ export default function TableExample(props) {
       <table className={css.table_price}>
         <caption>СВОДКА РАСХОДОВ</caption>
 
-        <tbody>
+        {/* <tbody>
           {this.props.summery.map(item => (
             <tr
               data-month={this.props.month}
@@ -18,7 +18,7 @@ export default function TableExample(props) {
               <td className={css.price}>{item.amount}</td>
             </tr>
           ))}
-        </tbody>
+        </tbody> */}
       </table>
     </div>
   );
