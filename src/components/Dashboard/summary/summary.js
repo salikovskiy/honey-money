@@ -1,18 +1,19 @@
 import React from 'react';
 import css from '../summary/summary.module.css';
-
-export default function TableExample(props) {
+import moment from 'moment';
+import shortid from 'shortid';
+export default function TableExample({ summary, handleGetDate }) {
   return (
     <div>
       <table className={css.table_price}>
         <caption>СВОДКА РАСХОДОВ</caption>
-
         <tbody>
-          {this.props.summery.map(item => (
+          {summary.map(item => (
             <tr
-              data-month={this.props.month}
+              id={shortid()}
+              data-month={moment(item.month, 'MMMM YYYY').format('YYYYMM')}
               className={css.tr}
-              onClick={this.props.handleGetDate}
+              onClick={handleGetDate}
             >
               <td className={css.mounth}>{item.month}</td>
               <td className={css.price}>{item.amount}</td>
