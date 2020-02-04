@@ -8,26 +8,16 @@ export default function TableExample(props) {
         <caption>СВОДКА РАСХОДОВ</caption>
 
         <tbody>
-          <tr>
-            <td className={css.mounth}>Грудень 2019</td>
-            <td className={css.price}>100грн</td>
-          </tr>
-          <tr>
-            <td className={css.mounth}>Січень 2019</td>
-            <td className={css.price}>50.00 грн</td>
-          </tr>
-          <tr>
-            <td className={css.mounth}>Лютий 2019</td>
-            <td className={css.price}>100.00 грн</td>
-          </tr>
-          <tr>
-            <td className={css.mounth}>Березень 2019</td>
-            <td className={css.price}>3000.00 грн</td>
-          </tr>
-          <tr>
-            <td className={css.mounth}>Квітень 2019</td>
-            <td className={css.price}>1000.00 грн</td>
-          </tr>
+          {this.props.summery.map(item => (
+            <tr
+              data-month={this.props.month}
+              className={css.tr}
+              onClick={this.props.handleGetDate}
+            >
+              <td className={css.mounth}>{item.month}</td>
+              <td className={css.price}>{item.amount}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
