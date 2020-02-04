@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import services from '../../services/services';
-import { getTransactions, postIncome } from '../../redux/operations';
+import { getTransactions, postIncome, postCosts } from '../../redux/operations';
+import { addDateNow } from '../../redux/actions';
 import getDateNow from '../../utilities/getDateNow';
+import DashboardMenu from '../../components/DashboardMenu/DashboardMenu';
+import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardPanel';
+import DashboardTable from '../../components/dashboardTable/DashboardTable';
+import AddIncome from '../../components/addIncome/AddIncome';
 
 class DashboardPage extends Component {
   state = {
@@ -14,14 +18,35 @@ class DashboardPage extends Component {
   };
 
   componentDidMount = () => {
-    //     console.log(this.props.finance);
-    console.log(getDateNow());
-    // this.props.getTransactions();
+    // console.log(this.props.finance);
+    this.props.addDateNow(getDateNow());
+    this.props.getTransactions();
   };
 
   render() {
-    // services.addIncome().then(data => console.log(data));
-    return <h2>DashboardPage</h2>;
+    const { isOpenModalIncome } = this.state;
+    const date = this.props.finance.authReducer.createdAt;
+    const postIncome = this.props.postIncome;
+    const balance = this.props.finance.balance;
+    const postCosts = this.props.postCosts;
+    return (
+      <>
+        <h2>DashboardPage</h2>
+        <DashboardMenu
+          changeModal={this.onChangeModalIncome}
+          balance={balance}
+          date={date}
+        />
+        {isOpenModalIncome && (
+          <AddIncome
+            closeModal={this.onChangeModalIncome}
+            date={date}
+            addIncome={postIncome}
+          />
+        )}
+        <DashboardPanel postCosts={postCosts} />
+      </>
+    );
   }
 }
 
@@ -30,6 +55,8 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = {
   getTransactions,
   postIncome,
+  addDateNow,
+  postCosts,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

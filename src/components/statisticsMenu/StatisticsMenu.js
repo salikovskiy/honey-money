@@ -14,9 +14,6 @@ class StatisticsMenu extends Component {
   };
 
   handleGoBack = () => {
-    //this.props.history.push('/dashboard');
-    //this.props.history.goBack();
-    //createBrowserHistory().push('/dashboard');
     createBrowserHistory().goBack();
   };
 

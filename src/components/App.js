@@ -1,10 +1,26 @@
-// import React from 'react';
+import React from 'react';
 import './App.css';
 import { useRoute } from '../routes';
+import Loader from './../components/Loader/LoaderThreeDots';
+import { connect } from 'react-redux';
 
-const App = () => {
-  const route = useRoute(true);
-  return route;
+const App = props => {
+  const route = useRoute(props.token);
+  const isLoading = props.isLoading;
+  return (
+    <>
+      {isLoading && <Loader />}
+      {route}
+    </>
+  );
 };
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    token: state.finance.authReducer.token,
+    createdAt: state.finance.authReducer.createdAt,
+    isLoading: state.finance.isLoading,
+  };
+};
+
+export default connect(mapStateToProps)(App);
