@@ -4,6 +4,7 @@ import services from '../../services/services';
 import { getTransactions, postIncome } from '../../redux/operations';
 import getDateNow from '../../utilities/getDateNow';
 import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardPanel';
+import DashboardTable from '../../components/dashboardTable/DashboardTable';
 
 class DashboardPage extends Component {
   state = {
@@ -26,6 +27,7 @@ class DashboardPage extends Component {
       <>
         <h2>DashboardPage</h2>
         <DashboardPanel />
+        <DashboardTable />
       </>
     );
   }
