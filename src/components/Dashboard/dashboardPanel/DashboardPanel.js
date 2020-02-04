@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './dashboardPanel.module.css';
+import DashboardTable from '../../dashboardTable/DashboardTable';
 import TableExample from '../summary/summary';
 import AddCost from '../../addCost/AddCost';
 import moment from 'moment';
@@ -62,7 +63,9 @@ class DashboardPanel extends Component {
           </div>
         )}
         <div className={styles.dashboardPanel_wrap}>
-          <div className={styles.dashboardPanel_Bogdan}></div>
+          <div className={styles.dashboardPanel_DashboardTable}>
+            <DashboardTable />
+          </div>
           <div className={styles.dashboardPanel_tableExample}>
             <TableExample
               summary={summary}
