@@ -1,79 +1,84 @@
 .table_price {
-    width: 286px;
-    border-collapse: collapse;
-    border-left: 1px solid #52555f;
-    border-right: 1px solid #52555f;
-    border-bottom: 1px solid hsl(226, 7%, 35%);
-    font-family: "Lucida Grande", sans-serif;
+  width: 286px;
+  border-collapse: collapse;
+  border-left: 1px solid #52555f;
+  border-right: 1px solid #52555f;
+  border-bottom: 1px solid hsl(226, 7%, 35%);
+  font-family: 'Lucida Grande', sans-serif;
 }
 
 .table_price caption {
-    font-family: "Roboto", sans-serif;
-    background: #f4f6fb;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border: 1px solid #000000;
-    border-bottom: none;
-    padding: 17px;
-    color: black;
-    font-style: normal;
-    font-size: 13px;
-    font-weight: 700;
-    margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #f4f6fb;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 1px solid #000000;
+  border-bottom: none;
+  padding: 17px;
+  color: black;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0;
 }
 
 .mounth {
-    font-family: "Roboto", sans-serif;
-    color: #52555f;
-    font-weight: 700;
-    text-align: left;
-    font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  color: #52555f;
+  font-weight: 700;
+  text-align: left;
+  font-size: 14px;
 
-    padding: 17px 17px;
+  padding: 17px 17px;
+}
+.mounth:first-letter {
+  text-transform: uppercase;
 }
 
 .price {
-    font-family: "Roboto", sans-serif;
-    color: #52555f;
-    font-size: 14px;
-    font-weight: 700;
-    padding-right: 17px;
-    text-align: right;
+  font-family: 'Roboto', sans-serif;
+  color: #52555f;
+  font-size: 14px;
+  font-weight: 700;
+  padding-right: 17px;
+  text-align: right;
 }
 
 .table_price td {
-    border-top: 1px solid #52555f;
+  border-top: 1px solid #52555f;
 }
 
 .table_price td:last-of-type {
-    text-align: center;
+  text-align: center;
 }
 
-tr:hover td {
-    color: #fe710d;
-    cursor: pointer;
+.tr:hover td {
+  color: #fe710d;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
-    .table_price {
-        width: 240px;
-    }
+  .table_price {
+    width: 240px;
+  }
 
-    .price {
-        padding-right: 15px;
-    }
+  .price {
+    padding-right: 15px;
+  }
 
-    .mounth {
-        padding: 17px 0 20px;
-    }
+  .mounth {
+    padding: 17px 0 20px;
+    padding-left: 17px;
+  }
 }
 
 @media (min-width: 1280px) {
-    .price {
-        padding-right: 7px;
-    }
+  .price {
+    padding-left: 7px;
+  }
 
-    .mounth {
-        padding: 17px 0 20px;
-    }
+  .mounth {
+    padding: 17px 0 20px;
+    padding-left: 7px;
+  }
 }
