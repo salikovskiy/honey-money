@@ -42,8 +42,8 @@
         width: 728px;
         border-radius: 25px;
         background-color: rgb(255, 255, 255);
-        box-shadow: 7px 12.124px 65px 0px rgba(179, 185, 200, 0.25);
-        padding: 42px 30px 42px 30px
+        box-shadow: 7px 12.124px 65px 0px rgba(178, 184, 199, 0.25);
+        padding: 42px 30px 42px 30px;
     }
 
     .dashboardPanel_addCost {
