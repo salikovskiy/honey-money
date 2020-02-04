@@ -53,3 +53,7 @@ export const logIn = user => {
       });
   };
 };
+
+export const costsPostSuccess = () => ({
+  type: Type.COSTS_POST_SUCCESS,
+});
