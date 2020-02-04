@@ -3,6 +3,7 @@ import {
   getBalanceSuccess,
   getCostsSuccess,
   fetchError,
+  costsPostSuccess,
 } from './actions';
 import services from '../services/services';
 
@@ -44,7 +45,8 @@ export const postCosts = obj => async (dispatch, getState) => {
       getState().finance.authReducer.token,
       obj,
     );
-    // await dispatch(getBalanceSuccess(response.data.balance));
+    await dispatch(costsPostSuccess());
+    await dispatch(getBalanceSuccess(response.data.balance));
   } catch (error) {
     dispatch(fetchError(error.message));
     console.log(error);

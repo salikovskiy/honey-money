@@ -19,6 +19,7 @@ const isLoading = (state = false, { type, payload }) => {
     case Type.GET_BALANCE_SUCCESS:
     case Type.GET_COSTS_SUCCESS:
     case Type.FETCH_ERROR:
+    case Type.COSTS_POST_SUCCESS:
       return (state = false);
     default:
       return state;
