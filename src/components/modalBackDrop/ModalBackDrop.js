@@ -35,7 +35,7 @@ const ModalBackDrop = WrappedComponent => {
     };
 
     render() {
-      return !this.state.closed ? (
+      return this.state.isOpen ? (
         <div
           className={styles.lightbox}
           data-modal={'true'}
