@@ -169,9 +169,11 @@
   .close {
     display: none;
   }
+
   .title {
     display: none;
   }
+
   .cal {
     margin: 0 14px 0 0;
   }
@@ -204,6 +206,7 @@
   .overlayBtn {
     margin-left: 88px;
   }
+
   .btnSubmit {
     margin-right: 14px;
   }
@@ -227,9 +230,11 @@
   .cal {
     margin: 3px 10px 0 0;
   }
+
   .formatDate {
     margin-top: 16px;
   }
+
   .form {
     display: flex;
   }
@@ -242,6 +247,7 @@
   .inputDescription {
     width: 460px;
   }
+
   .overlayBtn {
     margin: 3px 0;
   }
