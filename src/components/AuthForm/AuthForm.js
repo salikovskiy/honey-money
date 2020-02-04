@@ -23,16 +23,9 @@ class AuthForm extends Component {
   };
 
   handleChange = e => {
-    validate(e.target.value, this.rules)
-      .then(
-        this.setState({
-          [e.target.id]: e.target.value,
-        }),
-      )
-      .catch(err => {
-        const error = err[0].message;
-        this.setState({ error });
-      });
+    this.setState({
+      [e.target.id]: e.target.value,
+    });
   };
 
   handleLogIn = e => {
