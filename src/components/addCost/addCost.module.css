@@ -1,0 +1,248 @@
+/* body {
+  background-color: grey;
+} */
+.container {
+  position: relative;
+  width: 320px;
+  height: 468px;
+  border-radius: 25px;
+  background-color: #fff;
+  padding: 42px 20px 50px;
+}
+
+.close {
+  position: absolute;
+  right: 28px;
+  top: 20px;
+  width: 14px;
+  height: 14px;
+  opacity: 0.3;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 14px;
+  width: 2px;
+  background-color: #333;
+}
+
+.close:before {
+  transform: rotate(45deg);
+}
+
+.close:after {
+  transform: rotate(-45deg);
+}
+
+.title {
+  font-size: 22px;
+  margin: 0 auto;
+  text-align: center;
+  color: rgba(0, 0, 0, 255);
+  margin-bottom: 22px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
+.cal {
+  display: block;
+  border-radius: 8px;
+  border: none;
+  background-color: #ff6c00;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.cal img {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: auto;
+}
+
+.formatDate {
+  display: block;
+  margin: 0 auto;
+  color: #ff6c00;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.inputDescription {
+  display: block;
+  border: 1px solid #959595;
+  margin: 0 auto;
+  width: 280px;
+  height: 46px;
+  border-radius: 6px;
+  padding-left: 16px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.inputAmount {
+  display: block;
+  border: 1px solid #959595;
+  margin: 0 auto;
+  width: 160px;
+  height: 46px;
+  border-radius: 6px;
+  padding-right: 16px;
+  margin-bottom: 90px;
+  text-align: right;
+  outline: none;
+}
+
+.overlayBtn {
+  margin: 0 auto;
+  display: flex;
+}
+
+.btn {
+  display: block;
+  border: none;
+  width: 138px;
+  height: 40px;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  outline: none;
+}
+
+.btnSubmit {
+  background-color: #ff6c00;
+  color: white;
+  margin-right: 4px;
+}
+
+.btnSubmit:hover {
+  background-color: #df6107;
+  transition: 0.2s;
+}
+
+.btnSubmit:active {
+  background-color: #df6107;
+  box-shadow: 0 3px #666;
+  transform: translateY(2px);
+}
+
+.btnReset {
+  background-color: #f5f7fa;
+  color: rgba(0, 0, 0, 255);
+}
+
+.btnReset:hover {
+  background-color: #dee1e6;
+  transition: 0.2s;
+}
+
+.btnReset:active {
+  background-color: #dee1e6;
+  box-shadow: 0 3px #666;
+  transform: translateY(2px);
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 670px;
+    height: 104px;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .close {
+    display: none;
+  }
+  .title {
+    display: none;
+  }
+  .cal {
+    margin: 0 14px 0 0;
+  }
+
+  .formatDate {
+    margin: 14px 26px 0 0;
+    text-align: left;
+  }
+
+  .formOverlay {
+    display: flex;
+    margin-bottom: 18px;
+  }
+
+  .inputDescription {
+    margin: 0;
+    width: 380px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .inputAmount {
+    margin: 0;
+    width: 136px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+  }
+
+  .overlayBtn {
+    margin-left: 88px;
+  }
+  .btnSubmit {
+    margin-right: 14px;
+  }
+
+  .btnReset {
+    width: 40px;
+    height: 40px;
+    font-size: 0;
+    background-image: url(../../assets/img/clear@1X.png);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    width: 1028px;
+    height: 46px;
+  }
+
+  .cal {
+    margin: 3px 10px 0 0;
+  }
+  .formatDate {
+    margin-top: 16px;
+  }
+  .form {
+    display: flex;
+  }
+
+  .formOverlay {
+    margin-right: 16px;
+    margin-bottom: 0;
+  }
+
+  .inputDescription {
+    width: 460px;
+  }
+  .overlayBtn {
+    margin: 3px 0;
+  }
+}
