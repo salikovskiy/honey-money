@@ -14,6 +14,7 @@ export const getTransactions = () => async (dispatch, getState) => {
     const response = await services.getAllTransactions(
       getState().finance.authReducer.token,
     );
+    console.log(response);
     dispatch(getBalanceSuccess(response.data.balance));
     dispatch(getCostsSuccess(response.data.costs));
   } catch (error) {
@@ -54,7 +55,6 @@ export const postCosts = obj => async (dispatch, getState) => {
   }
 };
 
-
 // StatisticsPage
 export const getCategories = () => async (dispatch, getState) => {
   dispatch(fetchStart());
@@ -62,7 +62,8 @@ export const getCategories = () => async (dispatch, getState) => {
     const response = await services.getAllCategories(
       getState().finance.authReducer.token,
     );
-    // dispatch(getBalanceSuccess(response.data.balance));
+    console.log('response :', response);
+    // dispatch(getCategoriesSuccess(response.categories));
     // dispatch(getCostsSuccess(response.data.costs));
   } catch (error) {
     dispatch(fetchError(error.message));

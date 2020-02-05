@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import s from './StatisticsPage.module.css';
 import StatisticsMenu from '../../components/statisticsMenu/StatisticsMenu';
 import CategoriesList from '../../components/CategoriesList/CategoriesList';
-import moment from 'moment';
+// import moment from 'moment';
+import axios from 'axios';
+import { getCategories } from '../../redux/operations';
+
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMzgyMmUxZDhlYTczMmRjMDUyZjhiMiIsImlhdCI6MTU4MDczNzI1MH0.rgk-RatweAQ4V93o79stvV_fmkjl3sJqiraciOU5qD0';
 
 class StatisticsPage extends Component {
   state = {
@@ -15,10 +20,13 @@ class StatisticsPage extends Component {
   componentDidMount() {
     // GET запросы:
     // 1) получение данных по категриям;
-    // Получить из стора:
-    // 2) получение данных по доходам;
-    // 3) получение данных по расходам;
-    // Полученные данные записать в стор.
+    // axios
+    //   .get('https://smart-finance.goit.co.ua/api/v1/categories', {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   })
+    //   .then(data => data.data.categories.map(item => console.log(item.name)));
   }
 
   // Написать операцию (ГЕТ запрос) с измененным
