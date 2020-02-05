@@ -7,6 +7,7 @@ import AddCost from '../../addCost/AddCost';
 import moment from 'moment';
 import 'moment/locale/ru';
 import { connect } from 'react-redux';
+import Axios from 'axios';
 
 //let date = moment().format('YYYYMM');
 
@@ -25,6 +26,22 @@ class DashboardPanel extends Component {
   state = {
     //date: moment().format('YYYYMM'),
     dataTable: [],
+
+    tableState: { costData: '', description: '', category: '', summ: 100 },
+    month: moment().format(),
+  };
+
+  onHandleTable = e => {
+    this.props.finance.costs.map(product => {
+      return this.setState({
+        tableState: {
+          costDate: product.product[date],
+          description: product.product.name,
+          category: product.product.category.name,
+          summ: product.amount,
+        },
+      });
+    });
   };
 
   handleGetSummary = () => {
@@ -72,6 +89,9 @@ class DashboardPanel extends Component {
   render() {
     const balance = this.props.finance.balance;
     const dateRegistration = this.props.finance.authReducer.createdAt;
+    const { costDate, description, category, summ } = this.state.tableState;
+    console.log(this.props.finance.costs);
+    const { balance, dateRegistration } = this.props.finance;
     const summary = this.handleGetSummary();
     console.log(this.props.finance);
 
