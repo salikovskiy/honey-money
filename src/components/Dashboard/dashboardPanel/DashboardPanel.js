@@ -7,6 +7,7 @@ import AddCost from '../../addCost/AddCost';
 import moment from 'moment';
 import 'moment/locale/ru';
 import { connect } from 'react-redux';
+import Axios from 'axios';
 
 let date = moment().format();
 
@@ -45,6 +46,7 @@ class DashboardPanel extends Component {
   render() {
     const { balance, dateRegistration } = this.props.finance;
     console.log(this.props.postCosts);
+    console.log(this.props.finance);
     const summary = this.handleGetSummary();
     console.log(balance);
     return (

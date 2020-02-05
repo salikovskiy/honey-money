@@ -32,7 +32,7 @@
 .balance__value {
   display: block;
   outline: none;
-  width: 80px;
+  min-width: 80px;
   color: #000;
   font-weight: 700;
   font-size: 16px;
@@ -126,7 +126,7 @@
   .balance__value {
     display: block;
     outline: none;
-    width: 80px;
+    min-width: 80px;
     color: #000;
     font-weight: 700;
     font-size: 16px;
@@ -204,6 +204,7 @@
   .balance__value {
     display: block;
     color: #000;
+    padding-left: 15px;
     font-weight: 700;
     font-size: 16px;
   }
