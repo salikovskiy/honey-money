@@ -20,7 +20,7 @@ const DashboardMenu = ({ changeModal, balance, date }) => (
       <h2 htmlFor="input" className={css.balance__title}>
         БАЛАНС:
       </h2>
-      <span className={css.balance__value}>{balance} грн</span>
+      <span className={css.balance__value}>{balance}</span>
     </div>
 
     <button className={css.dashMenu__incomeBtn} onClick={changeModal}>
