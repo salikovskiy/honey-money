@@ -26,22 +26,6 @@ class DashboardPanel extends Component {
   state = {
     //date: moment().format('YYYYMM'),
     dataTable: [],
-
-    tableState: { costData: '', description: '', category: '', summ: 100 },
-    month: moment().format(),
-  };
-
-  onHandleTable = e => {
-    this.props.finance.costs.map(product => {
-      return this.setState({
-        tableState: {
-          costDate: product.product[date],
-          description: product.product.name,
-          category: product.product.category.name,
-          summ: product.amount,
-        },
-      });
-    });
   };
 
   handleGetSummary = () => {
@@ -89,7 +73,6 @@ class DashboardPanel extends Component {
   render() {
     const balance = this.props.finance.balance;
     const dateRegistration = this.props.finance.authReducer.createdAt;
-    const { costDate, description, category, summ } = this.state.tableState;
     console.log(this.props.finance.costs);
     const summary = this.handleGetSummary();
     console.log(this.props.finance);
