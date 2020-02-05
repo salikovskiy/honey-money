@@ -63,6 +63,7 @@ class AddIncome extends Component {
   render() {
     window.addEventListener('keyup', this.handleKeyPress);
     // console.log(this.props);
+    // console.log(this.props);
 
     return (
       <>
