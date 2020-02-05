@@ -9,7 +9,7 @@ import 'moment/locale/ru';
 import { connect } from 'react-redux';
 import Axios from 'axios';
 
-let date = moment().format();
+//let date = moment().format('YYYYMM');
 
 const monthsSummary = [
   moment(),
@@ -24,6 +24,9 @@ const monthsSummary = [
 
 class DashboardPanel extends Component {
   state = {
+    //date: moment().format('YYYYMM'),
+    dataTable: [],
+
     tableState: { costData: '', description: '', category: '', summ: 100 },
     month: moment().format(),
   };
@@ -50,23 +53,49 @@ class DashboardPanel extends Component {
             ? acc + cost.amount
             : acc;
         }, 0),
+        isActive: monthTable === this.state.date,
       };
     });
     return summary;
   };
 
   handleGetDate = e => {
-    console.log(+e.target.parentElement.dataset.month);
+    //console.log('event.target', e.target.parentElement.dataset.month);
+    // this.setState({
+    //   date: e.target.parentElement.dataset.month,
+    // });
+
+    let x = [];
+    this.props.finance.costs.map(
+      elem =>
+        moment(elem.date).format('YYYYMM') ===
+          e.target.parentElement.dataset.month &&
+        (x = [
+          ...x,
+          {
+            date: elem.date,
+            description: elem.product.name,
+            category: elem.product.category.name,
+            amount: elem.amount,
+            id: elem.costsId,
+          },
+        ]),
+    );
+    this.setState({
+      dataTable: x,
+    });
   };
 
-  ////////////для Богдана???????????????
-
   render() {
+    const balance = this.props.finance.balance;
+    const dateRegistration = this.props.finance.authReducer.createdAt;
     const { costDate, description, category, summ } = this.state.tableState;
     console.log(this.props.finance.costs);
     const { balance, dateRegistration } = this.props.finance;
     const summary = this.handleGetSummary();
-    console.log(balance);
+    console.log(this.props.finance);
+
+    console.log('state data', this.state.dataTable);
     return (
       <div className={styles.dashboardPanel}>
         {window.innerWidth < 768 ? (
@@ -84,13 +113,7 @@ class DashboardPanel extends Component {
         )}
         <div className={styles.dashboardPanel_wrap}>
           <div className={styles.dashboardPanel_DashboardTable}>
-            <DashboardTable
-              date={costDate}
-              description={description}
-              category={category}
-              summ={summ}
-              onTableClick={this.onHandleTable}
-            />
+            <DashboardTable dataTable={this.state.dataTable} />
           </div>
           <div className={styles.dashboardPanel_tableExample}>
             <TableExample
