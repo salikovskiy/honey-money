@@ -11,9 +11,10 @@
   z-index: 1;
 }
 .calendar {
-  position: absolute;
-  left: 0px;
+  position: relative;
+  top: 154px;
   z-index: 50;
+  align-items: center;
 }
 .calendarOverlay {
   position: fixed;
@@ -24,7 +25,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 15;
 }
 
 .modalIncome {
@@ -192,8 +193,7 @@
     height: 286px;
   }
   .calendar {
-    position: absolute;
-    top: 150px;
+    left: 20px;
   }
   .calendarDesk {
     display: flex;
