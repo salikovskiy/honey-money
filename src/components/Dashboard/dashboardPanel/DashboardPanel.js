@@ -59,6 +59,7 @@ class DashboardPanel extends Component {
               balance={balance}
               dateRegistration={dateRegistration}
               postCosts={this.props.postCosts}
+              products={['']}
             />
           </div>
         )}

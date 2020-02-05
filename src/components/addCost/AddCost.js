@@ -53,14 +53,22 @@ class AddCost extends Component {
     this.setState({ openCalendar: true });
   };
 
+  backDropCalendar = event => {
+    const dataset = event.target.dataset;
+    if (dataset && dataset.modal === 'true') {
+      this.setState({ openCalendar: false });
+    }
+  };
+
   onAddCost = e => {
     e.preventDefault();
     if (this.props.balance >= this.state.amountCost) {
-      this.props.getCost({
+      this.props.postCosts({
         date: this.state.dateForBackend,
         product: {
           productId: this.state.id,
-          amount: this.state.amountCost,
+          amount: parseFloat(Number(this.state.amountCost).toFixed(2)),
+
           date: this.state.dateForBackendFull,
         },
       });
@@ -75,25 +83,27 @@ class AddCost extends Component {
   };
 
   onChangeInput = e => {
-    let result = '';
-    if (e.target.name === 'amountCost') {
-      if (!isNaN(e.target.value)) {
-        result = Number.parseFloat(e.target.value);
-      }
-    } else {
-      result = e.target.value;
+    // let result = '';
+    if (e.target.value <= 99999999.99) {
+      this.setState({
+        amountCost: e.target.value,
+      });
     }
-    this.setState({
-      [e.target.name]: result,
-    });
   };
 
   createOptions = () => {
-    const productOptions = this.props.products.map(product => ({
-      value: product.name,
-      label: product.name,
-      id: product._id,
-    }));
+    console.log('this.props.products in createOptions', this.props.products);
+    const productOptions = this.props.products.map(product => {
+      // let productName = product.name;
+      // let categoryName = product.category.name;
+      return {
+        // value: product.name,
+        value: `${product.name}  --- ${product.category.name}`,
+        // label: product.name,
+        label: `${product.name}  --- ${product.category.name}`,
+        id: product._id,
+      };
+    });
     console.log('productOptions', productOptions);
     return productOptions;
   };
@@ -130,12 +140,18 @@ class AddCost extends Component {
           <img src={calendar} alt="cal" />
         </button>
         {openCalendar && (
-          <Calendar
-            className={css.calendar}
-            onChange={this.onChangeDate}
-            maxDate={new Date()}
-            minDate={dateRegistration}
-          />
+          <div
+            data-modal={'true'}
+            className={css.calendarOverlay}
+            onClick={this.backDropCalendar}
+          >
+            <Calendar
+              className={css.calendar}
+              onChange={this.onChangeDate}
+              maxDate={new Date()}
+              minDate={dateRegistration}
+            />
+          </div>
         )}
         <span className={css.formatDate}>{formatDate}</span>
         <form className={css.form} onSubmit={this.onAddCost}>
@@ -145,7 +161,9 @@ class AddCost extends Component {
               isClearable
               onChange={this.handleChangeSelect}
               onInputChange={this.handleInputChangeSelect}
-              options={this.createOptions()}
+              placeholder="Ввести расходы..."
+              //   options={this.createOptions()}
+              options={options}
             />
             {/* <input
               className={css.inputDescription}
@@ -159,7 +177,7 @@ class AddCost extends Component {
             <input
               className={css.inputAmount}
               required
-              tipe="text"
+              type="text"
               placeholder="00.00 грн"
               name="amountCost"
               onChange={this.onChangeInput}

@@ -7,6 +7,7 @@ import DashboardMenu from '../../components/DashboardMenu/DashboardMenu';
 import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardPanel';
 import DashboardTable from '../../components/dashboardTable/DashboardTable';
 import AddIncome from '../../components/addIncome/AddIncome';
+import AddCostAppTest from '../../components/addCost/AddCostAppTest';
 
 class DashboardPage extends Component {
   state = {
@@ -32,6 +33,7 @@ class DashboardPage extends Component {
     return (
       <>
         <h2>DashboardPage</h2>
+        <AddCostAppTest />
         <DashboardMenu
           changeModal={this.onChangeModalIncome}
           balance={balance}
