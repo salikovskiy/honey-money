@@ -3,6 +3,8 @@ import {
   getBalanceSuccess,
   getCostsSuccess,
   fetchError,
+  costsPostSuccess,
+  getIncomesSuccess,
 } from './actions';
 import services from '../services/services';
 
@@ -15,6 +17,7 @@ export const getTransactions = () => async (dispatch, getState) => {
     );
     dispatch(getBalanceSuccess(response.data.balance));
     dispatch(getCostsSuccess(response.data.costs));
+    dispatch(getIncomesSuccess(response.data.income));
   } catch (error) {
     dispatch(fetchError(error.message));
     console.log(error);
@@ -44,6 +47,7 @@ export const postCosts = obj => async (dispatch, getState) => {
       getState().finance.authReducer.token,
       obj,
     );
+    await dispatch(costsPostSuccess());
     await dispatch(getBalanceSuccess(response.data.balance));
   } catch (error) {
     dispatch(fetchError(error.message));

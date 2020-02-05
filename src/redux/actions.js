@@ -53,3 +53,12 @@ export const logIn = user => {
       });
   };
 };
+
+export const costsPostSuccess = () => ({
+  type: Type.COSTS_POST_SUCCESS,
+});
+
+export const getIncomesSuccess = arr => ({
+  type: Type.GET_INCOMES_SUCCESS,
+  payload: {arr},
+});

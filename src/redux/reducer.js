@@ -19,6 +19,7 @@ const isLoading = (state = false, { type, payload }) => {
     case Type.GET_BALANCE_SUCCESS:
     case Type.GET_COSTS_SUCCESS:
     case Type.FETCH_ERROR:
+    case Type.COSTS_POST_SUCCESS:
       return (state = false);
     default:
       return state;
@@ -98,6 +99,15 @@ const authReducer = (state = initState, action) => {
   }
 };
 
+const incomes = (state = [], { type, payload }) => {
+  switch (type) {
+    case Type.GET_INCOMES_SUCCESS:
+      return payload.arr;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   authReducer,
   costs,
@@ -105,4 +115,5 @@ export default combineReducers({
   isLoading,
   dateNow,
   error,
+  incomes,
 });
