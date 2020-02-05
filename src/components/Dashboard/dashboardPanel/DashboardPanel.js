@@ -8,8 +8,6 @@ import 'moment/locale/ru';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-//let date = moment().format('YYYYMM');
-
 const monthsSummary = [
   moment(),
   moment(),
@@ -59,12 +57,12 @@ class DashboardPanel extends Component {
   };
 
   handleGetDataTable = () => {
-    let x = [];
+    let arr = [];
     this.props.finance.costs.map(
       elem =>
         moment(elem.date).format('YYYYMM') === this.state.date &&
-        (x = [
-          ...x,
+        (arr = [
+          ...arr,
           {
             date: elem.date,
             description: elem.product.name,
@@ -75,7 +73,7 @@ class DashboardPanel extends Component {
         ]),
     );
     this.setState({
-      dataTable: x,
+      dataTable: arr,
     });
   };
 
@@ -84,8 +82,8 @@ class DashboardPanel extends Component {
     const token = this.props.finance.authReducer.token;
     const dateRegistration = this.props.finance.authReducer.createdAt;
     const summary = this.handleGetSummary();
-    // console.log(token);
-    // console.log(this.props.finance.authReducer);
+    console.log(summary);
+    // console.log(this.props.finance;
     // console.log('state date', this.state.date);
     // console.log('state data', this.state.dataTable);
     return (
