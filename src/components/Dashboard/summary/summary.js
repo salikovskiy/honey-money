@@ -7,7 +7,7 @@ export default function TableExample({ summary, handleGetDate }) {
     <div>
       <table className={css.table_price}>
         <caption>СВОДКА РАСХОДОВ</caption>
-        {/* <tbody>
+        <tbody>
           {summary.map(item => (
             <tr
               id={shortid()}
@@ -19,7 +19,7 @@ export default function TableExample({ summary, handleGetDate }) {
               <td className={css.price}>{item.amount}</td>
             </tr>
           ))}
-        </tbody> */}
+        </tbody>
       </table>
     </div>
   );
