@@ -102,7 +102,7 @@ export default class App extends Component {
       console.log('max 768');
       return (
         <div className={css.tableWrapper}>
-        <div className={css.tableScroll}>
+          <div className={css.tableScroll}>
             <table className={css.table}>
               <thead className={css.thead}>
                 <tr className={css.tr}>
@@ -198,7 +198,7 @@ export default class App extends Component {
       console.log('more');
       return (
         <div className={css.tableWrapper}>
-        <div className={css.tableScroll}>
+          <div className={css.tableScroll}>
             <table className={css.table}>
               <thead className={css.thead}>
                 <tr className={css.tr}>
