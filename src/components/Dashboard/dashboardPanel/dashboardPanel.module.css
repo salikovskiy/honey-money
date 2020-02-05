@@ -32,7 +32,7 @@
 
 .dashboardPanel_DashboardTable {
     width: 286px;
-    height: 318px;
+    height: auto;
     margin-bottom: 26px;
 }
 
