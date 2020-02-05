@@ -4,6 +4,7 @@ import {
   getCostsSuccess,
   fetchError,
   costsPostSuccess,
+  getIncomesSuccess,
 } from './actions';
 import services from '../services/services';
 
@@ -16,6 +17,8 @@ export const getTransactions = () => async (dispatch, getState) => {
     );
     dispatch(getBalanceSuccess(response.data.balance));
     dispatch(getCostsSuccess(response.data.costs));
+    dispatch(getIncomesSuccess(response.data.income));
+    console.log('response.data', response.data);
   } catch (error) {
     dispatch(fetchError(error.message));
     console.log(error);
