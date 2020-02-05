@@ -13,9 +13,10 @@ export default {
       return data;
     } catch (error) {
       console.log(error);
-      throw new Error(error)
+      throw new Error(error);
     }
   },
+
   async addIncome(token, arr) {
     try {
       const data = await axios.post('/income', arr, {
@@ -44,5 +45,18 @@ export default {
     }
   },
 
-
+  // StatisticsPage ----------
+  async getAllCategories(token) {
+    try {
+      const data = await axios.get('/categories', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  },
 };

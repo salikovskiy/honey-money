@@ -41,12 +41,29 @@ export const postIncome = obj => async (dispatch, getState) => {
 export const postCosts = obj => async (dispatch, getState) => {
   dispatch(fetchStart());
   try {
-    const response = await services.addIncome(
+    const response = await services.addCosts(
       getState().finance.authReducer.token,
       obj,
     );
     await dispatch(costsPostSuccess());
     await dispatch(getBalanceSuccess(response.data.balance));
+  } catch (error) {
+    dispatch(fetchError(error.message));
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
+
+// StatisticsPage
+export const getCategories = () => async (dispatch, getState) => {
+  dispatch(fetchStart());
+  try {
+    const response = await services.getAllCategories(
+      getState().finance.authReducer.token,
+    );
+    // dispatch(getBalanceSuccess(response.data.balance));
+    // dispatch(getCostsSuccess(response.data.costs));
   } catch (error) {
     dispatch(fetchError(error.message));
     console.log(error);
