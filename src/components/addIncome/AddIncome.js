@@ -58,7 +58,7 @@ class AddIncome extends Component {
   backDropCalendar = e => {
     // e.stopPropagation();
     // e.nativeEvent.stopImmediatePropagation();
-    // console.log(e.target.classList);
+    console.log(e.target.classList);
     // console.log(e.target.className === e.target.className('calendarOverlay'));
     // console.log(e.target.classList.contains('calendarOverlay'));
     // if (e.target.classList.contains('calendarOverlay')) {
@@ -68,6 +68,8 @@ class AddIncome extends Component {
     // if (e.target.id == 'cOv') {
     //   this.setState({ calendar: false });
     // }
+    console.log(e.target);
+    this.setState({ calendar: false });
   };
   // backDropClick = e => {
   //   this.props.closeModal();
@@ -98,8 +100,8 @@ class AddIncome extends Component {
                   <div
                     // id={css.cOv}
                     className={css.calendarOverlay}
-                    onClick={() => this.setState({ calendar: false })}
-                    // onClick={this.backDropCalendar}
+                    // onClick={() => this.setState({ calendar: false })}
+                    onClick={this.backDropCalendar}
                   >
                     <Calendar
                       className={css.calendar}
