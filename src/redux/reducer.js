@@ -87,6 +87,7 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: null,
         token: getUser(action).token,
+        createdAt: getUser(action).userData.createdAt,
       };
     case 'SIGNUP_ERROR':
       console.log('signup error');
