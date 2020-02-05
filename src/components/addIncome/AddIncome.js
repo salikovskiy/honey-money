@@ -40,26 +40,48 @@ class AddIncome extends Component {
       });
       this.handleClearForm();
       this.props.closeModal();
-      // alert(`Вы внесли ${value} на баланс!`);
     } else {
-      alert('Внесите положительный баланс!');
+      alert('Внесите положительную сумму на баланс!');
     }
   };
   pickDate = async () => {
     await this.onChange();
     this.calendarOpen();
   };
-  /* backDropClick = e => {
-    console.log(e.target.className);
-    if (e.target.classList.contains('overlay')) {
-      alert('close!');
+
+  handleKeyPress = async event => {
+    console.log('event', event.target.className);
+    if (event.code === 'Escape') {
+      this.setState({ calendar: false });
     }
-  }; */
+  };
+  backDropCalendar = e => {
+    // e.stopPropagation();
+    // e.nativeEvent.stopImmediatePropagation();
+    // console.log(e.target.classList);
+    // console.log(e.target.className === e.target.className('calendarOverlay'));
+    // console.log(e.target.classList.contains('calendarOverlay'));
+    // if (e.target.classList.contains('calendarOverlay')) {
+    //   this.setState({ calendar: false });
+    // }
+    // console.log(e.target.id);
+    // if (e.target.id == 'cOv') {
+    //   this.setState({ calendar: false });
+    // }
+  };
+  // backDropClick = e => {
+  //   this.props.closeModal();
+  // };
 
   render() {
+    window.addEventListener('keyup', this.handleKeyPress);
     return (
       <>
-        <div className={css.overlay} onClick={this.backDropClick}>
+        <div
+          className={css.overlay}
+          // onClick={() => this.setState({ calendar: false })}
+          onClick={this.backDropClick}
+        >
           <div className={css.modalIncome}>
             <span onClick={this.props.closeModal} className={css.close}></span>
 
@@ -73,14 +95,21 @@ class AddIncome extends Component {
                   <i className={css.calendarIcon}></i>
                 </div>
                 {this.state.calendar && (
-                  <Calendar
-                    className={css.calendar}
-                    onChange={this.onChange}
-                    value={this.state.date}
-                    maxDate={new Date()}
-                    minDate={this.props.regDate}
-                    onClickDay={this.pickDate}
-                  />
+                  <div
+                    // id={css.cOv}
+                    className={css.calendarOverlay}
+                    // onClick={() => this.setState({ calendar: false })}
+                    onClick={this.backDropCalendar}
+                  >
+                    <Calendar
+                      className={css.calendar}
+                      onChange={this.onChange}
+                      value={this.state.date}
+                      maxDate={new Date()}
+                      minDate={this.props.regDate}
+                      onClickDay={this.pickDate}
+                    />
+                  </div>
                 )}
 
                 <span className={css.dateLine}>
