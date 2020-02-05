@@ -23,6 +23,24 @@ const monthsSummary = [
   .map(date => moment(date).format('YYYYMM'));
 
 class DashboardPanel extends Component {
+  state = {
+    tableState: { costData: '', description: '', category: '', summ: 100 },
+    month: moment().format(),
+  };
+
+  onHandleTable = e => {
+    this.props.finance.costs.map(product => {
+      return this.setState({
+        tableState: {
+          costDate: product.product[date],
+          description: product.product.name,
+          category: product.product.category.name,
+          summ: product.amount,
+        },
+      });
+    });
+  };
+
   handleGetSummary = () => {
     const summary = monthsSummary.map(monthTable => {
       return {
@@ -44,9 +62,9 @@ class DashboardPanel extends Component {
   ////////////для Богдана???????????????
 
   render() {
+    const { costDate, description, category, summ } = this.state.tableState;
+    console.log(this.props.finance.costs);
     const { balance, dateRegistration } = this.props.finance;
-    console.log(this.props.postCosts);
-    console.log(this.props.finance);
     const summary = this.handleGetSummary();
     console.log(balance);
     return (
@@ -66,7 +84,13 @@ class DashboardPanel extends Component {
         )}
         <div className={styles.dashboardPanel_wrap}>
           <div className={styles.dashboardPanel_DashboardTable}>
-            <DashboardTable />
+            <DashboardTable
+              date={costDate}
+              description={description}
+              category={category}
+              summ={summ}
+              onTableClick={this.onHandleTable}
+            />
           </div>
           <div className={styles.dashboardPanel_tableExample}>
             <TableExample
