@@ -21,9 +21,11 @@
   height: 14px;
   opacity: 0.3;
 }
+
 .close:hover {
   opacity: 1;
 }
+
 .close:before,
 .close:after {
   position: absolute;
@@ -33,9 +35,11 @@
   width: 2px;
   background-color: #333;
 }
+
 .close:before {
   transform: rotate(45deg);
 }
+
 .close:after {
   transform: rotate(-45deg);
 }
@@ -61,6 +65,7 @@
   margin-bottom: 10px;
   outline: none;
 }
+
 .cal img {
   display: block;
   width: 20px;
@@ -95,6 +100,7 @@
   margin-bottom: 20px;
   outline: none;
 }
+
 .inputAmount {
   display: block;
   border: 1px solid #959595;
@@ -167,29 +173,36 @@
     display: flex;
     flex-wrap: wrap;
   }
+
   .close {
     display: none;
   }
+
   .title {
     display: none;
   }
+
   .cal {
     margin: 0 14px 0 0;
   }
+
   .formatDate {
     margin: 14px 26px 0 0;
     text-align: left;
   }
+
   .formOverlay {
     display: flex;
     margin-bottom: 18px;
   }
+
   .inputDescription {
     margin: 0;
     width: 380px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
+
   .inputAmount {
     margin: 0;
     width: 136px;
@@ -197,12 +210,15 @@
     border-bottom-left-radius: 0;
     border-left: none;
   }
+
   .overlayBtn {
     margin-left: 88px;
   }
+
   .btnSubmit {
     margin-right: 14px;
   }
+
   .btnReset {
     width: 40px;
     height: 40px;
@@ -218,22 +234,28 @@
     width: 1228px;
     height: 46px;
   }
+
   .cal {
     margin: 3px 10px 0 0;
   }
+
   .formatDate {
     margin-top: 16px;
   }
+
   .form {
     display: flex;
   }
+
   .formOverlay {
     margin-right: 16px;
     margin-bottom: 0;
   }
+
   .inputDescription {
     width: 460px;
   }
+
   .overlayBtn {
     margin: 3px 0;
   }

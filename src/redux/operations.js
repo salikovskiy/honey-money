@@ -1,28 +1,57 @@
 import {
-  getTransactionsStart,
+  fetchStart,
   getBalanceSuccess,
   getCostsSuccess,
-//   postIncomeSuccess,
+  fetchError,
+  costsPostSuccess,
+  getIncomesSuccess,
 } from './actions';
 import services from '../services/services';
 
 export const getTransactions = () => async (dispatch, getState) => {
-  dispatch(getTransactionsStart());
-  console.log(getState());
+  dispatch(fetchStart());
   try {
-    const response = await services.getAllTransactions(getState().token);
-    dispatch(getBalanceSuccess(response.balance));
-    dispatch(getCostsSuccess(response.costs));
+    // console.log(getState().finance.authReducer.token);
+    const response = await services.getAllTransactions(
+      getState().finance.authReducer.token,
+    );
+    dispatch(getBalanceSuccess(response.data.balance));
+    dispatch(getCostsSuccess(response.data.costs));
+    dispatch(getIncomesSuccess(response.data.income));
   } catch (error) {
+    dispatch(fetchError(error.message));
     console.log(error);
+    throw new Error(error);
   }
 };
 
 export const postIncome = obj => async (dispatch, getState) => {
+  dispatch(fetchStart());
   try {
-    const response = await services.postIncome(getState().token, obj);
-    dispatch(getBalanceSuccess(response.balance));
+    const response = await services.addIncome(
+      getState().finance.authReducer.token,
+      obj,
+    );
+    await dispatch(getBalanceSuccess(response.data.balance));
   } catch (error) {
+    dispatch(fetchError(error.message));
     console.log(error);
+    throw new Error(error);
+  }
+};
+
+export const postCosts = obj => async (dispatch, getState) => {
+  dispatch(fetchStart());
+  try {
+    const response = await services.addIncome(
+      getState().finance.authReducer.token,
+      obj,
+    );
+    await dispatch(costsPostSuccess());
+    await dispatch(getBalanceSuccess(response.data.balance));
+  } catch (error) {
+    dispatch(fetchError(error.message));
+    console.log(error);
+    throw new Error(error);
   }
 };
