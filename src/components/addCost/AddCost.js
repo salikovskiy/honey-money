@@ -5,20 +5,8 @@ import CreatableSelect from 'react-select/creatable';
 import onFormatDate from '../../utilities/formatDate';
 import css from './addCost.module.css';
 import calendar from '../../assets/img/svg/calendar.svg';
+import services from '../../services/services';
 var moment = require('moment');
-
-const options = [
-  { value: 'ocean', label: 'Ocean' },
-  { value: 'blue', label: 'Blue' },
-  { value: 'purple', label: 'Purple' },
-  { value: 'red', label: 'Red' },
-  { value: 'orange', label: 'Orange' },
-  { value: 'yellow', label: 'Yellow' },
-  { value: 'green', label: 'Green' },
-  { value: 'forest', label: 'Forest' },
-  { value: 'slate', label: 'Slate' },
-  { value: 'silver', label: 'Silver' },
-];
 
 class AddCost extends Component {
   state = {
@@ -29,6 +17,7 @@ class AddCost extends Component {
     amountCost: '',
     dateForBackend: moment(new Date()).format('YYYY-MM-DD'),
     dateForBackendFull: moment(new Date()).format(),
+    options: [],
   };
 
   componentDidMount() {
@@ -63,7 +52,7 @@ class AddCost extends Component {
   onAddCost = e => {
     e.preventDefault();
     if (this.props.balance >= this.state.amountCost) {
-      this.props.postCosts({
+      const objPostCost = {
         date: this.state.dateForBackend,
         product: {
           productId: this.state.id,
@@ -71,7 +60,10 @@ class AddCost extends Component {
 
           date: this.state.dateForBackendFull,
         },
-      });
+      };
+      //   console.log('objPostCost->', objPostCost);
+      //   console.log('this.props', this.props);
+      this.props.postCosts(objPostCost);
     } else {
       alert('Недостаточно средств!');
     }
@@ -79,7 +71,7 @@ class AddCost extends Component {
   };
 
   onResetForm = () => {
-    this.setState({ descriptionCost: '', amountCost: '' });
+    this.setState({ descriptionCost: '', amountCost: '', options: [] });
   };
 
   onChangeInput = e => {
@@ -91,36 +83,57 @@ class AddCost extends Component {
     }
   };
 
-  createOptions = () => {
-    console.log('this.props.products in createOptions', this.props.products);
-    const productOptions = this.props.products.map(product => {
+  createOptions = async () => {
+    const responce = await services.getAllProducts(this.props.token);
+    // console.log('responce', responce.data.products);
+    const productArray = await responce.data.products;
+    // console.log('productArray', productArray);
+    // console.log('this.props.products in createOptions', this.props.products);
+    // const productOptions = this.props.products.map(product => {
+    const productOptions = await productArray.map(product => {
+      //   console.log('product', product.category.name);
       // let productName = product.name;
       // let categoryName = product.category.name;
       return {
-        // value: product.name,
         value: `${product.name}  --- ${product.category.name}`,
-        // label: product.name,
         label: `${product.name}  --- ${product.category.name}`,
         id: product._id,
       };
     });
-    console.log('productOptions', productOptions);
-    return productOptions;
+    // console.log('productOptions', productOptions);
+    this.setState({ options: productOptions });
+    // return productOptions;
   };
 
   handleChangeSelect = (newValue, actionMeta) => {
+    if (actionMeta.action === 'create-option') {
+      this.createNewProduct(newValue.value);
+    }
+
+    // console.log('newValue', newValue);
     // console.group('Value Changed');
-    const productId = newValue.id ? newValue.id : '';
+    // const productId = newValue.id ? newValue.id : '';
+    const productId = newValue.id;
     this.setState({ descriptionCost: newValue, id: productId });
-    console.log(newValue);
-    console.log(`action: ${actionMeta.action}`);
+    // console.log(newValue);
+    // console.log(`action: ${actionMeta.action}`);
     // console.groupEnd();
   };
+
   handleInputChangeSelect = (inputValue, actionMeta) => {
-    // console.group('Input Changed');
-    console.log(inputValue);
-    console.log(`action: ${actionMeta.action}`);
-    // console.groupEnd();
+    if (inputValue.length > 2) {
+      //   console.log('открываем селект');
+      this.createOptions();
+    } else {
+      this.setState({ options: [] });
+    }
+    //   console.group('Input Changed');
+    //   console.log(`action: ${actionMeta.action}`);
+    //   console.groupEnd();
+  };
+
+  createNewProduct = value => {
+    console.log(`Нужно создать статью расходов ${value}`);
   };
 
   render() {
@@ -129,6 +142,7 @@ class AddCost extends Component {
       formatDate,
       descriptionCost,
       amountCost,
+      options,
     } = this.state;
     const { dateRegistration } = this.props;
 
@@ -149,7 +163,7 @@ class AddCost extends Component {
               className={css.calendar}
               onChange={this.onChangeDate}
               maxDate={new Date()}
-              minDate={dateRegistration}
+              minDate={new Date(dateRegistration)}
             />
           </div>
         )}
@@ -157,13 +171,19 @@ class AddCost extends Component {
         <form className={css.form} onSubmit={this.onAddCost}>
           <div className={css.formOverlay}>
             <CreatableSelect
+              //   onClick={this.createOptions()}
               className={css.inputDescription}
               isClearable
+              //   onCreateOption={()}
               onChange={this.handleChangeSelect}
               onInputChange={this.handleInputChangeSelect}
               placeholder="Ввести расходы..."
-              //   options={this.createOptions()}
+              noOptionsMessage={() => 'Уточните поиск...'}
+              formatCreateLabel={inputValue =>
+                `Создать новый типа расхода: ${inputValue}`
+              }
               options={options}
+              //   options={options}
             />
             {/* <input
               className={css.inputDescription}

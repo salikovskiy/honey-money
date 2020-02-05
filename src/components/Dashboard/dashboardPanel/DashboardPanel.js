@@ -73,6 +73,8 @@ class DashboardPanel extends Component {
   render() {
     const balance = this.props.finance.balance;
     const dateRegistration = this.props.finance.authReducer.createdAt;
+    const token = this.props.finance.authReducer.token;
+
     console.log(this.props.finance.costs);
     const summary = this.handleGetSummary();
     console.log(this.props.finance);
@@ -90,7 +92,7 @@ class DashboardPanel extends Component {
               balance={balance}
               dateRegistration={dateRegistration}
               postCosts={this.props.postCosts}
-              products={['']}
+              token={token}
             />
           </div>
         )}

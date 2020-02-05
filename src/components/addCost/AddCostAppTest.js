@@ -69,14 +69,15 @@ class App extends Component {
   };
   render() {
     // const dataReg = '2019-11-24T23: 31: 40.086Z';
-    console.log('this.state.products in test', this.state.products);
+    // console.log('this.state.products in test', this.state.products);
     return (
       <div>
         <AddCost
-          dateRegistration={new Date('2020-01-24T23:31:40.086Z')}
+          dateRegistration={'2020-01-24T23:31:40.086Z'}
           postCosts={this.onGetCost}
           balance={this.state.balance}
           products={this.state.products}
+          token={this.props.token}
         />
       </div>
     );
