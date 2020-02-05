@@ -82,7 +82,7 @@ class DashboardPanel extends Component {
     const token = this.props.finance.authReducer.token;
     const dateRegistration = this.props.finance.authReducer.createdAt;
     const summary = this.handleGetSummary();
-    console.log(summary);
+    //console.log(summary);
     // console.log(this.props.finance;
     // console.log('state date', this.state.date);
     // console.log('state data', this.state.dataTable);
