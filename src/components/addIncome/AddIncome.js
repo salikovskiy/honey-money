@@ -98,8 +98,8 @@ class AddIncome extends Component {
                   <div
                     // id={css.cOv}
                     className={css.calendarOverlay}
-                    // onClick={() => this.setState({ calendar: false })}
-                    onClick={this.backDropCalendar}
+                    onClick={() => this.setState({ calendar: false })}
+                    // onClick={this.backDropCalendar}
                   >
                     <Calendar
                       className={css.calendar}
