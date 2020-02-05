@@ -9,6 +9,9 @@
   background-color: #fff;
   padding: 42px 20px 50px;
 }
+/* .select {
+  widows: 300px;
+} */
 
 .close {
   position: absolute;
@@ -63,6 +66,11 @@
   width: 20px;
   height: 20px;
   margin: auto;
+}
+
+.calendar {
+  position: absolute;
+  width: 320px;
 }
 
 .formatDate {
@@ -207,7 +215,7 @@
 
 @media (min-width: 1280px) {
   .container {
-    width: 1028px;
+    width: 1228px;
     height: 46px;
   }
   .cal {

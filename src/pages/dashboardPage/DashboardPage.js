@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import services from '../../services/services';
 import { getTransactions, postIncome } from '../../redux/operations';
 import getDateNow from '../../utilities/getDateNow';
+import AddCostAppTest from '../../components/addCost/AddCostAppTest';
 
 class DashboardPage extends Component {
   state = {
@@ -21,7 +22,12 @@ class DashboardPage extends Component {
 
   render() {
     // services.addIncome().then(data => console.log(data));
-    return <h2>DashboardPage</h2>;
+    return (
+      <>
+        <h2>DashboardPage</h2>
+        <AddCostAppTest />
+      </>
+    );
   }
 }
 
