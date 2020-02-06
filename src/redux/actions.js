@@ -7,24 +7,23 @@ export const fetchStart = () => ({
 
 export const getBalanceSuccess = value => ({
   type: Type.GET_BALANCE_SUCCESS,
-  payload: {value},
+  payload: { value },
 });
 
 export const getCostsSuccess = arr => ({
   type: Type.GET_COSTS_SUCCESS,
-  payload: {arr},
+  payload: { arr },
 });
 
 export const fetchError = error => ({
   type: Type.FETCH_ERROR,
-  payload: {error},
+  payload: { error },
 });
 
 export const addDateNow = date => ({
   type: Type.DATE_NOW,
-  payload: {date},
+  payload: { date },
 });
-
 
 export const signUp = newUser => {
   return (dispatch, getState) => {
