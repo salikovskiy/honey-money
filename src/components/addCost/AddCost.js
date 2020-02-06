@@ -64,9 +64,12 @@ class AddCost extends Component {
       //   console.log('objPostCost->', objPostCost);
       //   console.log('this.props', this.props);.
       console.log('Расход--->', objPostCost);
-      this.props.postCosts(objPostCost);
+      //   this.props.postCosts(objPostCost);
     } else {
       alert('Недостаточно средств!');
+    }
+    if (window.innerWidth < 768) {
+      this.props.closeModal();
     }
     this.onResetForm();
   };
@@ -146,49 +149,49 @@ class AddCost extends Component {
       amountCost,
       options,
     } = this.state;
-    const { dateRegistration } = this.props;
+    const { dateRegistration, closeModal } = this.props;
 
     return (
-      <div className={css.overlay}>
-        <div className={css.container}>
-          <h3 className={css.title}>Ввести расход</h3>
-          <span className={css.close}></span>
-          <button onClick={this.onOpenCalendar} className={css.cal}>
-            <img src={calendar} alt="cal" />
-          </button>
-          {openCalendar && (
-            // <div
-            //   data-modal={'true'}
-            //   className={css.calendarOverlay}
-            //   onClick={this.backDropCalendar}
-            // >
-            <Calendar
-              className={css.calendar}
-              onChange={this.onChangeDate}
-              maxDate={new Date()}
-              minDate={new Date(dateRegistration)}
+      //   <div className={css.overlay}>
+      <div className={css.container}>
+        <h3 className={css.title}>Ввести расход</h3>
+        <span className={css.close} onClick={closeModal}></span>
+        <button onClick={this.onOpenCalendar} className={css.cal}>
+          <img src={calendar} alt="cal" />
+        </button>
+        {openCalendar && (
+          // <div
+          //   data-modal={'true'}
+          //   className={css.calendarOverlay}
+          //   onClick={this.backDropCalendar}
+          // >
+          <Calendar
+            className={css.calendar}
+            onChange={this.onChangeDate}
+            maxDate={new Date()}
+            minDate={new Date(dateRegistration)}
+          />
+          // </div>
+        )}
+        <span className={css.formatDate}>{formatDate}</span>
+        <form className={css.form} onSubmit={this.onAddCost}>
+          <div className={css.formOverlay}>
+            <CreatableSelect
+              onClick={this.createOptions()}
+              className={css.inputDescription}
+              isClearable
+              //   onCreateOption={()}
+              onChange={this.handleChangeSelect}
+              onInputChange={this.handleInputChangeSelect}
+              placeholder="Ввести расходы..."
+              noOptionsMessage={() => 'Уточните поиск...'}
+              formatCreateLabel={inputValue =>
+                `Создать новый типа расхода: ${inputValue}`
+              }
+              options={options}
+              //   options={options}
             />
-            // </div>
-          )}
-          <span className={css.formatDate}>{formatDate}</span>
-          <form className={css.form} onSubmit={this.onAddCost}>
-            <div className={css.formOverlay}>
-              <CreatableSelect
-                onClick={this.createOptions()}
-                className={css.inputDescription}
-                isClearable
-                //   onCreateOption={()}
-                onChange={this.handleChangeSelect}
-                onInputChange={this.handleInputChangeSelect}
-                placeholder="Ввести расходы..."
-                noOptionsMessage={() => 'Уточните поиск...'}
-                formatCreateLabel={inputValue =>
-                  `Создать новый типа расхода: ${inputValue}`
-                }
-                options={options}
-                //   options={options}
-              />
-              {/* <input
+            {/* <input
               className={css.inputDescription}
               required
               tipe="text"
@@ -197,32 +200,32 @@ class AddCost extends Component {
               onChange={this.onChangeInput}
               value={descriptionCost}
             ></input> */}
-              <input
-                className={css.inputAmount}
-                required
-                type="text"
-                placeholder="00.00 грн"
-                name="amountCost"
-                onChange={this.onChangeInput}
-                value={amountCost}
-                pattern="[0-9]+([.][0-9]{1,2}){0,1}"
-              ></input>
-            </div>
-            <div className={css.overlayBtn}>
-              <button className={`${css.btn} ${css.btnSubmit}`} type="submit">
-                Подтвердить
-              </button>
-              <button
-                className={`${css.btn} ${css.btnReset}`}
-                type="reset"
-                onClick={this.onResetForm}
-              >
-                Очистить
-              </button>
-            </div>
-          </form>
-        </div>
+            <input
+              className={css.inputAmount}
+              required
+              type="text"
+              placeholder="00.00 грн"
+              name="amountCost"
+              onChange={this.onChangeInput}
+              value={amountCost}
+              pattern="[0-9]+([.][0-9]{1,2}){0,1}"
+            ></input>
+          </div>
+          <div className={css.overlayBtn}>
+            <button className={`${css.btn} ${css.btnSubmit}`} type="submit">
+              Подтвердить
+            </button>
+            <button
+              className={`${css.btn} ${css.btnReset}`}
+              type="reset"
+              onClick={this.onResetForm}
+            >
+              Очистить
+            </button>
+          </div>
+        </form>
       </div>
+      //   </div>
     );
   }
 }
