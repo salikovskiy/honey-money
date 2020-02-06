@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getCategories } from '../../redux/statistics/statisticsOperations';
 import StatisticsMenu from '../../components/statisticsMenu/StatisticsMenu';
-import StatisticAmounts from './../../components/statisticAmounts/StatisticAmounts';
+import StatisticAmounts from '../../components/statisticAmounts/StatisticAmounts';
 import CategoriesList from '../../components/CategoriesList/CategoriesList';
 import BarChart from '../../components/barChart/BarChart';
 import moment from 'moment';
