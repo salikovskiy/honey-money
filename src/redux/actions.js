@@ -62,3 +62,8 @@ export const getIncomesSuccess = arr => ({
   type: Type.GET_INCOMES_SUCCESS,
   payload: {arr},
 });
+
+
+export const logOut = () => ({
+  type: Type.LOG_OUT,
+})
