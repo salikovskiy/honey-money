@@ -23,6 +23,7 @@ class DashboardPanel extends Component {
   state = {
     date: moment().format('YYYYMM'),
     dataTable: [],
+    isOpenModalCosts: false,
   };
 
   handleGetSummary = () => {
@@ -49,6 +50,10 @@ class DashboardPanel extends Component {
       this.handleGetDataTable();
     }
   }
+
+  handleOpenModalCosts = () => {
+    this.setState(state => ({ isOpenModalCosts: !state.isOpenModalCosts }));
+  };
 
   handleGetDate = e => {
     this.setState({
@@ -88,11 +93,16 @@ class DashboardPanel extends Component {
     // console.log('state data', this.state.dataTable);
     return (
       <div className={styles.dashboardPanel}>
-        {window.innerWidth < 768 ? (
-          <button className={styles.dashboardPanelBtnMobile} type="button">
+        {window.innerWidth < 768 && (
+          <button
+            className={styles.dashboardPanelBtnMobile}
+            type="button"
+            onClick={this.handleOpenModalCosts}
+          >
             Ввести расход
           </button>
-        ) : (
+        )}
+        {this.state.isOpenModalCosts && (
           <div className={styles.dashboardPanel_addCost}>
             <AddCost
               balance={balance}
