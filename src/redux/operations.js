@@ -22,7 +22,7 @@ export const getTransactions = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch(fetchError(error.message));
     console.log(error);
-    throw new Error(error);
+    // throw new Error(error);
   }
 };
 
@@ -44,7 +44,7 @@ export const postIncome = obj => async (dispatch, getState) => {
 export const postCosts = obj => async (dispatch, getState) => {
   dispatch(fetchStart());
   try {
-    const response = await services.addIncome(
+    const response = await services.postCosts(
       getState().finance.authReducer.token,
       obj,
     );
