@@ -110,10 +110,11 @@ class AddCost extends Component {
       this.createNewProduct(newValue.value);
     }
 
-    // console.log('newValue', newValue);
+    console.dir(newValue);
     // console.group('Value Changed');
-    // const productId = newValue.id ? newValue.id : '';
-    const productId = newValue.id;
+    const productId = newValue.id ? newValue.id : '';
+    console.log('newValue.id', newValue.id);
+    // const productId = newValue.id;
     this.setState({ descriptionCost: newValue, id: productId });
     // console.log(newValue);
     // console.log(`action: ${actionMeta.action}`);
