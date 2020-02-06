@@ -1,0 +1,114 @@
+.header {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.header_logo {
+  width: 164px;
+  height: 34px;
+}
+
+.header_user_name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #52555f;
+  position: relative;
+}
+
+.header_user_name::before {
+  content: '';
+  position: absolute;
+  top: 23px;
+  left: 0;
+  display: block;
+  width: 20px;
+  height: 3px;
+  background-color: #f38181;
+  opacity: 0;
+}
+
+.header_user_logout {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #52555f;
+  background-color: transparent;
+  border: none;
+  /* padding-left: 103px; */
+}
+
+.header_user_logout:hover {
+  border-bottom: 1px solid #52555f;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header_user {
+  /* min-width: 190px; */
+  min-height: 58px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.modal {
+  width: 440px;
+  height: 202px;
+  border: 1px solid #52555f;
+  border-radius: 30px;
+  margin-top: 150px;
+  margin-left: 280px;
+  margin-bottom: 100px;
+  padding-top: 60px;
+  padding-left: 42px;
+}
+
+.modal_text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.modal_button {
+  width: 288px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 32px;
+  margin-top: 28px;
+}
+.modal_button_yes {
+  width: 134px;
+  height: 40px;
+  background-color: #f5f7fa;
+  border-radius: 22px;
+  border: none;
+  box-shadow: 2px 2px 4px rgba(221, 217, 217, 0.835);
+}
+
+.modal_button_yes:hover {
+  color: #f5f7fa;
+  background-color: rgb(233, 97, 5);
+  box-shadow: 2px 2px 4px rgba(233, 97, 5, 0.5);
+  transition: all 200ms linear;
+}
+
+.modal_button_no {
+  width: 134px;
+  height: 40px;
+  background-color: #f5f7fa;
+  border-radius: 22px;
+  border: none;
+  box-shadow: 2px 2px 4px rgba(221, 217, 217, 0.835);
+}
+
+.modal_button_no:hover {
+  color: #f5f7fa;
+  background-color: #e96105;
+  box-shadow: 2px 2px 4px rgba(233, 97, 5, 0.5);
+  transition: all 200ms linear;
+}

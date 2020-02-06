@@ -12,7 +12,7 @@ export default function TableExample({ summary, handleGetDate }) {
             <tr
               id={shortid()}
               data-month={moment(item.month, 'MMMM YYYY').format('YYYYMM')}
-              className={css.isActive ? css.orange : css.tr}
+              className={item.isActive ? css.orange : css.tr}
               onClick={handleGetDate}
             >
               <td className={css.mounth}>{item.month}</td>

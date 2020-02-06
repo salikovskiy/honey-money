@@ -65,6 +65,11 @@ const error = (state = '', { type, payload }) => {
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
+    case 'LOG_OUT':
+      return {
+        ...state,
+        token: '',
+      };
     case 'LOGIN_ERROR':
       console.log('login failed');
       return {
@@ -100,6 +105,16 @@ const authReducer = (state = initState, action) => {
   }
 };
 
+const incomes = (state = [], { type, payload }) => {
+  switch (type) {
+    case Type.GET_INCOMES_SUCCESS:
+      return payload.arr;
+    default:
+      return state;
+  }
+};
+
+
 export default combineReducers({
   authReducer,
   costs,
@@ -107,4 +122,5 @@ export default combineReducers({
   isLoading,
   dateNow,
   error,
+  incomes,
 });
