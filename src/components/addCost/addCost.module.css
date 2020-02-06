@@ -1,6 +1,20 @@
 /* body {
   background-color: grey;
 } */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.149);
+  z-index: 1;
+}
+
 .container {
   position: relative;
   width: 320px;
@@ -194,8 +208,33 @@
   border: none;
   margin: 0;
 }
+.inputDescription > div:nth-child(3)::-webkit-scrollbar {
+  width: 6px;
+}
+
+.inputDescription > div:nth-child(3)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.inputDescription > div:nth-child(3)::-webkit-scrollbar-thumb {
+  background: #ff6c00;
+  border-radius: 10px;
+}
+
+.inputDescription > div:nth-child(3)::-webkit-scrollbar-thumb:hover {
+  background: #e6660c;
+}
 
 @media (min-width: 768px) {
+  .overlay {
+    position: relative;
+    width: 670px;
+    height: 104px;
+    border-radius: 0;
+    padding: 0;
+    background-color: #fff;
+    display: flex;
+  }
   .container {
     width: 670px;
     height: 104px;
@@ -261,6 +300,10 @@
 }
 
 @media (min-width: 1280px) {
+  .overlay {
+    width: 1028px;
+    height: 46px;
+  }
   .container {
     width: 1028px;
     height: 46px;
