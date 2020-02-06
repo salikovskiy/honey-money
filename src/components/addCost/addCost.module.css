@@ -88,7 +88,7 @@
 }
 
 .calendarOverlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
@@ -96,16 +96,16 @@
   /* display: flex; */
   /* justify-content: center; */
   /* align-items: center; */
-  z-index: 3;
+  z-index: 10;
 }
 
 .calendar {
   position: absolute;
-  z-index: 100;
+  z-index: 1000;
   width: 320px;
-  left: 50%;
+  /* left: 50%;
   transform: translateX(-50%);
-  top: 200px;
+  top: 200px; */
 }
 
 .formatDate {
@@ -234,6 +234,7 @@
     padding: 0;
     background-color: #fff;
     display: flex;
+    z-index: 0;
   }
   .container {
     width: 670px;
@@ -303,6 +304,7 @@
   .overlay {
     width: 1028px;
     height: 46px;
+    z-index: 0;
   }
   .container {
     width: 1028px;

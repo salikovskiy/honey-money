@@ -269,7 +269,7 @@
 
   .table .td:first-child {
     border-bottom-left-radius: 0px;
-}
+  }
 }
 
 @media (min-width: 1280px) {
