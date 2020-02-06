@@ -102,7 +102,7 @@ class DashboardPanel extends Component {
             Ввести расход
           </button>
         )}
-        {this.state.isOpenModalCosts && (
+        {this.state.isOpenModalCosts && (<div className={styles.overlay_addCost}>
           <div className={styles.dashboardPanel_addCost}>
             <AddCost
               balance={balance}
@@ -111,6 +111,7 @@ class DashboardPanel extends Component {
               token={token}
               closeModal={this.handleChangeModalCosts}
             />
+          </div>
           </div>
         )}
         {window.innerWidth > 767 && (
