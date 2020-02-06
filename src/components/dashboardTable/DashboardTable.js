@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import css from '../dashboardTable/DashBoardTable.module.css';
 import moment from "moment"
 
