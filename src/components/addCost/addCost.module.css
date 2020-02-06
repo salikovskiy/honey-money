@@ -9,6 +9,9 @@
   background-color: #fff;
   padding: 42px 20px 50px;
 }
+/* .select {
+  widows: 300px;
+} */
 
 .close {
   position: absolute;
@@ -68,6 +71,27 @@
   width: 20px;
   height: 20px;
   margin: auto;
+}
+
+.calendarOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  z-index: 3;
+}
+
+.calendar {
+  position: absolute;
+  z-index: 100;
+  width: 320px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 200px;
 }
 
 .formatDate {
@@ -154,6 +178,21 @@
   background-color: #dee1e6;
   box-shadow: 0 3px #666;
   transform: translateY(2px);
+}
+
+.inputDescription {
+  padding: 0;
+}
+
+.inputDescription > div:nth-child(1) {
+  height: 100%;
+  border: none;
+}
+
+.inputDescription > div:nth-child(2) {
+  height: 100%;
+  border: none;
+  margin: 0;
 }
 
 @media (min-width: 768px) {
