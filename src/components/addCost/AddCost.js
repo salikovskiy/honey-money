@@ -62,7 +62,8 @@ class AddCost extends Component {
         },
       };
       //   console.log('objPostCost->', objPostCost);
-      //   console.log('this.props', this.props);
+      //   console.log('this.props', this.props);.
+      console.log('Расход--->', objPostCost);
       this.props.postCosts(objPostCost);
     } else {
       alert('Недостаточно средств!');
@@ -156,18 +157,18 @@ class AddCost extends Component {
             <img src={calendar} alt="cal" />
           </button>
           {openCalendar && (
-            <div
-              data-modal={'true'}
-              className={css.calendarOverlay}
-              onClick={this.backDropCalendar}
-            >
-              <Calendar
-                className={css.calendar}
-                onChange={this.onChangeDate}
-                maxDate={new Date()}
-                minDate={new Date(dateRegistration)}
-              />
-            </div>
+            // <div
+            //   data-modal={'true'}
+            //   className={css.calendarOverlay}
+            //   onClick={this.backDropCalendar}
+            // >
+            <Calendar
+              className={css.calendar}
+              onChange={this.onChangeDate}
+              maxDate={new Date()}
+              minDate={new Date(dateRegistration)}
+            />
+            // </div>
           )}
           <span className={css.formatDate}>{formatDate}</span>
           <form className={css.form} onSubmit={this.onAddCost}>
