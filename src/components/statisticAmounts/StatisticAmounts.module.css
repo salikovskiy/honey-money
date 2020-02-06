@@ -2,7 +2,7 @@
   flex-wrap: wrap;
   width: 87.5%;
   height: 84px;
-  margin: 0 auto 64px;
+  margin: 40px auto 64px;
 }
 
 .AmountContainer {
@@ -45,7 +45,7 @@
   .StatisticAmountsContainer {
     width: 89.59%;
     height: 50px;
-    margin: 0 auto 27px;
+    margin: 48px auto 27px;
   }
 
   .AmountContainer {
@@ -81,7 +81,7 @@
 @media (min-width: 1280px) {
   .StatisticAmountsContainer {
     width: 73.516%;
-    margin: 0 auto 31px;
+    margin: 40px auto 31px;
   }
 
   .AmountContainer {
