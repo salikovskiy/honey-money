@@ -59,4 +59,18 @@ export default {
       throw new Error(error);
     }
   },
+
+  async getAllProducts(token) {
+    try {
+      const data = await axios.get('/products', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  },
 };
