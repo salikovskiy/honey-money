@@ -1,0 +1,248 @@
+.dashMenu__container {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 100vw;
+  padding-top: 45px;
+}
+
+.balance__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 220px;
+  height: 40px;
+  padding: 10px 15px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  border: solid 2px #fff;
+  border-radius: 25px;
+}
+
+.balance__title {
+  display: block;
+  width: 80px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.balance__value {
+  display: block;
+  outline: none;
+  min-width: 80px;
+  color: #000;
+  font-weight: 700;
+  font-size: 16px;
+  border-image: none;
+  border: none;
+  background-color: transparent;
+}
+
+.dashMenu__incomeBtn {
+  min-width: 138px;
+  height: 40px;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  background-color: #ff6c00;
+  border-style: none;
+  outline: none;
+  padding: 12px 18px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  border-radius: 20px;
+}
+.dashMenu__incomeBtn:hover {
+  background-color: #df6107;
+  transition: 0.2s;
+}
+
+.dashMenu__incomeBtn:active {
+  background-color: #df6107;
+  box-shadow: 0 3px #666;
+  transform: translateY(2px);
+}
+
+.dashMenu__linkContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashMenu__linkTo {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: solid 3px #fff;
+  border-radius: 25px;
+  font-weight: 700;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.dashMenu__linkTitle {
+  display: block;
+  margin: 0 auto;
+  font-weight: 700;
+  min-width: 124px;
+  margin-bottom: 45px;
+  color: #000;
+}
+
+@media (min-width: 768px) {
+  .dashMenu__container {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 100vw;
+    padding: 40px 20px;
+  }
+
+  .balance__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 220px;
+    height: 40px;
+    padding: 10px 15px;
+    margin: 0;
+    margin-right: 20px;
+
+    border: solid 2px #fff;
+    border-radius: 25px;
+  }
+
+  .balance__title {
+    display: block;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .balance__value {
+    display: block;
+    outline: none;
+    min-width: 80px;
+    color: #000;
+    font-weight: 700;
+    font-size: 16px;
+    border-image: none;
+    border: none;
+    background-color: transparent;
+  }
+
+  .dashMenu__incomeBtn {
+    height: 40px;
+    color: #fff;
+    letter-spacing: 0.8px;
+    background-color: #ff6c00;
+    border-style: none;
+    padding: 10px 20px;
+    margin: 0;
+    margin-right: 150px;
+    border-radius: 25px;
+  }
+
+  .dashMenu__linkContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  .dashMenu__linkTo {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border: solid 3px #fff;
+    border-radius: 25px;
+    font-weight: 700;
+    margin: 0 auto;
+  }
+
+  .dashMenu__linkTitle {
+    display: block;
+    margin: 0 auto;
+    margin-right: 20px;
+    font-weight: 700;
+    min-width: 124px;
+    color: #000;
+  }
+}
+
+@media (min-width: 1280px) {
+  .dashMenu__container {
+    display: flex;
+    flex-direction: row;
+    min-width: 730px;
+    padding: 40px 95px 40px 460px;
+    border-radius: 0px;
+  }
+
+  .balance__wrapper {
+    display: flex;
+    justify-content: space-between;
+    min-width: 220px;
+    height: 40px;
+    margin: 0;
+    margin-right: 20px;
+    padding: 10px 20px;
+    border: solid 2px #fff;
+    border-radius: 25px;
+  }
+
+  .balance__title {
+    display: block;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .balance__value {
+    display: block;
+    color: #000;
+    padding-left: 15px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .dashMenu__incomeBtn {
+    height: 40px;
+    color: #fff;
+    letter-spacing: 0.8px;
+    background-color: #ff6c00;
+    border-style: none;
+    padding: 10px 20px;
+    margin: 0;
+    margin-right: 170px;
+    border-radius: 25px;
+  }
+
+  .dashMenu__linkContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  .dashMenu__linkTo {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border: solid 3px #fff;
+    border-radius: 25px;
+    font-weight: 700;
+    margin: 0 auto;
+  }
+
+  .dashMenu__linkTitle {
+    display: block;
+    margin: 0 auto;
+    margin-right: 10px;
+    font-weight: 700;
+    min-width: 135px;
+    color: #000;
+  }
+}

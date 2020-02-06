@@ -1,0 +1,53 @@
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'),
+    url('../assets/fonts/roboto-v20-latin-regular.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url('../assets/fonts/roboto-v20-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-500 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+    url('../assets/fonts/roboto-v20-latin-500.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url('../assets/fonts/roboto-v20-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-700 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'),
+    url('../assets/fonts/roboto-v20-latin-700.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url('../assets/fonts/roboto-v20-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* caveat-regular - latin_cyrillic */
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Caveat Regular'), local('Caveat-Regular'),
+    url('../assets/fonts/caveat-v7-latin_cyrillic-regular.woff2')
+      format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url('../assets/fonts/caveat-v7-latin_cyrillic-regular.woff')
+      format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* caveat-700 - latin_cyrillic */
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Caveat Bold'), local('Caveat-Bold'),
+    url('../assets/fonts/caveat-v7-latin_cyrillic-700.woff2') format('woff2'),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url('../assets/fonts/caveat-v7-latin_cyrillic-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}

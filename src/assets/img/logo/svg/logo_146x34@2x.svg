@@ -1,0 +1,30 @@
+<svg id="logo" xmlns="http://www.w3.org/2000/svg" width="292" height="68" viewBox="0 0 146 34">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff6c00;
+      }
+
+      .cls-2 {
+        fill: #fb7c2e;
+        opacity: 0.29;
+      }
+
+      .cls-3, .cls-4 {
+        font-size: 16px;
+        font-family: Roboto;
+        font-weight: 800;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Группа_5" data-name="Группа 5">
+    <rect id="Прямоугольник_скругл._углы_5" data-name="Прямоугольник, скругл. углы 5" class="cls-1" x="6" y="7" width="33" height="26" rx="8" ry="8"/>
+    <rect id="Прямоугольник_скругл._углы_5_копия" data-name="Прямоугольник, скругл. углы 5 копия" class="cls-2" y="2" width="33" height="26" rx="8" ry="8"/>
+  </g>
+  <text id="_" data-name="$" class="cls-3" x="17.5" y="26">$</text>
+  <text id="HoneyMoney" class="cls-4" x="46.5" y="25">Honey<tspan class="cls-1">M</tspan>oney</text>
+</svg>

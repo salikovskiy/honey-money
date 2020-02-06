@@ -1,0 +1,238 @@
+html {
+    box-sizing: border-box;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.statistics {
+    width: 280px;
+    margin: 0 auto;
+    padding-top: 20px;
+    /* background-color: rgb(238, 235, 235);*/
+
+}
+
+* {
+    outline: none;
+}
+
+.statisticsMenu_goBack {
+    display: block;
+    font-size: 11px;
+    font-family: "Roboto", sans-serif;
+    color: rgba(82, 85, 95, 0.749);
+    text-align: left;
+    padding-left: 28px;
+    background-image: url('../../assets/icons/arrow_back/keyboard_backspace-24px.svg');
+    background-repeat: no-repeat;
+    height: 24px;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 14px;
+}
+
+.statisticsMenu_goBack_pre {
+    display: none;
+}
+
+
+.statisticsMenu_dateBalance_wrap {
+    margin: 0 auto;
+    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+    border-style: solid;
+    border-radius: 19px;
+    width: 276px;
+    height: 36px;
+    display: flex;
+    margin-bottom: 20px;
+
+}
+
+.statisticsMenu_dateBalance_text {
+    font-size: 11px;
+    font-family: "Roboto", sans-serif;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    line-height: 3;
+    padding-left: 12px;
+    margin-right: 22px;
+}
+
+.statisticsMenu_dateBalance_value {
+    font-size: 14px;
+    font-family: "Roboto", sans-serif;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    line-height: 2.3;
+}
+
+.statisticsMenu_calendar_text {
+    font-size: 11px;
+    font-family: "Roboto", sans-serif;
+    color: rgba(82, 85, 95, 0.749);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.statisticsMenu_calendar_wrap {
+    width: 168px;
+    margin: 0 auto
+}
+
+.statisticsMenu_calendar_monthsWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 168px;
+}
+
+.statisticsMenu_calendar_monthsBtn_left {
+    display: block;
+    background-image: url('../../assets/icons/arrow_right/arrow_right-24px.svg');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    transform: rotate(180deg);
+    background-color: transparent;
+    border: none;
+    background-position: center;
+}
+
+.statisticsMenu_calendar_monthsBtn_left_dis {
+    display: block;
+    background-image: url('../../assets/icons/arrow_rightDisabled/arrow_right-24px.svg');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    transform: rotate(180deg);
+    background-color: transparent;
+    border: none;
+    background-position: center;
+}
+
+.statisticsMenu_calendar_months {
+    font-size: 13px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.statisticsMenu_calendar_monthsBtn_right {
+    display: block;
+    background-image: url('../../assets/icons/arrow_right/arrow_right-24px.svg');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    background-position: center;
+}
+
+.statisticsMenu_calendar_monthsBtn_right_dis {
+    display: block;
+    background-image: url('../../assets/icons/arrow_rightDisabled/arrow_right-24px.svg');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    background-position: center;
+}
+
+@media (min-width: 768px) {
+    .statistics {
+        width: 728px;
+        padding-top: 38px;
+        padding-left: 20px;
+
+    }
+
+    .statisticsMenu {
+        display: flex;
+        align-items: center;
+    }
+
+    .statisticsMenu_goBack {
+        font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        color: rgba(82, 85, 95, 0.749);
+        margin: 0;
+        margin-right: 76px;
+    }
+
+    .statisticsMenu_dateBalance_wrap {
+        width: 332px;
+        display: flex;
+        margin: 0;
+        margin-right: 42px;
+
+    }
+
+    .statisticsMenu_dateBalance_text {
+        font-size: 14px;
+        line-height: 2.5;
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        padding-left: 16px;
+        margin-right: 36px;
+    }
+
+    .statisticsMenu_calendar_text {
+        font-size: 14px;
+
+    }
+
+    .statisticsMenu_calendar_months {
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+
+}
+
+@media (min-width: 1280px) {
+    .statistics {
+        width: 1030px;
+        padding-top: 40px;
+        padding-left: 60px;
+
+    }
+
+    .statisticsMenu_goBack {
+        padding-left: 32px;
+        margin-right: 84px;
+    }
+
+    .statisticsMenu_goBack_pre {
+        display: inline-block;
+        font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        color: rgba(82, 85, 95, 0.749);
+    }
+
+    .statisticsMenu_dateBalance_wrap {
+        margin-right: 196px;
+
+    }
+
+    .statisticsMenu_calendar_wrap {
+        padding-top: 30px;
+    }
+
+    .statisticsMenu_calendar_months {
+        margin-left: 14px;
+        margin-right: 14px;
+    }
+
+
+}

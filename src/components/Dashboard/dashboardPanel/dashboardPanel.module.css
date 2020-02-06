@@ -1,0 +1,90 @@
+.overlay_addCost {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.149);
+    z-index: 1;
+}
+
+.dashboardPanel {
+    width: 286px;
+    margin: 0 auto
+}
+
+.dashboardPanelBtnMobile {
+    display: block;
+    border: none;
+    width: 138px;
+    height: 40px;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    outline: none;
+    background-color: #ff6c00;
+    color: white;
+    margin: 0 auto;
+    margin-bottom: 36px;
+}
+
+.dashboardPanelBtnMobile:hover {
+    background-color: #df6107;
+    transition: 0.2s;
+}
+
+.dashboardPanelBtnMobile:active {
+    background-color: #df6107;
+    box-shadow: 0 3px #666;
+    transform: translateY(2px);
+}
+
+.dashboardPanel_DashboardTable {
+    width: 286px;
+    height: auto;
+    margin-bottom: 26px;
+}
+
+@media (min-width: 768px) {
+    .dashboardPanel {
+        width: 728px;
+        border-radius: 25px;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 7px 12.124px 65px 0px rgba(178, 184, 199, 0.25);
+        padding: 42px 30px 42px 30px;
+    }
+
+    .dashboardPanel_addCost {
+        margin-bottom: 46px;
+    }
+
+    .dashboardPanel_DashboardTable {
+        width: 670px;
+        margin-bottom: 32px;
+    }
+
+}
+
+@media (min-width: 1280px) {
+    .dashboardPanel {
+        width: 1100px;
+    }
+
+    .dashboardPanel_addCost {
+        margin-bottom: 38px;
+    }
+
+    .dashboardPanel_wrap {
+        display: flex;
+    }
+
+    .dashboardPanel_DashboardTable {
+        width: 760px;
+        margin-bottom: 0;
+        margin-right: 30px;
+    }
+}
