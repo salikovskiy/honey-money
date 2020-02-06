@@ -11,6 +11,7 @@ export default function TableExample({ summary, handleGetDate }) {
           {summary.map(item => (
             <tr
               id={shortid()}
+              key={shortid()}
               data-month={moment(item.month, 'MMMM YYYY').format('YYYYMM')}
               className={item.isActive ? css.orange : css.tr}
               onClick={handleGetDate}
