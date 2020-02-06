@@ -51,7 +51,7 @@ class DashboardPanel extends Component {
     }
   }
 
-  handleOpenModalCosts = () => {
+  handleChangeModalCosts = () => {
     this.setState(state => ({ isOpenModalCosts: !state.isOpenModalCosts }));
   };
 
@@ -97,12 +97,23 @@ class DashboardPanel extends Component {
           <button
             className={styles.dashboardPanelBtnMobile}
             type="button"
-            onClick={this.handleOpenModalCosts}
+            onClick={this.handleChangeModalCosts}
           >
             Ввести расход
           </button>
         )}
         {this.state.isOpenModalCosts && (
+          <div className={styles.dashboardPanel_addCost}>
+            <AddCost
+              balance={balance}
+              dateRegistration={dateRegistration}
+              postCosts={this.props.postCosts}
+              token={token}
+              closeModal={this.handleChangeModalCosts}
+            />
+          </div>
+        )}
+        {window.innerWidth > 767 && (
           <div className={styles.dashboardPanel_addCost}>
             <AddCost
               balance={balance}
