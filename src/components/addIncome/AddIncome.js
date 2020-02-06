@@ -91,7 +91,7 @@ class AddIncome extends Component {
                       onChange={this.onChange}
                       value={this.state.date}
                       maxDate={new Date()}
-                      minDate={this.props.date}
+                      minDate={new Date(this.props.date)}
                       onClickDay={this.pickDate}
                     />
                   </div>
