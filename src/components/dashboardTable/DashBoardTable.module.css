@@ -29,14 +29,13 @@
   padding-bottom: 1px;
 }
 .tableWrapper .table {
-  /* width: 670px; */
   height: 320px;
 }
 
 .tableWrapper .table .thead .th .text {
   position: absolute;
   top: -20px;
-  z-index: 2;
+  /* z-index: 2; */
   width: 35%;
   border: 1px solid red;
 }
@@ -81,7 +80,7 @@
 }
 
 .price {
-  margin-top: 14px;
+  margin-top: 19px;
   color: #ff6c00;
   margin-bottom: 15px;
   background: white;
@@ -115,7 +114,7 @@
 }
 
 .btn {
-  margin-left: 6px;
+  margin-top: 15px;
   width: 20px;
   height: 20px;
   background-color: transparent;
@@ -159,6 +158,12 @@
 
 .table .tbody .td {
   border-top: 1px solid #959595;
+}
+
+.overModile {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (min-width: 768px) {
@@ -209,7 +214,6 @@
 
   .price {
     border-top: 1px solid #959595;
-
     width: 134px;
   }
   .tbody {
@@ -238,7 +242,7 @@
   }
 
   .btn {
-    margin-left: 10px;
+    margin-right: 30px;
     width: 20px;
     height: 20px;
     background-color: transparent;
@@ -270,6 +274,10 @@
   .table .td:first-child {
     border-bottom-left-radius: 0px;
 }
+.overlay {
+  display: flex;
+  justify-content: space-between;
+}
 }
 
 @media (min-width: 1280px) {
@@ -293,5 +301,10 @@
     background-color: #f5f7fa;
     background-position: bottom;
     border-radius: 50%;
+  }
+
+  .overlayDesc {
+    display: flex;
+    justify-content: space-between;
   }
 }

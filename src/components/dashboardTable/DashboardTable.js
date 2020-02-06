@@ -22,11 +22,15 @@ const DashboardTable = ({dataTable}) => {
                       <span className={css.date}>{moment(item.date).format("DD.MM.YY")}</span>
                     </span>
                     <span className={css.categore}>{item.category}</span>
-                    <p className={css.price}>
-                      {item.amount}
-                      <button className={css.btn} type="button"></button>
-                    </p>
-                  </td>
+                    <span className={css.overModile}>
+                    <span className={css.price}>
+                    {item.amount}
+                    </span>
+                      <span>
+                    <button className={css.btn} type="button"></button>
+                    </span>
+                    </span>
+                      </td>
                 </tr>
                 ))}
                 <tr className={css.tr}>
@@ -104,10 +108,12 @@ const DashboardTable = ({dataTable}) => {
                   <td className={css.td}>{item.description}</td>
                   <td className={css.td}>{item.category}</td>
                   <td className={css.price}>
-                    <span>
-                      {item.amount}
+                    <span className={css.overlay}>
+                      <span>{item.amount}</span>
+                      <span>
                       <button className={css.btn} type="button"></button>
-                    </span>
+                      </span>
+                      </span>
                   </td>
                 </tr>
                 ))}
@@ -191,9 +197,11 @@ const DashboardTable = ({dataTable}) => {
                   <td className={css.td}>{item.description}</td>
                   <td className={css.td}>{item.category}</td>
                   <td className={css.price}>
-                    <span>
-                    {item.amount}
-                      <button className={css.btn} type="button"></button>
+                    <span className={css.overlayDesc}>
+                    <span>{item.amount}</span>
+                  <span>
+                  <button className={css.btn} type="button"></button>
+                  </span>
                     </span>
                   </td>
                 </tr>
