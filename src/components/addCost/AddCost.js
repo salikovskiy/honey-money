@@ -42,6 +42,13 @@ class AddCost extends Component {
     this.setState({ openCalendar: true });
   };
 
+  handleKeyPressCalendar = async event => {
+    // console.log('event', event.target.className);
+    if (event.code === 'Escape') {
+      this.setState({ openCalendar: false });
+    }
+  };
+
   backDropCalendar = event => {
     const dataset = event.target.dataset;
     if (dataset && dataset.modal === 'true') {
@@ -64,7 +71,7 @@ class AddCost extends Component {
       //   console.log('objPostCost->', objPostCost);
       //   console.log('this.props', this.props);.
       console.log('Расход--->', objPostCost);
-      //   this.props.postCosts(objPostCost);
+      this.props.postCosts(objPostCost);
     } else {
       alert('Недостаточно средств!');
     }
@@ -150,6 +157,7 @@ class AddCost extends Component {
       options,
     } = this.state;
     const { dateRegistration, closeModal } = this.props;
+    window.addEventListener('keyup', this.handleKeyPressCalendar);
 
     return (
       //   <div className={css.overlay}>
