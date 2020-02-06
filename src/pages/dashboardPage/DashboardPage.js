@@ -31,7 +31,6 @@ class DashboardPage extends Component {
     const postCosts = this.props.postCosts;
     return (
       <>
-        <h2>DashboardPage</h2>
         <DashboardMenu
           changeModal={this.onChangeModalIncome}
           balance={balance}
