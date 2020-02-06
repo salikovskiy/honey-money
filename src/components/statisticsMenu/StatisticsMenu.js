@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { createBrowserHistory } from 'history';
 import styles from './statisticsMenu.module.css';
 import moment from 'moment';
@@ -13,9 +13,9 @@ class StatisticsMenu extends Component {
     dateRegistration: '2019-09-30T18:22:59.462Z',
   };
 
-  componentDidMount() {
-    console.log('this.props.StatisticsMenu :', this.props.currentDate);
-  }
+  // componentDidMount() {
+  //   console.log('this.props.StatisticsMenu :', this.props.currentDate);
+  // }
 
   handleGoBack = () => {
     createBrowserHistory().goBack();

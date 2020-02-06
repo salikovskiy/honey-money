@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import Type from '../types';
 
 const categories = (state = [], { type, payload }) => {
@@ -10,4 +9,4 @@ const categories = (state = [], { type, payload }) => {
   }
 };
 
-export default combineReducers({ categories });
+export default categories;

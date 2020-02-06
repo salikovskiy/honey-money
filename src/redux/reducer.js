@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import Type from './types';
 import { getUser } from './selectors';
+import categories from '../redux/statistics/statisticsReducer';
 const initState = { authError: null, createdAt: '' };
 
 const costs = (state = [], { type, payload }) => {
@@ -65,6 +66,11 @@ const error = (state = '', { type, payload }) => {
 };
 const authReducer = (state = initState, action) => {
   switch (action.type) {
+    case 'LOG_OUT':
+      return {
+        ...state,
+        token: '',
+      };
     case 'LOGIN_ERROR':
       console.log('login failed');
       return {
@@ -117,4 +123,7 @@ export default combineReducers({
   dateNow,
   error,
   incomes,
+  
+  // statistics
+  categories,
 });

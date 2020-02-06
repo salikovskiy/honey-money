@@ -3,6 +3,7 @@ import s from './StatisticsPage.module.css';
 import { connect } from 'react-redux';
 import { getCategories } from '../../redux/statistics/statisticsOperations';
 import StatisticsMenu from '../../components/statisticsMenu/StatisticsMenu';
+import StatisticAmounts from './../../components/statisticAmounts/StatisticAmounts';
 import CategoriesList from '../../components/CategoriesList/CategoriesList';
 import moment from 'moment';
 
@@ -14,12 +15,12 @@ class StatisticsPage extends Component {
     currentDate: moment()
       .format('MMMM YYYY')
       .toUpperCase(),
+    allCategories: [],
   };
 
   componentDidMount() {
-    console.log('this.props', this.props);
-    this.props.getCategories();
-    // console.log('componentDidMount', this.props.getCategories());
+    // console.log('this.props :', this.props);
+    this.setState({ allCategories: [1, 2, 3] });
   }
 
   // Написать операцию (ГЕТ запрос) с измененным
@@ -38,9 +39,10 @@ class StatisticsPage extends Component {
 
   // передать пропами data в StatisticAmounts
 
-  // передать пропами обьект data в CategoriesList
+  // передать пропами сумму расходов в CategoriesList
 
   render() {
+    console.log('this.props rrrrrrrrr:', this.props);
     const { currentDate } = this.state;
     // Компонент рендерит: StatisticMenu, StatisticAmounts,
     // CategoriesList, Chart
@@ -48,7 +50,7 @@ class StatisticsPage extends Component {
       <div className={s.wrapper}>
         <div className={s.header}>Header</div>
         <StatisticsMenu currentDate={currentDate} />
-        <div className={s.statistic_amounts}>StatisticAmounts</div>
+        <StatisticAmounts />
         <CategoriesList />
         <div className={s.chart}>Chart</div>
       </div>
@@ -56,7 +58,7 @@ class StatisticsPage extends Component {
   }
 }
 
-const MSTP = state => state;
+const MSTP = state => state.categories;
 
 const MDTP = {
   getCategories,
