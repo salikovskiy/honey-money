@@ -1,6 +1,7 @@
 import React from 'react';
 import css from '../dashboardTable/DashBoardTable.module.css';
 import moment from "moment"
+import shortid from 'shortid';
 
 const DashboardTable = ({dataTable}) => {
     if (window.innerWidth < 768) {
@@ -15,7 +16,9 @@ const DashboardTable = ({dataTable}) => {
               </thead>
               <tbody className={css.tbody}>
                 {dataTable.map(item => (
-                  <tr className={css.tr}>
+                  <tr className={css.tr}
+                  id={shortid()}
+              key={shortid()}>
                   <td className={css.row}>
                     <span className={css.cover}>
                       <p className={css.discription}>{item.description}</p>
@@ -103,7 +106,9 @@ const DashboardTable = ({dataTable}) => {
               </thead>
               <tbody className={css.tbody}>
                 {dataTable.map(item => (
-                  <tr className={css.tr}>
+                  <tr className={css.tr}
+                  id={shortid()}
+              key={shortid()}>
                   <td className={css.td}>{moment(item.date).format("DD.MM.YY")}</td>
                   <td className={css.td}>{item.description}</td>
                   <td className={css.td}>{item.category}</td>
@@ -192,7 +197,9 @@ const DashboardTable = ({dataTable}) => {
               </thead>
               <tbody className={css.tbody}>
                 {dataTable.map(item => (
-                  <tr className={css.tr}>
+                  <tr className={css.tr}
+                  id={shortid()}
+              key={shortid()}>
                   <td className={css.td}>{moment(item.date).format("DD.MM.YY")}</td>
                   <td className={css.td}>{item.description}</td>
                   <td className={css.td}>{item.category}</td>
