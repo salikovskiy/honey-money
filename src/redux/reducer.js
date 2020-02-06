@@ -62,6 +62,7 @@ const error = (state = '', { type, payload }) => {
       return state;
   }
 };
+
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case 'LOG_OUT':
