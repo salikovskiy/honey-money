@@ -30,10 +30,9 @@
     transform: translateY(2px);
 }
 
-.dashboardPanel_Bogdan {
+.dashboardPanel_DashboardTable {
     width: 286px;
-    height: 318px;
-    background-color: rgb(168, 168, 247);
+    height: auto;
     margin-bottom: 26px;
 }
 
@@ -50,7 +49,7 @@
         margin-bottom: 46px;
     }
 
-    .dashboardPanel_Bogdan {
+    .dashboardPanel_DashboardTable {
         width: 670px;
         margin-bottom: 32px;
     }
@@ -70,7 +69,7 @@
         display: flex;
     }
 
-    .dashboardPanel_Bogdan {
+    .dashboardPanel_DashboardTable {
         width: 760px;
         margin-bottom: 0;
         margin-right: 30px;
