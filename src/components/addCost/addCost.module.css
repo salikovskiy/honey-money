@@ -1,6 +1,20 @@
 /* body {
   background-color: grey;
 } */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.149);
+  z-index: 1;
+}
+
 .container {
   position: relative;
   width: 320px;
@@ -9,6 +23,9 @@
   background-color: #fff;
   padding: 42px 20px 50px;
 }
+/* .select {
+  widows: 300px;
+} */
 
 .close {
   position: absolute;
@@ -18,9 +35,11 @@
   height: 14px;
   opacity: 0.3;
 }
+
 .close:hover {
   opacity: 1;
 }
+
 .close:before,
 .close:after {
   position: absolute;
@@ -30,9 +49,11 @@
   width: 2px;
   background-color: #333;
 }
+
 .close:before {
   transform: rotate(45deg);
 }
+
 .close:after {
   transform: rotate(-45deg);
 }
@@ -58,11 +79,33 @@
   margin-bottom: 10px;
   outline: none;
 }
+
 .cal img {
   display: block;
   width: 20px;
   height: 20px;
   margin: auto;
+}
+
+.calendarOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  z-index: 3;
+}
+
+.calendar {
+  position: absolute;
+  z-index: 100;
+  width: 320px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 200px;
 }
 
 .formatDate {
@@ -87,6 +130,7 @@
   margin-bottom: 20px;
   outline: none;
 }
+
 .inputAmount {
   display: block;
   border: 1px solid #959595;
@@ -150,7 +194,47 @@
   transform: translateY(2px);
 }
 
+.inputDescription {
+  padding: 0;
+}
+
+.inputDescription > div:nth-child(1) {
+  height: 100%;
+  border: none;
+}
+
+.inputDescription > div:nth-child(2) {
+  height: 100%;
+  border: none;
+  margin: 0;
+}
+.inputDescription > div:nth-child(3)::-webkit-scrollbar {
+  width: 6px;
+}
+
+.inputDescription > div:nth-child(3)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.inputDescription > div:nth-child(3)::-webkit-scrollbar-thumb {
+  background: #ff6c00;
+  border-radius: 10px;
+}
+
+.inputDescription > div:nth-child(3)::-webkit-scrollbar-thumb:hover {
+  background: #e6660c;
+}
+
 @media (min-width: 768px) {
+  .overlay {
+    position: relative;
+    width: 670px;
+    height: 104px;
+    border-radius: 0;
+    padding: 0;
+    background-color: #fff;
+    display: flex;
+  }
   .container {
     width: 670px;
     height: 104px;
@@ -159,29 +243,36 @@
     display: flex;
     flex-wrap: wrap;
   }
+
   .close {
     display: none;
   }
+
   .title {
     display: none;
   }
+
   .cal {
     margin: 0 14px 0 0;
   }
+
   .formatDate {
     margin: 14px 26px 0 0;
     text-align: left;
   }
+
   .formOverlay {
     display: flex;
     margin-bottom: 18px;
   }
+
   .inputDescription {
     margin: 0;
     width: 380px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
+
   .inputAmount {
     margin: 0;
     width: 136px;
@@ -189,12 +280,15 @@
     border-bottom-left-radius: 0;
     border-left: none;
   }
+
   .overlayBtn {
     margin-left: 88px;
   }
+
   .btnSubmit {
     margin-right: 14px;
   }
+
   .btnReset {
     width: 40px;
     height: 40px;
@@ -206,26 +300,36 @@
 }
 
 @media (min-width: 1280px) {
+  .overlay {
+    width: 1028px;
+    height: 46px;
+  }
   .container {
     width: 1028px;
     height: 46px;
   }
+
   .cal {
     margin: 3px 10px 0 0;
   }
+
   .formatDate {
     margin-top: 16px;
   }
+
   .form {
     display: flex;
   }
+
   .formOverlay {
     margin-right: 16px;
     margin-bottom: 0;
   }
+
   .inputDescription {
     width: 460px;
   }
+
   .overlayBtn {
     margin: 3px 0;
   }

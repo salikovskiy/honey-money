@@ -8,6 +8,14 @@
   margin-bottom: 30px;
 }
 
+.error {
+  margin-top: 30px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  color: #d8000c;
+}
+
 .label {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -36,6 +44,10 @@
   border: 2px solid #ff6c00;
 }
 
+.input:valid {
+  border: 2px solid lightgreen;
+}
+
 .input::placeholder {
   font-size: 14px;
   color: #a6abb9;
@@ -53,6 +65,7 @@
   background-color: #ff6c00;
   box-shadow: 1px 1.732px 3px 0px rgba(170, 178, 197, 0.29);
   outline: none;
+  transition: all 2s linear;
 }
 
 .buttonOrange:hover,

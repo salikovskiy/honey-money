@@ -14,8 +14,12 @@ html {
     width: 280px;
     margin: 0 auto;
     padding-top: 20px;
-    /* background-color: rgb(238, 235, 235); */
+    /* background-color: rgb(238, 235, 235);*/
 
+}
+
+* {
+    outline: none;
 }
 
 .statisticsMenu_goBack {
@@ -27,13 +31,13 @@ html {
     padding-left: 28px;
     background-image: url('../../assets/icons/arrow_back/keyboard_backspace-24px.svg');
     background-repeat: no-repeat;
-    height: 22px;
+    height: 24px;
     background-color: transparent;
     border: none;
     margin-bottom: 14px;
 }
 
-.statisticsMenu_goBack_span {
+.statisticsMenu_goBack_pre {
     display: none;
 }
 
@@ -77,15 +81,33 @@ html {
     margin-bottom: 10px;
 }
 
+.statisticsMenu_calendar_wrap {
+    width: 168px;
+    margin: 0 auto
+}
+
 .statisticsMenu_calendar_monthsWrap {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    width: 168px;
 }
 
 .statisticsMenu_calendar_monthsBtn_left {
     display: block;
     background-image: url('../../assets/icons/arrow_right/arrow_right-24px.svg');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    transform: rotate(180deg);
+    background-color: transparent;
+    border: none;
+    background-position: center;
+}
+
+.statisticsMenu_calendar_monthsBtn_left_dis {
+    display: block;
+    background-image: url('../../assets/icons/arrow_rightDisabled/arrow_right-24px.svg');
     background-repeat: no-repeat;
     width: 20px;
     height: 20px;
@@ -109,6 +131,17 @@ html {
 .statisticsMenu_calendar_monthsBtn_right {
     display: block;
     background-image: url('../../assets/icons/arrow_right/arrow_right-24px.svg');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    background-position: center;
+}
+
+.statisticsMenu_calendar_monthsBtn_right_dis {
+    display: block;
+    background-image: url('../../assets/icons/arrow_rightDisabled/arrow_right-24px.svg');
     background-repeat: no-repeat;
     width: 20px;
     height: 20px;
@@ -142,7 +175,7 @@ html {
         width: 332px;
         display: flex;
         margin: 0;
-        margin-right: 60px;
+        margin-right: 42px;
 
     }
 
@@ -180,8 +213,11 @@ html {
         margin-right: 84px;
     }
 
-    .statisticsMenu_goBack_span {
+    .statisticsMenu_goBack_pre {
         display: inline-block;
+        font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        color: rgba(82, 85, 95, 0.749);
     }
 
     .statisticsMenu_dateBalance_wrap {

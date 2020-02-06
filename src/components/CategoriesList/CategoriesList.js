@@ -26,44 +26,22 @@ const transformIcon = {
   Образование: learning,
   Развлечение: entertaiment,
   Продукты: products,
+  'Все категории': other,
 };
 
 class CategoriesList extends Component {
-  state = {
-    isActive: false,
-    // array: [],
-  };
+  // handleChangeBackground = (evt, id) => {
+  //   evt.target
+  //     .closest('ul')
+  //     .querySelectorAll('img')
+  //     .forEach(elem => {
+  //       elem.parentElement.classList.replace(css.selected, css.svgWrapper);
+  //     });
 
-  onClick = e => {
-    this.setState({ isActive: true });
-    // console.dir(e.target);
-    // const newcategoriesData = [...categoriesData];
-    // this.setState({
-    //   array: [
-    //     ...newcategoriesData,
-    //     ...newcategoriesData.filter(item => item._id === e.target.id && (item.isActive = true)),
-    //   ],
-    // });
-  };
-
-  // item._id == e.target.id && (item.isActive = true),
-  // componentDidMount() {
-  //   this.setState({
-  //     array: categoriesData,
-  //   });
-  // }
-
-  // normFunction(id) {
-  //   // this.setState({ isActive: id });
-  //   console.log(this.state.isActive);
-  // }
-
-  // addClass = id => {
-  //   if (this.state.isActive === this.id) {
-  //     return css.selected;
-  //   } else {
-  //     return css.svgWrapper;
+  //   if (evt.target.parentElement.id) {
+  //     evt.target.parentElement.classList.replace(css.svgWrapper, css.selected);
   //   }
+  // };
 
   handleChangeBackground = (evt, id) => {
     evt.target
@@ -72,11 +50,22 @@ class CategoriesList extends Component {
       .forEach(elem => {
         elem.parentElement.classList.replace(css.selected, css.svgWrapper);
       });
+    //true не надо потому, что оно и так возвращает булевое значение
 
-    if (evt.target.parentElement.id === id) {
+    if (!evt.target.parentElement.classList.contains(css.selected)) {
+      
+      evt.target.parentElement.classList.replace(css.selected, css.svgWrapper);
+    }
+     else if (evt.target.parentElement.id) {
       evt.target.parentElement.classList.replace(css.svgWrapper, css.selected);
     }
   };
+
+  // clearCategory = () => {
+  //   window.document.querySelectorAll('img').forEach(elem => {
+  //     elem.parentElement.classList.replace(css.selected, css.buttonWrapper);
+  //   });
+  // };
 
   render() {
     return (
@@ -85,12 +74,7 @@ class CategoriesList extends Component {
           {categoriesData.map(item => (
             <li key={item._id} id={item._id} className={css.categoryWrapper}>
               <p className={css.categoryAmount}>5000</p>
-              <div
-                key={item._id}
-                className={css.svgWrapper}
-                onClick={this.onClick}
-                id={item._id}
-              >
+              <div key={item._id} className={css.svgWrapper} id={item._id}>
                 <img
                   width="100%"
                   height="100%"
@@ -102,6 +86,18 @@ class CategoriesList extends Component {
               </div>
               <p className={css.categoryName}>{item.name}</p>
             </li>
+            // <div></div>
+            // <button onClick={this.clearCategory} className={css.svgWrapper}>
+            //   <img
+            //     width="100%"
+            //     height="100%"
+            //     alt={this.item.name}
+            //     src={transformIcon[item.name]}
+            //     className={css.categoryIcon}
+            //     onClick={e => this.handleChangeBackground(e, item._id)}
+            //   />
+            //   <p className={css.categoryName}>Все категории</p>
+            // </button>
           ))}
         </ul>
       </div>
