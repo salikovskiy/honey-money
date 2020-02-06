@@ -18,7 +18,6 @@ class DashboardPage extends Component {
   };
 
   componentDidMount = () => {
-    // console.log(this.props.finance);
     this.props.addDateNow(getDateNow());
     this.props.getTransactions();
   };

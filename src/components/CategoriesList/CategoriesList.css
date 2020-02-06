@@ -1,5 +1,6 @@
 .categoriesWrap {
   width: 320px;
+  margin: 0 auto;
 }
 
 .categoryList {
@@ -34,6 +35,7 @@
   color: #52555f;
   margin: 0 auto;
 }
+
 .svgWrapper {
   width: 58px;
   height: 47px;
@@ -105,6 +107,7 @@
     margin-right: 90px;
   }
 }
+
 @media (min-width: 1280px) {
   .categoriesWrap {
     border-radius: 20px;
