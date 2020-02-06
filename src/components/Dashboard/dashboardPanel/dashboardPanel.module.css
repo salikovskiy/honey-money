@@ -1,3 +1,16 @@
+.overlay_addCost {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.149);
+    z-index: 1;
+}
+
 .dashboardPanel {
     width: 286px;
     margin: 0 auto
@@ -32,7 +45,7 @@
 
 .dashboardPanel_DashboardTable {
     width: 286px;
-    height: 318px;
+    height: auto;
     margin-bottom: 26px;
 }
 

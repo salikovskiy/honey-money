@@ -20,15 +20,16 @@
   position: relative;
 }
 .tableScroll {
-  width: 312px;
-  height: 331px;
-  padding-left: 17px;
-  padding-top: 10px;
+  width: 295px;
+  height: 323px;
+  padding-left: 1px;
+  padding-top: 1px;
   margin-bottom: 25px;
   overflow: auto;
+  padding-bottom: 1px;
 }
 .tableWrapper .table {
-  width: 670px;
+  /* width: 670px; */
   height: 320px;
 }
 
@@ -165,9 +166,9 @@
     position: relative;
   }
   .tableScroll {
-    width: 690px;
+    width: 680px;
     height: 451px;
-    padding: 10px;
+    /* padding: 10px; */
     overflow: auto;
   }
   .tableWrapper table {
@@ -197,6 +198,7 @@
     text-align: left;
     border-collapse: collapse;
     border-radius: 5px;
+    padding-bottom: 5px;
     box-shadow: 0 0 0 1px #959595;
     color: #323232;
   }
@@ -264,11 +266,15 @@
   .table .th:first-child {
     border-top-left-radius: 5px;
   }
+
+  .table .td:first-child {
+    border-bottom-left-radius: 0px;
+  }
 }
 
 @media (min-width: 1280px) {
   .tableScroll {
-    width: 780px;
+    width: 770px;
     height: 502px;
   }
 

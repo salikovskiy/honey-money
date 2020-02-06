@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import css from '../dashboardTable/DashBoardTable.module.css';
+import moment from "moment"
 
-export default class App extends Component {
-  render() {
+const DashboardTable = ({dataTable}) => {
     if (window.innerWidth < 768) {
-      console.log('min 768');
-      // modalWindow.innerHTML = modalMobile(data.goal);
       return (
         <div className={css.tableWrapper}>
           <div className={css.tableScroll}>
@@ -16,32 +14,21 @@ export default class App extends Component {
                 </tr>
               </thead>
               <tbody className={css.tbody}>
-                <tr className={css.tr}>
+                {dataTable.map(item => (
+                  <tr className={css.tr}>
                   <td className={css.row}>
                     <span className={css.cover}>
-                      <p className={css.discription}>Метро</p>
-                      <span className={css.date}>30.01.2020</span>
+                      <p className={css.discription}>{item.description}</p>
+                      <span className={css.date}>{moment(item.date).format("DD.MM.YY")}</span>
                     </span>
-                    <span className={css.categore}>Транспорт</span>
+                    <span className={css.categore}>{item.category}</span>
                     <p className={css.price}>
-                      -30.00 грн.
+                      {item.amount}
                       <button className={css.btn} type="button"></button>
                     </p>
                   </td>
                 </tr>
-                <tr className={css.tr}>
-                  <td className={css.row}>
-                    <span className={css.cover}>
-                      <p className={css.discription}>Метро</p>
-                      <span className={css.date}>30.01.2020</span>
-                    </span>
-                    <span className={css.categore}>Транспорт</span>
-                    <p className={css.price}>
-                      -30.00 грн.
-                      <button className={css.btn} type="button"></button>
-                    </p>
-                  </td>
-                </tr>
+                ))}
                 <tr className={css.tr}>
                   <td className={css.row}>
                     <span className={css.cover}>
@@ -98,11 +85,9 @@ export default class App extends Component {
         </div>
       );
     } else if (window.innerWidth >= 768 && window.innerWidth <= 1280) {
-      // modalWindow.innerHTML = modal(data.goal);
-      console.log('max 768');
       return (
         <div className={css.tableWrapper}>
-        <div className={css.tableScroll}>
+          <div className={css.tableScroll}>
             <table className={css.table}>
               <thead className={css.thead}>
                 <tr className={css.tr}>
@@ -113,28 +98,19 @@ export default class App extends Component {
                 </tr>
               </thead>
               <tbody className={css.tbody}>
-                <tr className={css.tr}>
-                  <td className={css.td}>30.01.2020</td>
-                  <td className={css.td}>Метро</td>
-                  <td className={css.td}>Транспорт</td>
+                {dataTable.map(item => (
+                  <tr className={css.tr}>
+                  <td className={css.td}>{moment(item.date).format("DD.MM.YY")}</td>
+                  <td className={css.td}>{item.description}</td>
+                  <td className={css.td}>{item.category}</td>
                   <td className={css.price}>
                     <span>
-                      -30.00 грн.
+                      {item.amount}
                       <button className={css.btn} type="button"></button>
                     </span>
                   </td>
                 </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}>30.01.2020</td>
-                  <td className={css.td}>Метро</td>
-                  <td className={css.td}>Транспорт</td>
-                  <td className={css.price}>
-                    <span>
-                      -30.00 грн.
-                      <button className={css.btn} type="button"></button>
-                    </span>
-                  </td>
-                </tr>
+                ))}
                 <tr className={css.tr}>
                   <td className={css.td}></td>
                   <td className={css.td}></td>
@@ -198,7 +174,7 @@ export default class App extends Component {
       console.log('more');
       return (
         <div className={css.tableWrapper}>
-        <div className={css.tableScroll}>
+          <div className={css.tableScroll}>
             <table className={css.table}>
               <thead className={css.thead}>
                 <tr className={css.tr}>
@@ -209,28 +185,19 @@ export default class App extends Component {
                 </tr>
               </thead>
               <tbody className={css.tbody}>
-                <tr className={css.tr}>
-                  <td className={css.td}>30.01.2020</td>
-                  <td className={css.td}>Метро</td>
-                  <td className={css.td}>Транспорт</td>
+                {dataTable.map(item => (
+                  <tr className={css.tr}>
+                  <td className={css.td}>{moment(item.date).format("DD.MM.YY")}</td>
+                  <td className={css.td}>{item.description}</td>
+                  <td className={css.td}>{item.category}</td>
                   <td className={css.price}>
                     <span>
-                      -30.00 грн.
+                    {item.amount}
                       <button className={css.btn} type="button"></button>
                     </span>
                   </td>
                 </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}>30.01.2020</td>
-                  <td className={css.td}>Метро</td>
-                  <td className={css.td}>Транспорт</td>
-                  <td className={css.price}>
-                    <span>
-                      -30.00 грн.
-                      <button className={css.btn} type="button"></button>
-                    </span>
-                  </td>
-                </tr>
+                ))}
                 <tr className={css.tr}>
                   <td className={css.td}></td>
                   <td className={css.td}></td>
@@ -292,4 +259,6 @@ export default class App extends Component {
       );
     }
   }
-}
+
+
+export default DashboardTable;
