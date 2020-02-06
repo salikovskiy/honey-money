@@ -1,32 +1,25 @@
 import React, { Component } from 'react';
 import s from './StatisticsPage.module.css';
+import { connect } from 'react-redux';
+import { getCategories } from '../../redux/statistics/statisticsOperations';
 import StatisticsMenu from '../../components/statisticsMenu/StatisticsMenu';
 import CategoriesList from '../../components/CategoriesList/CategoriesList';
-// import moment from 'moment';
-import axios from 'axios';
-import { getCategories } from '../../redux/operations';
-
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMzgyMmUxZDhlYTczMmRjMDUyZjhiMiIsImlhdCI6MTU4MDczNzI1MH0.rgk-RatweAQ4V93o79stvV_fmkjl3sJqiraciOU5qD0';
+import moment from 'moment';
 
 class StatisticsPage extends Component {
   state = {
     // Хранить в стейте какая именно категория
     // выбрана и текущуюю дату (по ней определяется месяц)
-    selectedCategory: '',
-    currentDate: '',
+    selectedCategory: 'продукты',
+    currentDate: moment()
+      .format('MMMM YYYY')
+      .toUpperCase(),
   };
 
   componentDidMount() {
-    // GET запросы:
-    // 1) получение данных по категриям;
-    // axios
-    //   .get('https://smart-finance.goit.co.ua/api/v1/categories', {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   })
-    //   .then(data => data.data.categories.map(item => console.log(item.name)));
+    console.log('this.props', this.props);
+    this.props.getCategories();
+    // console.log('componentDidMount', this.props.getCategories());
   }
 
   // Написать операцию (ГЕТ запрос) с измененным
@@ -34,6 +27,7 @@ class StatisticsPage extends Component {
   // в StatisticsMenu на переключение месяцев
 
   componentDidUpdate() {
+    console.log('this.props2222', this.props);
     // Из текущего массива расходов, формирует каждый
     // раз в componentDidUpdate объект категории и
     // суммарной сумме по данной категории и передает
@@ -42,13 +36,18 @@ class StatisticsPage extends Component {
     //   кто будет делать ChartStatisticByCategory)
   }
 
+  // передать пропами data в StatisticAmounts
+
+  // передать пропами обьект data в CategoriesList
+
   render() {
+    const { currentDate } = this.state;
     // Компонент рендерит: StatisticMenu, StatisticAmounts,
     // CategoriesList, Chart
     return (
       <div className={s.wrapper}>
         <div className={s.header}>Header</div>
-        <StatisticsMenu />
+        <StatisticsMenu currentDate={currentDate} />
         <div className={s.statistic_amounts}>StatisticAmounts</div>
         <CategoriesList />
         <div className={s.chart}>Chart</div>
@@ -57,4 +56,10 @@ class StatisticsPage extends Component {
   }
 }
 
-export default StatisticsPage;
+const MSTP = state => state;
+
+const MDTP = {
+  getCategories,
+};
+
+export default connect(MSTP, MDTP)(StatisticsPage);

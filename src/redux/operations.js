@@ -57,20 +57,3 @@ export const postCosts = obj => async (dispatch, getState) => {
     throw new Error(error);
   }
 };
-
-// StatisticsPage
-export const getCategories = () => async (dispatch, getState) => {
-  dispatch(fetchStart());
-  try {
-    const response = await services.getAllCategories(
-      getState().finance.authReducer.token,
-    );
-    console.log('response :', response);
-    // dispatch(getCategoriesSuccess(response.categories));
-    // dispatch(getCostsSuccess(response.data.costs));
-  } catch (error) {
-    dispatch(fetchError(error.message));
-    console.log(error);
-    throw new Error(error);
-  }
-};

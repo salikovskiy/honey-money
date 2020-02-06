@@ -25,6 +25,7 @@ const isLoading = (state = false, { type, payload }) => {
       return state;
   }
 };
+
 const balance = (state = 0, { type, payload }) => {
   switch (type) {
     case Type.GET_BALANCE_SUCCESS:
