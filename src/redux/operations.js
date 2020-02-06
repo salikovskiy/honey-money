@@ -22,7 +22,7 @@ export const getTransactions = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch(fetchError(error.message));
     console.log(error);
-    throw new Error(error);
+    // throw new Error(error);
   }
 };
 

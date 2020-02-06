@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import css from './css/addIncome.module.css';
 import Calendar from 'react-calendar';
-//import Moment from 'react-moment';
 var moment = require('moment');
 
 class AddIncome extends Component {
@@ -26,7 +25,6 @@ class AddIncome extends Component {
   };
 
   handleClearForm = e => {
-    /* e.preventDefault(); */
     this.setState({ value: '' });
   };
 
@@ -40,26 +38,36 @@ class AddIncome extends Component {
       });
       this.handleClearForm();
       this.props.closeModal();
-      // alert(`Вы внесли ${value} на баланс!`);
     } else {
-      alert('Внесите положительный баланс!');
+      alert('Внесите положительную сумму на баланс!');
     }
   };
   pickDate = async () => {
     await this.onChange();
     this.calendarOpen();
   };
-  /* backDropClick = e => {
-    console.log(e.target.className);
-    if (e.target.classList.contains('overlay')) {
-      alert('close!');
+
+  handleKeyPress = async event => {
+    console.log('event', event.target.className);
+    if (event.code === 'Escape') {
+      this.setState({ calendar: false });
     }
-  }; */
+  };
+  backDropCalendar = event => {
+    const dataset = event.target.dataset;
+    if (dataset && dataset.modal === 'true') {
+      this.calendarOpen();
+    }
+  };
 
   render() {
+    window.addEventListener('keyup', this.handleKeyPress);
+    // console.log(this.props);
+    // console.log(this.props);
+
     return (
       <>
-        <div className={css.overlay} onClick={this.backDropClick}>
+        <div className={css.overlay}>
           <div className={css.modalIncome}>
             <span onClick={this.props.closeModal} className={css.close}></span>
 
@@ -73,14 +81,20 @@ class AddIncome extends Component {
                   <i className={css.calendarIcon}></i>
                 </div>
                 {this.state.calendar && (
-                  <Calendar
-                    className={css.calendar}
-                    onChange={this.onChange}
-                    value={this.state.date}
-                    maxDate={new Date()}
-                    minDate={this.props.regDate}
-                    onClickDay={this.pickDate}
-                  />
+                  <div
+                    data-modal={'true'}
+                    className={css.calendarOverlay}
+                    onClick={this.backDropCalendar}
+                  >
+                    <Calendar
+                      className={css.calendar}
+                      onChange={this.onChange}
+                      value={this.state.date}
+                      maxDate={new Date()}
+                      minDate={this.props.date}
+                      onClickDay={this.pickDate}
+                    />
+                  </div>
                 )}
 
                 <span className={css.dateLine}>
