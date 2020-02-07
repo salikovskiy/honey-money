@@ -15,6 +15,7 @@ export const getTransactions = () => async (dispatch, getState) => {
     const response = await services.getAllTransactions(
       getState().finance.authReducer.token,
     );
+    console.log(response);
     dispatch(getBalanceSuccess(response.data.balance));
     dispatch(getCostsSuccess(response.data.costs));
     dispatch(getIncomesSuccess(response.data.income));
