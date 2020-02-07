@@ -6,6 +6,7 @@ import AddCost from '../../addCost/AddCost';
 import moment from 'moment';
 import 'moment/locale/ru';
 import { connect } from 'react-redux';
+
 //import PropTypes from 'prop-types';
 
 ///В статистике посмотреть оранжевые кнопки!!!!!!
