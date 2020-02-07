@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import 'notyf/notyf.min.css';
 import { Notification } from 'react-pnotify';
 import css from './dashboardMenu.module.css';
 
@@ -8,10 +7,10 @@ const DashboardMenu = ({ changeModal, balance, date }) => (
   <div className={css.dashMenu__container}>
     {balance === 0 && (
       <Notification
-        type="info"
+        type="error"
         title="Введите Ваш доход!"
         text="Вы не можете вести расходы, пока ваш баланс 0, пополните пожалуйста баланс"
-        delay={2000}
+        delay={2500}
         shadow={true}
       />
     )}
