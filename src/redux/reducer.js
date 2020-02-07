@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import Type from './types';
 import { getUser } from './selectors';
+import categories from '../redux/statistics/statisticsReducer';
 const initState = { authError: null, createdAt: '' };
 
 const costs = (state = [], { type, payload }) => {
@@ -25,6 +26,7 @@ const isLoading = (state = false, { type, payload }) => {
       return state;
   }
 };
+
 const balance = (state = 0, { type, payload }) => {
   switch (type) {
     case Type.GET_BALANCE_SUCCESS:
@@ -114,7 +116,6 @@ const incomes = (state = [], { type, payload }) => {
   }
 };
 
-
 export default combineReducers({
   authReducer,
   costs,
@@ -123,4 +124,7 @@ export default combineReducers({
   dateNow,
   error,
   incomes,
+  
+  // statistics
+  categories,
 });
