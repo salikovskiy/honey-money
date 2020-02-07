@@ -185,7 +185,7 @@ class AddCost extends Component {
         <form className={css.form} onSubmit={this.onAddCost}>
           <div className={css.formOverlay}>
             <CreatableSelect
-              onClick={this.createOptions()}
+              // onClick={this.createOptions()}
               className={css.inputDescription}
               isClearable
               //   onCreateOption={()}

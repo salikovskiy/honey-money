@@ -7,6 +7,7 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteCosts } from '../../../redux/operations';
 
 const monthsSummary = [
   moment(),
@@ -46,9 +47,17 @@ class DashboardPanel extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log(this.props.finance.costs, 'aaaaaa', this.state.dataTable);
     if (prevState.date !== this.state.date) {
       this.handleGetDataTable();
     }
+
+    // if (prevProps.finance.costs.length !== this.props.finance.costs.length) {
+    // this.setState({
+    //   dataTable: this.props.costs,
+    // });
+    //   this.handleGetDataTable();
+    // }
   }
 
   handleChangeModalCosts = () => {
@@ -63,6 +72,7 @@ class DashboardPanel extends Component {
 
   handleGetDataTable = () => {
     let arr = [];
+    console.log(this.props.finance.costs);
     this.props.finance.costs.map(
       elem =>
         moment(elem.date).format('YYYYMM') === this.state.date &&
@@ -73,7 +83,8 @@ class DashboardPanel extends Component {
             description: elem.product.name,
             category: elem.product.category.name,
             amount: elem.amount,
-            id: elem.costsId,
+            idForDelete: elem.forDeleteId,
+            idCost: elem.costsId,
           },
         ]),
     );
@@ -102,16 +113,17 @@ class DashboardPanel extends Component {
             Ввести расход
           </button>
         )}
-        {this.state.isOpenModalCosts && (<div className={styles.overlay_addCost}>
-          <div className={styles.dashboardPanel_addCost}>
-            <AddCost
-              balance={balance}
-              dateRegistration={dateRegistration}
-              postCosts={this.props.postCosts}
-              token={token}
-              closeModal={this.handleChangeModalCosts}
-            />
-          </div>
+        {this.state.isOpenModalCosts && (
+          <div className={styles.overlay_addCost}>
+            <div className={styles.dashboardPanel_addCost}>
+              <AddCost
+                balance={balance}
+                dateRegistration={dateRegistration}
+                postCosts={this.props.postCosts}
+                token={token}
+                closeModal={this.handleChangeModalCosts}
+              />
+            </div>
           </div>
         )}
         {window.innerWidth > 767 && (
@@ -126,7 +138,10 @@ class DashboardPanel extends Component {
         )}
         <div className={styles.dashboardPanel_wrap}>
           <div className={styles.dashboardPanel_DashboardTable}>
-            <DashboardTable dataTable={this.state.dataTable} />
+            <DashboardTable
+              deleteCost={this.props.deleteCosts}
+              dataTable={this.state.dataTable}
+            />
           </div>
           <div className={styles.dashboardPanel_tableExample}>
             <TableExample
@@ -142,6 +157,8 @@ class DashboardPanel extends Component {
 
 const mapStateToProps = state => state;
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  deleteCosts,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPanel);
