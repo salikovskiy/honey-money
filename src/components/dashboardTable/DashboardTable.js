@@ -16,7 +16,7 @@ const DashboardTable = ({ dataTable }) => {
             </thead>
             <tbody className={css.tbody}>
               {dataTable.map(item => (
-                <tr className={css.tr} id={shortid()} key={shortid()}>
+                <tr className={css.tr} id={item.id} key={item.id}>
                   <td className={css.row}>
                     <span className={css.cover}>
                       <p className={css.discription}>{item.description}</p>
@@ -104,7 +104,7 @@ const DashboardTable = ({ dataTable }) => {
             </thead>
             <tbody className={css.tbody}>
               {dataTable.map(item => (
-                <tr className={css.tr} id={shortid()} key={shortid()}>
+                <tr className={css.tr} id={item.id} key={item.id}>
                   <td className={css.td}>
                     {moment(item.date).format('DD.MM.YY')}
                   </td>
@@ -180,7 +180,6 @@ const DashboardTable = ({ dataTable }) => {
       </div>
     );
   } else {
-    console.log('more');
     return (
       <div className={css.tableWrapper}>
         <div className={css.tableScroll}>
@@ -195,7 +194,7 @@ const DashboardTable = ({ dataTable }) => {
             </thead>
             <tbody className={css.tbody}>
               {dataTable.map(item => (
-                <tr className={css.tr} id={shortid()} key={shortid()}>
+                <tr className={css.tr} id={item.id} key={item.id}>
                   <td className={css.td}>
                     {moment(item.date).format('DD.MM.YY')}
                   </td>
