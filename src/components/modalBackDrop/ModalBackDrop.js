@@ -4,7 +4,7 @@ import styles from './ModalBackDrop.module.css';
 const ModalBackDrop = WrappedComponent => {
   return class ModalBackDrop extends Component {
     state = {
-      isOpen: this.props.isOpen,
+      isOpen: true,
     };
 
     componentDidMount() {
