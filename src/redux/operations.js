@@ -45,7 +45,7 @@ export const postIncome = obj => async (dispatch, getState) => {
 export const postCosts = obj => async (dispatch, getState) => {
   dispatch(fetchStart());
   try {
-    const response = await services.postCosts(
+    const response = await services.addCosts(
       getState().finance.authReducer.token,
       obj,
     );
