@@ -8,6 +8,7 @@ import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardP
 import DashboardTable from '../../components/dashboardTable/DashboardTable';
 import AddIncome from '../../components/addIncome/AddIncome';
 import ModalDashboardTable from "../../components/dashboardTable/modalDashboardTable/ModalDashboardTable"
+// import ModalBackDrop from './../../components/modalBackDrop/ModalBackDrop';
 
 class DashboardPage extends Component {
   state = {
@@ -24,6 +25,7 @@ class DashboardPage extends Component {
   };
 
   render() {
+    // console.log(AddIncome);
     const { isOpenModalIncome } = this.state;
     const date = this.props.finance.authReducer.createdAt;
     const postIncome = this.props.postIncome;
@@ -38,7 +40,7 @@ class DashboardPage extends Component {
         />
         {isOpenModalIncome && (
           <AddIncome
-            closeModal={this.onChangeModalIncome}
+            isOpen={this.onChangeModalIncome}
             date={date}
             addIncome={postIncome}
           />

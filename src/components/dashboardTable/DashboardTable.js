@@ -1,7 +1,6 @@
 import React from 'react';
 import css from '../dashboardTable/DashBoardTable.module.css';
 import moment from "moment"
-import shortid from 'shortid';
 
 const DashboardTable = ({dataTable}) => {
   console.log(dataTable);

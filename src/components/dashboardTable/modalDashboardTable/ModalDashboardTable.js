@@ -1,6 +1,6 @@
 import React from 'react';
 import css from "../modalDashboardTable/modalDashboardTable.module.css"
-import ModalBackDrop from ""
+import ModalBackDrop from '../../modalBackDrop/ModalBackDrop';
 
 
 const modalDashboardTable = () => (
@@ -11,4 +11,4 @@ const modalDashboardTable = () => (
     </div>
 );
 
-export default modalDashboardTable;
+export default ModalBackDrop(modalDashboardTable);
