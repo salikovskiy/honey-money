@@ -2,6 +2,9 @@ import React from 'react';
 import StatisticsMenu from '../../components/statisticsMenu/StatisticsMenu';
 import BarChart from '../../components/barChart/BarChart';
 import StatisticAmounts from './../../components/statisticAmounts/StatisticAmounts';
+
+console.log(this.props);
+
 const StatisticPage = () => {
   const labels = [
     'January',
