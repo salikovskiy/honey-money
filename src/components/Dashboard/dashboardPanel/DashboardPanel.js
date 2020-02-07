@@ -35,6 +35,7 @@ class DashboardPanel extends Component {
   state = {
     date: moment().format('YYYYMM'),
     dataTable: [],
+    dataCosts: this.props.finance.costs,
     isOpenModalCosts: false,
     isOpenModalTable: false,
   };
@@ -81,7 +82,7 @@ class DashboardPanel extends Component {
 
   handleGetDataTable = () => {
     let arr = [];
-    this.props.finance.costs.map(
+    this.state.dataCosts.map(
       elem =>
         moment(elem.date).format('YYYYMM') === this.state.date &&
         (arr = [
@@ -108,7 +109,7 @@ class DashboardPanel extends Component {
     //console.log(summary);
     // console.log(this.props.finance;
     // console.log('state date', this.state.date);
-    // console.log('state data', this.state.dataTable);
+    console.log('state data', this.state.dataTable);
     return (
       <div className={styles.dashboardPanel}>
         {window.innerWidth < 768 && (
