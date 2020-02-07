@@ -1,12 +1,13 @@
 import React from 'react';
 import css from '../dashboardTable/DashBoardTable.module.css';
 import moment from "moment"
-import shortid from 'shortid';
+// import ModalDashboardTable from "../dashboardTable/modalDashboardTable/ModalDashboardTable"
+
 
 const DashboardTable = ({dataTable}) => {
-    if (window.innerWidth < 768) {
-      return (
-        <div className={css.tableWrapper}>
+  if (window.innerWidth < 768) {
+    return (
+      <div className={css.tableWrapper}>
           <div className={css.tableScroll}>
             <table className={css.table}>
               <thead className={css.thead}>
@@ -17,8 +18,8 @@ const DashboardTable = ({dataTable}) => {
               <tbody className={css.tbody}>
                 {dataTable.map(item => (
                   <tr className={css.tr}
-                  id={shortid()}
-              key={shortid()}>
+                  id={item.id}
+              key={item.id}>
                   <td className={css.row}>
                     <span className={css.cover}>
                       <p className={css.discription}>{item.description}</p>
@@ -107,8 +108,8 @@ const DashboardTable = ({dataTable}) => {
               <tbody className={css.tbody}>
                 {dataTable.map(item => (
                   <tr className={css.tr}
-                  id={shortid()}
-              key={shortid()}>
+                  id={item.id}
+              key={item.id}>
                   <td className={css.td}>{moment(item.date).format("DD.MM.YY")}</td>
                   <td className={css.td}>{item.description}</td>
                   <td className={css.td}>{item.category}</td>
@@ -182,7 +183,6 @@ const DashboardTable = ({dataTable}) => {
         </div>
       );
     } else {
-      console.log('more');
       return (
         <div className={css.tableWrapper}>
           <div className={css.tableScroll}>
@@ -198,8 +198,8 @@ const DashboardTable = ({dataTable}) => {
               <tbody className={css.tbody}>
                 {dataTable.map(item => (
                   <tr className={css.tr}
-                  id={shortid()}
-              key={shortid()}>
+                  id={item.id}
+              key={item.id}>
                   <td className={css.td}>{moment(item.date).format("DD.MM.YY")}</td>
                   <td className={css.td}>{item.description}</td>
                   <td className={css.td}>{item.category}</td>
@@ -270,9 +270,11 @@ const DashboardTable = ({dataTable}) => {
               </tbody>
             </table>
           </div>
+     
         </div>
       );
     }
+
   }
 
 
