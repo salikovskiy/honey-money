@@ -6,6 +6,7 @@ import AddCost from '../../addCost/AddCost';
 import moment from 'moment';
 import 'moment/locale/ru';
 import { connect } from 'react-redux';
+import ModalDashboardTable from '../../dashboardTable/modalDashboardTable/ModalDashboardTable';
 
 //import PropTypes from 'prop-types';
 
@@ -67,7 +68,8 @@ class DashboardPanel extends Component {
     this.setState(state => ({ isOpenModalCosts: !state.isOpenModalCosts }));
   };
 
-  handleChangeModalTable = () => {
+  handleChangeModalTable = e => {
+    console.log(e.target);
     this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
   };
 
@@ -143,6 +145,9 @@ class DashboardPanel extends Component {
         )}
         <div className={styles.dashboardPanel_wrap}>
           <div className={styles.dashboardPanel_DashboardTable}>
+            {this.state.isOpenModalTable && (
+              <ModalDashboardTable changeModal={this.handleChangeModalTable} />
+            )}
             <DashboardTable
               dataTable={this.state.dataTable}
               changeModal={this.handleChangeModalTable}
