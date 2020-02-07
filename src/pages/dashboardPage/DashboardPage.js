@@ -19,7 +19,6 @@ class DashboardPage extends Component {
   };
 
   componentDidMount = () => {
-    // console.log(this.props.finance);
     this.props.addDateNow(getDateNow());
     this.props.getTransactions();
   };
@@ -33,7 +32,6 @@ class DashboardPage extends Component {
     const postCosts = this.props.postCosts;
     return (
       <>
-        <h2>DashboardPage</h2>
         <DashboardMenu
           changeModal={this.onChangeModalIncome}
           balance={balance}

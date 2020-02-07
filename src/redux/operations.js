@@ -15,6 +15,7 @@ export const getTransactions = () => async (dispatch, getState) => {
     const response = await services.getAllTransactions(
       getState().finance.authReducer.token,
     );
+    console.log(response);
     dispatch(getBalanceSuccess(response.data.balance));
     dispatch(getCostsSuccess(response.data.costs));
     dispatch(getIncomesSuccess(response.data.income));
@@ -22,7 +23,7 @@ export const getTransactions = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch(fetchError(error.message));
     console.log(error);
-    throw new Error(error);
+    // throw new Error(error);
   }
 };
 
@@ -44,7 +45,7 @@ export const postIncome = obj => async (dispatch, getState) => {
 export const postCosts = obj => async (dispatch, getState) => {
   dispatch(fetchStart());
   try {
-    const response = await services.addIncome(
+    const response = await services.postCosts(
       getState().finance.authReducer.token,
       obj,
     );

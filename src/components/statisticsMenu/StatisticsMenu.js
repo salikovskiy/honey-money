@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { createBrowserHistory } from 'history';
 import styles from './statisticsMenu.module.css';
 import moment from 'moment';
@@ -12,6 +12,10 @@ class StatisticsMenu extends Component {
     date: dateNow,
     dateRegistration: '2019-09-30T18:22:59.462Z',
   };
+
+  // componentDidMount() {
+  //   console.log('this.props.StatisticsMenu :', this.props.currentDate);
+  // }
 
   handleGoBack = () => {
     createBrowserHistory().goBack();
@@ -88,7 +92,8 @@ class StatisticsMenu extends Component {
                 disabled={this.handlePrevMonth()}
               ></button>
               <p className={styles.statisticsMenu_calendar_months}>
-                {moment(this.state.date).format('MMMM YYYY')}
+                {/* {moment(this.state.date).format('MMMM YYYY')} */}
+                {this.props.currentDate}
               </p>
               <button
                 className={
