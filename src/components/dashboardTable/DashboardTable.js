@@ -1,13 +1,13 @@
 import React from 'react';
 import css from '../dashboardTable/DashBoardTable.module.css';
 import moment from "moment"
+// import ModalDashboardTable from "../dashboardTable/modalDashboardTable/ModalDashboardTable"
+
 
 const DashboardTable = ({dataTable}) => {
-  console.log(dataTable);
-
-    if (window.innerWidth < 768) {
-      return (
-        <div className={css.tableWrapper}>
+  if (window.innerWidth < 768) {
+    return (
+      <div className={css.tableWrapper}>
           <div className={css.tableScroll}>
             <table className={css.table}>
               <thead className={css.thead}>
@@ -270,9 +270,11 @@ const DashboardTable = ({dataTable}) => {
               </tbody>
             </table>
           </div>
+     
         </div>
       );
     }
+
   }
 
 

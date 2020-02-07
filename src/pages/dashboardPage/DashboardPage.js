@@ -7,7 +7,6 @@ import DashboardMenu from '../../components/DashboardMenu/DashboardMenu';
 import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardPanel';
 import DashboardTable from '../../components/dashboardTable/DashboardTable';
 import AddIncome from '../../components/addIncome/AddIncome';
-import ModalDashboardTable from "../../components/dashboardTable/modalDashboardTable/ModalDashboardTable"
 // import ModalBackDrop from './../../components/modalBackDrop/ModalBackDrop';
 
 class DashboardPage extends Component {
@@ -46,7 +45,6 @@ class DashboardPage extends Component {
           />
         )}
         <DashboardPanel postCosts={postCosts} />
-        <ModalDashboardTable/>
       </>
     );
   }
