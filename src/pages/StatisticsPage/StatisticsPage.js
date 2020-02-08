@@ -103,7 +103,7 @@ class StatisticsPage extends Component {
     }
   };
 
-  handleGetSumCosts = () => {
+  handleGetCostsMonth = () => {
     if (this.props.finance.costs.length > 0) {
       costsMonth = this.props.finance.costs
         .filter(
@@ -116,13 +116,13 @@ class StatisticsPage extends Component {
     return costsMonth;
   };
 
-  handleGetSumIncome = () => {
+  handleGetIncomeMonth = () => {
     if (this.props.finance.incomes.length > 0) {
       incomesMonth = this.props.finance.incomes
         .filter(
           item =>
-            moment(item.date).format('MMMM YYYY') ===
-            moment(this.state.date).format('MMMM YYYY'),
+            moment(item.date).format('YYYYMM') ===
+            moment(this.state.date).format('YYYYMM'),
         )
         .reduce((acc, el) => acc + el.amount, 0);
     }
@@ -131,8 +131,8 @@ class StatisticsPage extends Component {
 
   render() {
     const balance = this.props.finance.balance;
-    const costsMonth = this.handleGetSumCosts();
-    const incomesMonth = this.handleGetSumIncome();
+    const costsMonth = this.handleGetCostsMonth();
+    const incomesMonth = this.handleGetIncomeMonth();
     return (
       <div className={s.wrapper}>
         <StatisticsMenu
