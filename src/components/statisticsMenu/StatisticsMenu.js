@@ -35,8 +35,7 @@ class StatisticsMenu extends Component {
 
   handleNextMonth = () => {
     if (
-      moment().format('MMMM YYYY') ===
-      moment(this.props.date).format('MMMM YYYY')
+      moment().format('YYYYMM') === moment(this.props.date).format('YYYYMM')
     ) {
       return true;
     } else return false;
