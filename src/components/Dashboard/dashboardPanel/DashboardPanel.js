@@ -6,7 +6,19 @@ import AddCost from '../../addCost/AddCost';
 import moment from 'moment';
 import 'moment/locale/ru';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import ModalDashboardTable from '../../dashboardTable/modalDashboardTable/ModalDashboardTable';
+import { getTransactions } from '../../../redux/operations';
+//import PropTypes from 'prop-types';
+
+///В статистике посмотреть оранжевые кнопки!!!!!!
+
+//шрифт в лого, иконка нв выход,
+//шрифты и закрытие модалки при клике на оверлей у Леши,
+//стили, шрифты!!! у Богдана, консоль логи
+//шрифты с засечками
+//функция для удаления, октрытия и закрытия модалки для Богдана,
+//пнотифай и грн. у Миши,
+//варнингы у Оли, Богдана, Ярика
 
 const monthsSummary = [
   moment(),
@@ -24,6 +36,7 @@ class DashboardPanel extends Component {
     date: moment().format('YYYYMM'),
     dataTable: [],
     isOpenModalCosts: false,
+    isOpenModalTable: false,
   };
 
   handleGetSummary = () => {
@@ -53,6 +66,11 @@ class DashboardPanel extends Component {
 
   handleChangeModalCosts = () => {
     this.setState(state => ({ isOpenModalCosts: !state.isOpenModalCosts }));
+  };
+
+  handleChangeModalTable = e => {
+    console.log(e.target);
+    this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
   };
 
   handleGetDate = e => {
@@ -102,16 +120,17 @@ class DashboardPanel extends Component {
             Ввести расход
           </button>
         )}
-        {this.state.isOpenModalCosts && (<div className={styles.overlay_addCost}>
-          <div className={styles.dashboardPanel_addCost}>
-            <AddCost
-              balance={balance}
-              dateRegistration={dateRegistration}
-              postCosts={this.props.postCosts}
-              token={token}
-              closeModal={this.handleChangeModalCosts}
-            />
-          </div>
+        {this.state.isOpenModalCosts && (
+          <div className={styles.overlay_addCost}>
+            <div className={styles.dashboardPanel_addCost}>
+              <AddCost
+                balance={balance}
+                dateRegistration={dateRegistration}
+                postCosts={this.props.postCosts}
+                token={token}
+                closeModal={this.handleChangeModalCosts}
+              />
+            </div>
           </div>
         )}
         {window.innerWidth > 767 && (
@@ -126,7 +145,13 @@ class DashboardPanel extends Component {
         )}
         <div className={styles.dashboardPanel_wrap}>
           <div className={styles.dashboardPanel_DashboardTable}>
-            <DashboardTable dataTable={this.state.dataTable} />
+            {this.state.isOpenModalTable && (
+              <ModalDashboardTable changeModal={this.handleChangeModalTable} />
+            )}
+            <DashboardTable
+              dataTable={this.state.dataTable}
+              changeModal={this.handleChangeModalTable}
+            />
           </div>
           <div className={styles.dashboardPanel_tableExample}>
             <TableExample

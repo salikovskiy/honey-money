@@ -5,8 +5,8 @@ import { addDateNow } from '../../redux/actions';
 import getDateNow from '../../utilities/getDateNow';
 import DashboardMenu from '../../components/DashboardMenu/DashboardMenu';
 import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardPanel';
-import DashboardTable from '../../components/dashboardTable/DashboardTable';
 import AddIncome from '../../components/addIncome/AddIncome';
+
 
 class DashboardPage extends Component {
   state = {
@@ -23,7 +23,7 @@ class DashboardPage extends Component {
   };
 
   render() {
-    const { isOpenModalIncome } = this.state;
+    const { isOpenModalIncome} = this.state;
     const date = this.props.finance.authReducer.createdAt;
     const postIncome = this.props.postIncome;
     const balance = this.props.finance.balance;
@@ -37,7 +37,7 @@ class DashboardPage extends Component {
         />
         {isOpenModalIncome && (
           <AddIncome
-            closeModal={this.onChangeModalIncome}
+            isOpen={this.onChangeModalIncome}
             date={date}
             addIncome={postIncome}
           />

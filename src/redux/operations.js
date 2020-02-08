@@ -15,11 +15,9 @@ export const getTransactions = () => async (dispatch, getState) => {
     const response = await services.getAllTransactions(
       getState().finance.authReducer.token,
     );
-    console.log(response);
     dispatch(getBalanceSuccess(response.data.balance));
     dispatch(getCostsSuccess(response.data.costs));
     dispatch(getIncomesSuccess(response.data.income));
-    console.log('response.data', response.data);
   } catch (error) {
     dispatch(fetchError(error.message));
     console.log(error);
@@ -49,7 +47,8 @@ export const postCosts = obj => async (dispatch, getState) => {
       getState().finance.authReducer.token,
       obj,
     );
-    await dispatch(costsPostSuccess());
+    console.log(response.data.createdCosts)
+    await dispatch(costsPostSuccess(response.data.createdCosts));
     await dispatch(getBalanceSuccess(response.data.balance));
   } catch (error) {
     dispatch(fetchError(error.message));

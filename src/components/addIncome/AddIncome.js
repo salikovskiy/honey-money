@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import css from './css/addIncome.module.css';
 import Calendar from 'react-calendar';
+import ModalBackDrop from './../modalBackDrop/ModalBackDrop';
 var moment = require('moment');
 
 class AddIncome extends Component {
@@ -8,9 +9,13 @@ class AddIncome extends Component {
     value: '',
     date: new Date(),
     calendar: false,
+    work: true,
   };
 
   componentDidMount() {}
+  componentWillUnmount() {
+    this.state.work && this.props.isOpen();
+  }
 
   handleChangeIncome = e => {
     if (e.target.value <= 99999999.99) {
@@ -37,7 +42,7 @@ class AddIncome extends Component {
         date: moment(this.state.date).format('MM.DD.YYYY'),
       });
       this.handleClearForm();
-      this.props.closeModal();
+      this.props.isOpen();
     } else {
       alert('Внесите положительную сумму на баланс!');
     }
@@ -47,89 +52,90 @@ class AddIncome extends Component {
     this.calendarOpen();
   };
 
-  handleKeyPress = async event => {
-    console.log('event', event.target.className);
-    if (event.code === 'Escape') {
-      this.setState({ calendar: false });
-    }
-  };
+  // handleKeyPress = async event => {
+  //   console.log('event', event.target.className);
+  //   if (event.code === 'Escape') {
+  //     this.setState({ calendar: false });
+  //   }
+  // };
   backDropCalendar = event => {
     const dataset = event.target.dataset;
-    if (dataset && dataset.modal === 'true') {
+    if (dataset && dataset.modalcal === 'true') {
       this.calendarOpen();
     }
+  };
+  onHandleClickExit = async () => {
+   await this.setState({ work: false });
+    this.props.isOpen();
   };
 
   render() {
     window.addEventListener('keyup', this.handleKeyPress);
-    // console.log(this.props);
-    // console.log(this.props);
+    console.log(this.props);
 
     return (
       <>
-        <div className={css.overlay}>
-          <div className={css.modalIncome}>
-            <span onClick={this.props.closeModal} className={css.close}></span>
+        <div className={css.modalIncome}>
+          <span onClick={this.onHandleClickExit} className={css.close}></span>
 
-            <form className={css.form} onSubmit={this.handleSubmit}>
-              <h2 className={css.addIncomeTittle}>Ввести доход</h2>
-              <div className={css.calendarDesk}>
+          <form className={css.form} onSubmit={this.handleSubmit}>
+            <h2 className={css.addIncomeTittle}>Ввести доход</h2>
+            <div className={css.calendarDesk}>
+              <div
+                onClick={this.calendarOpen}
+                className={css.calendarIconWrapper}
+              >
+                <i className={css.calendarIcon}></i>
+              </div>
+              {this.state.calendar && (
                 <div
-                  onClick={this.calendarOpen}
-                  className={css.calendarIconWrapper}
+                  data-modalcal={'true'}
+                  className={css.calendarOverlay}
+                  onClick={this.backDropCalendar}
                 >
-                  <i className={css.calendarIcon}></i>
+                  <Calendar
+                    className={css.calendar}
+                    onChange={this.onChange}
+                    value={this.state.date}
+                    maxDate={new Date()}
+                    minDate={new Date(this.props.date)}
+                    onClickDay={this.pickDate}
+                  />
                 </div>
-                {this.state.calendar && (
-                  <div
-                    data-modal={'true'}
-                    className={css.calendarOverlay}
-                    onClick={this.backDropCalendar}
-                  >
-                    <Calendar
-                      className={css.calendar}
-                      onChange={this.onChange}
-                      value={this.state.date}
-                      maxDate={new Date()}
-                      minDate={new Date(this.props.date)}
-                      onClickDay={this.pickDate}
-                    />
-                  </div>
-                )}
+              )}
 
-                <span className={css.dateLine}>
-                  {moment(this.state.date).format('MM.DD.YYYY')}
-                </span>
+              <span className={css.dateLine}>
+                {moment(this.state.date).format('MM.DD.YYYY')}
+              </span>
 
-                <input
-                  className={css.inptAddIncome}
-                  placeholder="введите сумму"
-                  value={this.state.value}
-                  onChange={this.handleChangeIncome}
-                  type="text"
-                />
-              </div>
-              <div className={css.btnWrapper}>
-                <button
-                  type="submit"
-                  className={`${css.btnAddIncome} ${css.btn}`}
-                >
-                  Ввод
-                </button>
-                <button
-                  type="reset"
-                  onClick={this.handleClearForm}
-                  className={`${css.btnReset} ${css.btn}`}
-                >
-                  Очистить
-                </button>
-              </div>
-            </form>
-          </div>
+              <input
+                className={css.inptAddIncome}
+                placeholder="00.00 грн"
+                value={this.state.value}
+                onChange={this.handleChangeIncome}
+                type="text"
+              />
+            </div>
+            <div className={css.btnWrapper}>
+              <button
+                type="submit"
+                className={`${css.btnAddIncome} ${css.btn}`}
+              >
+                Ввод
+              </button>
+              <button
+                type="reset"
+                onClick={this.handleClearForm}
+                className={`${css.btnReset} ${css.btn}`}
+              >
+                Очистить
+              </button>
+            </div>
+          </form>
         </div>
       </>
     );
   }
 }
 
-export default AddIncome;
+export default ModalBackDrop(AddIncome);
