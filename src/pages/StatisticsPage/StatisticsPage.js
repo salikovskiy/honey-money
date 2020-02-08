@@ -74,8 +74,8 @@ const data = [65, 59, 80, 11, 56, 55, 40, 3, 59, 80];
 //   }
 // }
 
-let costsSum = 0;
-let incomesSum = 0;
+let costsMonth = 0;
+let incomesMonth = 0;
 
 const dateNow = moment().format();
 
@@ -83,8 +83,6 @@ class StatisticsPage extends Component {
   state = {
     date: dateNow,
     dateRegistration: this.props.finance.authReducer.createdAt,
-    costs: this.props.finance.costs,
-    incomes: this.props.finance.incomes,
   };
 
   handleMonthChange = e => {
@@ -106,8 +104,8 @@ class StatisticsPage extends Component {
   };
 
   handleGetSumCosts = () => {
-    if (this.state.costs.length > 0) {
-      costsSum = this.state.costs
+    if (this.props.finance.costs.length > 0) {
+      costsMonth = this.props.finance.costs
         .filter(
           item =>
             moment(item.date).format('YYYYMM') ===
@@ -115,12 +113,12 @@ class StatisticsPage extends Component {
         )
         .reduce((acc, el) => acc + el.amount, 0);
     }
-    return costsSum;
+    return costsMonth;
   };
 
   handleGetSumIncome = () => {
-    if (this.state.incomes.length > 0) {
-      incomesSum = this.state.incomes
+    if (this.props.finance.incomes.length > 0) {
+      incomesMonth = this.props.finance.incomes
         .filter(
           item =>
             moment(item.date).format('MMMM YYYY') ===
@@ -128,18 +126,13 @@ class StatisticsPage extends Component {
         )
         .reduce((acc, el) => acc + el.amount, 0);
     }
-    return incomesSum;
+    return incomesMonth;
   };
 
   render() {
     const balance = this.props.finance.balance;
-    const costsSum = this.handleGetSumCosts();
-    const incomesSum = this.handleGetSumIncome();
-    // console.log(costsSum);
-    // console.log(incomesSum);
-    // console.log(this.state.costs);
-    // console.log(this.state.incomes);
-    console.log(this.props.finance);
+    const costsMonth = this.handleGetSumCosts();
+    const incomesMonth = this.handleGetSumIncome();
     return (
       <div className={s.wrapper}>
         <StatisticsMenu
@@ -148,7 +141,7 @@ class StatisticsPage extends Component {
           balance={balance}
           monthChange={this.handleMonthChange}
         />
-        <StatisticAmounts costsSum={costsSum} incomesSum={incomesSum} />
+        <StatisticAmounts costsMonth={costsMonth} incomesMonth={incomesMonth} />
         <CategoriesList />
         <BarChart labels={labels} data={data} />
       </div>
