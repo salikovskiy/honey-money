@@ -12,13 +12,7 @@ import ModalDashboardTable from '../../dashboardTable/modalDashboardTable/ModalD
 
 ///В статистике посмотреть оранжевые кнопки!!!!!!
 
-//шрифт в лого, иконка нв выход,
-//шрифты и закрытие модалки при клике на оверлей у Леши,
-//стили, шрифты!!! у Богдана, консоль логи
-//шрифты с засечками
-//функция для удаления, октрытия и закрытия модалки для Богдана,
-//пнотифай и грн. у Миши,
-//варнингы у Оли, Богдана, Ярика
+////изменила компонент Боди!!!!!!!!!!!!!!!!!!!!!!!
 
 const monthsSummary = [
   moment(),
@@ -38,7 +32,24 @@ class DashboardPanel extends Component {
     dataCosts: this.props.finance.costs,
     isOpenModalCosts: false,
     isOpenModalTable: false,
+    id: null,
+    deletId: null,
   };
+
+  componentDidMount() {
+    this.handleGetDataTable();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.date !== this.state.date ||
+      prevState.dataTable.length !== this.state.dataTable.length ||
+      prevState.dataCosts.length !== this.state.dataCosts.length ||
+      prevProps.finance.costs.length !== this.props.finance.costs.length
+    ) {
+      this.handleGetDataTable();
+    }
+  }
 
   handleGetSummary = () => {
     const summary = monthsSummary.map(monthTable => {
@@ -55,24 +66,21 @@ class DashboardPanel extends Component {
     return summary;
   };
 
-  componentDidMount() {
-    this.handleGetDataTable();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.date !== this.state.date) {
-      this.handleGetDataTable();
-    }
-  }
-
   handleChangeModalCosts = () => {
     this.setState(state => ({ isOpenModalCosts: !state.isOpenModalCosts }));
   };
 
   handleChangeModalTable = e => {
-    console.log(e.target);
+    this.setState({ id: e.target.id, deleteId: e.target.value }); //////при первом клике не приходят
     this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
+
+    // console.log('state id', this.state.id);
+    // console.log('state deleteid', this.state.deleteId);
+    // console.log(e.target.id);
+    // console.log(e.target.value);
   };
+
+  handleDeleteCosts = (id, deleteId) => {};
 
   handleGetDate = e => {
     this.setState({
@@ -82,7 +90,7 @@ class DashboardPanel extends Component {
 
   handleGetDataTable = () => {
     let arr = [];
-    this.state.dataCosts.map(
+    this.props.finance.costs.map(
       elem =>
         moment(elem.date).format('YYYYMM') === this.state.date &&
         (arr = [
@@ -93,6 +101,7 @@ class DashboardPanel extends Component {
             category: elem.product.category.name,
             amount: elem.amount,
             id: elem.costsId,
+            forDeleteId: elem.forDeleteId,
           },
         ]),
     );
@@ -106,10 +115,11 @@ class DashboardPanel extends Component {
     const token = this.props.finance.authReducer.token;
     const dateRegistration = this.props.finance.authReducer.createdAt;
     const summary = this.handleGetSummary();
+    const dataTable = this.state.dataTable;
     //console.log(summary);
-    // console.log(this.props.finance;
+    //console.log(this.props.finance);
     // console.log('state date', this.state.date);
-    console.log('state data', this.state.dataTable);
+    //console.log('state data', this.state.dataTable);
     return (
       <div className={styles.dashboardPanel}>
         {window.innerWidth < 768 && (
@@ -150,7 +160,7 @@ class DashboardPanel extends Component {
               <ModalDashboardTable changeModal={this.handleChangeModalTable} />
             )}
             <DashboardTable
-              dataTable={this.state.dataTable}
+              dataTable={dataTable}
               changeModal={this.handleChangeModalTable}
             />
           </div>
