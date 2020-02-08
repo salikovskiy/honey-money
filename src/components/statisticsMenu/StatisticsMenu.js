@@ -5,41 +5,30 @@ import styles from './statisticsMenu.module.css';
 import moment from 'moment';
 import 'moment/locale/ru';
 
-const dateNow = moment().format();
-
 class StatisticsMenu extends Component {
-  state = {
-    date: dateNow,
-    dateRegistration: '2019-09-30T18:22:59.462Z',
-  };
-
-  // componentDidMount() {
-  //   console.log('this.props.StatisticsMenu :', this.props.currentDate);
-  // }
-
   handleGoBack = () => {
     createBrowserHistory().goBack();
   };
 
-  handleMonthChange = e => {
-    if (e.target.name === 'leftBtn') {
-      this.setState({
-        date: moment(this.state.date)
-          .add(-1, 'month')
-          .format(),
-      });
-    }
-    if (e.target.name === 'rightBtn') {
-      this.setState({
-        date: moment(this.state.date)
-          .add(+1, 'month')
-          .format(),
-      });
-    }
-  };
+  // handleMonthChange = e => {
+  //   if (e.target.name === 'leftBtn') {
+  //     this.setState({
+  //       date: moment(this.state.date)
+  //         .add(-1, 'month')
+  //         .format(),
+  //     });
+  //   }
+  //   if (e.target.name === 'rightBtn') {
+  //     this.setState({
+  //       date: moment(this.state.date)
+  //         .add(+1, 'month')
+  //         .format(),
+  //     });
+  //   }
+  // };
 
   handlePrevMonth = () => {
-    if (moment(this.state.date).isAfter(this.state.dateRegistration)) {
+    if (moment(this.props.date).isAfter(this.props.dateRegistration)) {
       return false;
     } else return true;
   };
@@ -47,7 +36,7 @@ class StatisticsMenu extends Component {
   handleNextMonth = () => {
     if (
       moment().format('MMMM YYYY') ===
-      moment(this.state.date).format('MMMM YYYY')
+      moment(this.props.date).format('MMMM YYYY')
     ) {
       return true;
     } else return false;
@@ -70,7 +59,7 @@ class StatisticsMenu extends Component {
               Баланс на {moment().format('DD.MM.YYYY')}:
             </p>
             <p className={styles.statisticsMenu_dateBalance_value}>
-              150,000.00 грн
+              {this.props.balance} грн
             </p>
           </div>
 
@@ -88,12 +77,11 @@ class StatisticsMenu extends Component {
                 }
                 type="button"
                 name="leftBtn"
-                onClick={this.handleMonthChange}
+                onClick={this.props.monthChange}
                 disabled={this.handlePrevMonth()}
               ></button>
               <p className={styles.statisticsMenu_calendar_months}>
-                {/* {moment(this.state.date).format('MMMM YYYY')} */}
-                {this.props.currentDate}
+                {moment(this.props.date).format('MMMM YYYY')}
               </p>
               <button
                 className={
@@ -103,7 +91,7 @@ class StatisticsMenu extends Component {
                 }
                 type="button"
                 name="rightBtn"
-                onClick={this.handleMonthChange}
+                onClick={this.props.monthChange}
                 disabled={this.handleNextMonth()}
               ></button>
             </div>
