@@ -29,24 +29,17 @@ class StatisticsPage extends Component {
         .toUpperCase(),
     });
 
-    console.log('this.props.finance:', this.props.finance);
+    // console.log('this.props.finance:', this.props.finance);
+
     let amount = 0;
+
     this.setState({
-      statisticListData: this.props.finance.categories.map(el => {
-        this.props.finance.costs.map(item => {
-          if (el.name === item.product.category.name) {
-            console.log('el2345678 :', (amount += item.amount));
-            amount = item.amount;
-            // console.log('el name :', el.name);
-            // console.log('object :', el.amount);
-            // x = item.amount.reduce((acc, cur) => acc + cur, 0);
-          } else {
-            amount = 0;
-          }
-        });
+      statisticListData: this.props.finance.categories.map(category => {
+        this.props.finance.costs.map(cost => console.log(cost));
+
         return {
-          name: el.name,
-          id: el._id,
+          name: category.name,
+          id: category._id,
           amount,
         };
       }),
@@ -116,7 +109,7 @@ class StatisticsPage extends Component {
     const categories = this.props.finance.categories;
     const selectedCategory = this.state.selectedCategory;
     const { statisticListData } = this.state;
-    console.log('statisticListData :', statisticListData);
+    // console.log('statisticListData :', statisticListData);
 
     return (
       <div className={s.wrapper}>

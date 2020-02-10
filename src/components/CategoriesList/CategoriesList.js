@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import categoriesData from './categoryData.json';
+import categoriesData from './categoryData.json';
 import './CategoriesList.module.css';
 import css from './CategoriesList.module.css';
 import alcohol from '../../assets/icons/alcohol/cocktail.svg';
@@ -61,7 +61,7 @@ class CategoriesList extends Component {
     return (
       <div className={css.categoriesWrap}>
         <ul className={css.categoryList}>
-          {this.props.categoriesData.map(item => (
+          {categoriesData.map(item => (
             <li
               key={item._id}
               id={item._id}
