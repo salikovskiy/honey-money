@@ -30,18 +30,12 @@ const transformIcon = {
 };
 
 class CategoriesList extends Component {
-  // handleChangeBackground = (evt, id) => {
-  //   evt.target
-  //     .closest('ul')
-  //     .querySelectorAll('img')
-  //     .forEach(elem => {
-  //       elem.parentElement.classList.replace(css.selected, css.svgWrapper);
-  //     });
-
-  //   if (evt.target.parentElement.id) {
-  //     evt.target.parentElement.classList.replace(css.svgWrapper, css.selected);
-  //   }
-  // };
+  constructor() {
+    super();
+    this.state = {
+      currentId: null,
+    };
+  }
 
   handleChangeBackground = (evt, id) => {
     evt.target
@@ -50,54 +44,50 @@ class CategoriesList extends Component {
       .forEach(elem => {
         elem.parentElement.classList.replace(css.selected, css.svgWrapper);
       });
-    //true не надо потому, что оно и так возвращает булевое значение
-
     if (!evt.target.parentElement.classList.contains(css.selected)) {
-      
       evt.target.parentElement.classList.replace(css.selected, css.svgWrapper);
-    }
-     else if (evt.target.parentElement.id) {
+    } else if (evt.target.parentElement.id) {
       evt.target.parentElement.classList.replace(css.svgWrapper, css.selected);
     }
   };
 
-  // clearCategory = () => {
-  //   window.document.querySelectorAll('img').forEach(elem => {
-  //     elem.parentElement.classList.replace(css.selected, css.buttonWrapper);
-  //   });
-  // };
-
+  backgroundChange(e, id) {
+    let unicId = id === this.state.currentId ? null : id;
+    this.setState({
+      currentId: unicId,
+    });
+  }
   render() {
     return (
       <div className={css.categoriesWrap}>
         <ul className={css.categoryList}>
           {categoriesData.map(item => (
-            <li key={item._id} id={item._id} className={css.categoryWrapper}>
+            <li
+              key={item._id}
+              id={item._id}
+              className={css.categoryWrapper}
+              onClick={e => this.backgroundChange(e, item._id)}
+            >
               <p className={css.categoryAmount}>5000</p>
-              <div key={item._id} className={css.svgWrapper} id={item._id}>
+              <div
+                key={item._id}
+                className={
+                  item._id === this.state.currentId
+                    ? css.selected
+                    : css.svgWrapper
+                }
+                id={item._id}
+              >
                 <img
                   width="100%"
                   height="100%"
                   alt={item.name}
                   src={transformIcon[item.name]}
                   className={css.categoryIcon}
-                  onClick={e => this.handleChangeBackground(e, item._id)}
                 />
               </div>
               <p className={css.categoryName}>{item.name}</p>
             </li>
-            // <div></div>
-            // <button onClick={this.clearCategory} className={css.svgWrapper}>
-            //   <img
-            //     width="100%"
-            //     height="100%"
-            //     alt={this.item.name}
-            //     src={transformIcon[item.name]}
-            //     className={css.categoryIcon}
-            //     onClick={e => this.handleChangeBackground(e, item._id)}
-            //   />
-            //   <p className={css.categoryName}>Все категории</p>
-            // </button>
           ))}
         </ul>
       </div>
