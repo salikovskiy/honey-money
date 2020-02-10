@@ -1,9 +1,8 @@
 import React from 'react';
 import css from '../dashboardTable/DashBoardTable.module.css';
 import moment from 'moment';
-// import ModalDashboardTable from "../dashboardTable/modalDashboardTable/ModalDashboardTable"
 
-const DashboardTable = ({ dataTable, changeModal }) => {
+const DashboardTable = ({ dataTable, changeModal, handleChangeModal }) => {
   if (window.innerWidth < 768) {
     return (
       <div className={css.tableWrapper}>
@@ -31,7 +30,10 @@ const DashboardTable = ({ dataTable, changeModal }) => {
                         <button
                           value={item.forDeleteId}
                           id={item.id}
-                          onClick={changeModal}
+                          onClick={e => {
+                            changeModal(e);
+                            handleChangeModal();
+                          }}
                           className={css.btn}
                           type="button"
                         ></button>
@@ -120,7 +122,11 @@ const DashboardTable = ({ dataTable, changeModal }) => {
                     <span className={css.overlay}>
                       <span>{item.amount}</span>
                       <span>
-                        <button className={css.btn} type="button"></button>
+                        <button
+                          onClick={changeModal}
+                          className={css.btn}
+                          type="button"
+                        ></button>
                       </span>
                     </span>
                   </td>
@@ -210,7 +216,11 @@ const DashboardTable = ({ dataTable, changeModal }) => {
                     <span className={css.overlayDesc}>
                       <span>{item.amount}</span>
                       <span>
-                        <button className={css.btn} type="button"></button>
+                        <button
+                          onClick={changeModal}
+                          className={css.btn}
+                          type="button"
+                        ></button>
                       </span>
                     </span>
                   </td>

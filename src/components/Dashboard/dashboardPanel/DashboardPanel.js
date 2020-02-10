@@ -6,11 +6,9 @@ import AddCost from '../../addCost/AddCost';
 import moment from 'moment';
 import 'moment/locale/ru';
 import { connect } from 'react-redux';
+import { deleteCosts } from '../../../redux/operations';
 import ModalDashboardTable from '../../dashboardTable/modalDashboardTable/ModalDashboardTable';
-
 //import PropTypes from 'prop-types';
-
-////изменила компонент Боди!!!!!!!!!!!!!!!!!!!!!!!
 
 const monthsSummary = [
   moment(),
@@ -30,8 +28,8 @@ class DashboardPanel extends Component {
     dataCosts: this.props.finance.costs,
     isOpenModalCosts: false,
     isOpenModalTable: false,
-    id: null,
-    deletId: null,
+    id: '',
+    deleteId: '',
   };
 
   componentDidMount() {
@@ -68,17 +66,17 @@ class DashboardPanel extends Component {
     this.setState(state => ({ isOpenModalCosts: !state.isOpenModalCosts }));
   };
 
-  handleChangeModalTable = e => {
-    this.setState({ id: e.target.id, deleteId: e.target.value }); //////при первом клике не приходят
-    this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
-
-    console.log('state id', this.state.id);
-    console.log('state deleteid', this.state.deleteId);
-    console.log(e.target.id);
-    console.log(e.target.value);
+  handlegetIdTable = e => {
+    e.persist();
+    this.setState({
+      id: e.target.id,
+      deleteId: e.target.value,
+    });
   };
 
-  handleDeleteCosts = (id, deleteId) => {};
+  handleChangeModal = () => {
+    this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
+  };
 
   handleGetDate = e => {
     this.setState({
@@ -104,7 +102,7 @@ class DashboardPanel extends Component {
         ]),
     );
     this.setState({
-      dataTable: arr,
+      dataTable: arr.reverse(),
     });
   };
 
@@ -114,8 +112,6 @@ class DashboardPanel extends Component {
     const dateRegistration = this.props.finance.authReducer.createdAt;
     const summary = this.handleGetSummary();
     const dataTable = this.state.dataTable;
-
-    //console.log(this.props.finance);
     return (
       <div className={styles.dashboardPanel}>
         {window.innerWidth < 768 && (
@@ -153,11 +149,18 @@ class DashboardPanel extends Component {
         <div className={styles.dashboardPanel_wrap}>
           <div className={styles.dashboardPanel_DashboardTable}>
             {this.state.isOpenModalTable && (
-              <ModalDashboardTable changeModal={this.handleChangeModalTable} />
+              <ModalDashboardTable
+                handleChangeModal={this.handleChangeModal}
+                changeModal={this.handlegetIdTable}
+                id={this.state.id}
+                forDeleteId={this.state.deleteId}
+                deleteCost={this.props.deleteCosts}
+              />
             )}
             <DashboardTable
               dataTable={dataTable}
-              changeModal={this.handleChangeModalTable}
+              changeModal={this.handlegetIdTable}
+              handleChangeModal={this.handleChangeModal}
             />
           </div>
           <div className={styles.dashboardPanel_tableExample}>
@@ -174,6 +177,8 @@ class DashboardPanel extends Component {
 
 const mapStateToProps = state => state;
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  deleteCosts,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPanel);
