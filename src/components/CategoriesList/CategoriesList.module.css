@@ -45,8 +45,19 @@
   background-color: #f4f6fb;
 }
 
-.svgWrapper:hover {
-  background-color: #fdc49e;
+.buttonWrapper {
+  width: 280px;
+  height: 40px;
+  background-color: #f4f6fb;
+  border-radius: 30px;
+}
+
+.selected {
+  background-color: #ffd9c0;
+  width: 58px;
+  height: 47px;
+  border-radius: 30px;
+  position: relative;
 }
 
 .categoryIcon {
@@ -58,7 +69,6 @@
 }
 
 .categoryName {
-  margin: 0 auto;
   font-family: Roboto, sans-serif;
   font-weight: 700;
   font-size: 9px;
