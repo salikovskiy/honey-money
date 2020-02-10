@@ -93,7 +93,7 @@ class DashboardPanel extends Component {
     this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
   };
 
-  handlegetIdTable = e => {
+  handleGetIdTable = e => {
     e.persist();
     this.setState({
       id: e.target.id,
@@ -152,7 +152,7 @@ class DashboardPanel extends Component {
             {this.state.isOpenModalTable && (
               <ModalDashboardTable
                 handleChangeModal={this.handleChangeModalTable}
-                changeModal={this.handlegetIdTable}
+                changeModal={this.handleGetIdTable}
                 id={this.state.id}
                 forDeleteId={this.state.deleteId}
                 deleteCost={this.props.deleteCosts}
@@ -160,7 +160,7 @@ class DashboardPanel extends Component {
             )}
             <DashboardTable
               dataTable={dataTable}
-              changeModal={this.handlegetIdTable}
+              changeModal={this.handleGetIdTable}
               handleChangeModal={this.handleChangeModalTable}
             />
           </div>
