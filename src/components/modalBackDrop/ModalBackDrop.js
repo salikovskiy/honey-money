@@ -4,7 +4,7 @@ import styles from './ModalBackDrop.module.css';
 const ModalBackDrop = WrappedComponent => {
   return class ModalBackDrop extends Component {
     state = {
-      isOpen: this.props.isOpen === true ? true : false,
+      isOpen: true,
     };
 
     componentDidMount() {
@@ -30,7 +30,7 @@ const ModalBackDrop = WrappedComponent => {
 
     closeBackDrop = () => {
       this.setState({
-        isOpen: false
+        isOpen: false,
       });
     };
 
@@ -41,9 +41,12 @@ const ModalBackDrop = WrappedComponent => {
           data-modal={'true'}
           onClick={this.outsideClick}
         >
+<<<<<<< HEAD
           {/* <button className={styles.lightboxBtn} onClick={this.closeBackDrop}>
             <i className="material-icons">close</i>
           </button> */}
+=======
+>>>>>>> dev
           <WrappedComponent {...this.props} />
         </div>
       ) : null;

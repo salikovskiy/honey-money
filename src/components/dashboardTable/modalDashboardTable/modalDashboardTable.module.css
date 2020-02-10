@@ -1,0 +1,40 @@
+.modalWindow {
+    border-radius: 20px;
+    width: 320px;
+    height: 183px;
+    background-color: #ffffff;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    padding-top: 46px;
+    font-size: 21px;
+    color: rgba(0, 0, 0, 255);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.btn {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    border: none;
+    width: 138px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #f5f7fa;
+}
+
+.btn:nth-last-child(2){
+    margin-left: 18px;
+    margin-right: 2px;
+}
+
+.btn:hover {
+    background-color: #ff6c00;
+    color: #ffffff;
+}
+

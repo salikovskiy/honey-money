@@ -7,24 +7,23 @@ export const fetchStart = () => ({
 
 export const getBalanceSuccess = value => ({
   type: Type.GET_BALANCE_SUCCESS,
-  payload: {value},
+  payload: { value },
 });
 
 export const getCostsSuccess = arr => ({
   type: Type.GET_COSTS_SUCCESS,
-  payload: {arr},
+  payload: { arr },
 });
 
 export const fetchError = error => ({
   type: Type.FETCH_ERROR,
-  payload: {error},
+  payload: { error },
 });
 
 export const addDateNow = date => ({
   type: Type.DATE_NOW,
-  payload: {date},
+  payload: { date },
 });
-
 
 export const signUp = newUser => {
   return (dispatch, getState) => {
@@ -54,16 +53,21 @@ export const logIn = user => {
   };
 };
 
-export const costsPostSuccess = () => ({
+export const costsPostSuccess = obj => ({
+  payload: { obj },
   type: Type.COSTS_POST_SUCCESS,
 });
 
 export const getIncomesSuccess = arr => ({
   type: Type.GET_INCOMES_SUCCESS,
-  payload: {arr},
+  payload: { arr },
 });
-
 
 export const logOut = () => ({
   type: Type.LOG_OUT,
-})
+});
+
+export const costsDeleteSuccess = id => ({
+  type: Type.COSTS_DELETE_SUCCESS,
+  payload: { id },
+});

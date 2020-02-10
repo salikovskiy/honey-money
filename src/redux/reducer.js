@@ -1,12 +1,17 @@
 import { combineReducers } from 'redux';
 import Type from './types';
 import { getUser } from './selectors';
+import categories from '../redux/statistics/statisticsReducer';
 const initState = { authError: null, createdAt: '' };
 
 const costs = (state = [], { type, payload }) => {
   switch (type) {
+    case Type.COSTS_POST_SUCCESS:
+      return [...state, payload.obj];
     case Type.GET_COSTS_SUCCESS:
       return payload.arr;
+    case Type.COSTS_DELETE_SUCCESS:
+      return state.filter(el => payload.id !== el.forDeleteId);
     default:
       return state;
   }
@@ -25,6 +30,7 @@ const isLoading = (state = false, { type, payload }) => {
       return state;
   }
 };
+
 const balance = (state = 0, { type, payload }) => {
   switch (type) {
     case Type.GET_BALANCE_SUCCESS:
@@ -62,6 +68,7 @@ const error = (state = '', { type, payload }) => {
       return state;
   }
 };
+
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case 'LOG_OUT':
@@ -113,7 +120,6 @@ const incomes = (state = [], { type, payload }) => {
   }
 };
 
-
 export default combineReducers({
   authReducer,
   costs,
@@ -122,4 +128,7 @@ export default combineReducers({
   dateNow,
   error,
   incomes,
+
+  // statistics
+  categories,
 });
