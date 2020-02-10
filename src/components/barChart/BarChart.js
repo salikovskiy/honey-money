@@ -27,17 +27,28 @@ class BarChart extends Component {
 
   render() {
     return (
-      <>
-        <div style={{ width: 500, height: 200 }}>
-          <Bar
-            ref={this.chartReference}
-            data={this.data}
-            width={10}
-            height={5}
-            options={{ maintainAspectRatio: false }}
-          />
-        </div>
-      </>
+      (window.innerWidth > 767) && (
+          <div
+            style={{
+              width: "688px",
+              height: '350px',
+              margin: '0 auto',
+              boxShadow: '7px 12.124px 20px 0px rgba(179, 185, 200, 0.4)',
+              backgroundColor: 'rgb(255, 255, 255)',
+              borderRadius: '20px',
+              padding: '10px',
+              marginBottom: '40px',
+            }}
+          >
+            <Bar
+              ref={this.chartReference}
+              data={this.data}
+              width={10}
+              height={5}
+              options={{ maintainAspectRatio: false }}
+            />
+          </div>
+      )
     );
   }
 }
