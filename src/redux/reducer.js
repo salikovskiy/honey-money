@@ -8,6 +8,8 @@ const costs = (state = [], { type, payload }) => {
   switch (type) {
     case Type.GET_COSTS_SUCCESS:
       return payload.arr;
+    case Type.COSTS_DELETE_SUCCESS:
+      return state.filter(el => payload.id !== el.forDeleteId);
     default:
       return state;
   }
@@ -124,7 +126,7 @@ export default combineReducers({
   dateNow,
   error,
   incomes,
-  
+
   // statistics
   categories,
 });
