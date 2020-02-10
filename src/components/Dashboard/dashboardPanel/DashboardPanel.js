@@ -10,8 +10,6 @@ import ModalDashboardTable from '../../dashboardTable/modalDashboardTable/ModalD
 
 //import PropTypes from 'prop-types';
 
-///В статистике посмотреть оранжевые кнопки!!!!!!
-
 ////изменила компонент Боди!!!!!!!!!!!!!!!!!!!!!!!
 
 const monthsSummary = [
@@ -74,10 +72,10 @@ class DashboardPanel extends Component {
     this.setState({ id: e.target.id, deleteId: e.target.value }); //////при первом клике не приходят
     this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
 
-    // console.log('state id', this.state.id);
-    // console.log('state deleteid', this.state.deleteId);
-    // console.log(e.target.id);
-    // console.log(e.target.value);
+    console.log('state id', this.state.id);
+    console.log('state deleteid', this.state.deleteId);
+    console.log(e.target.id);
+    console.log(e.target.value);
   };
 
   handleDeleteCosts = (id, deleteId) => {};
@@ -116,10 +114,8 @@ class DashboardPanel extends Component {
     const dateRegistration = this.props.finance.authReducer.createdAt;
     const summary = this.handleGetSummary();
     const dataTable = this.state.dataTable;
-    //console.log(summary);
+
     //console.log(this.props.finance);
-    // console.log('state date', this.state.date);
-    //console.log('state data', this.state.dataTable);
     return (
       <div className={styles.dashboardPanel}>
         {window.innerWidth < 768 && (
