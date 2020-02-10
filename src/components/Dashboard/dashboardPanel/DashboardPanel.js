@@ -25,7 +25,7 @@ class DashboardPanel extends Component {
   state = {
     date: moment().format('YYYYMM'),
     dataTable: [],
-    dataCosts: this.props.finance.costs,
+    //dataCosts: this.props.finance.costs,
     isOpenModalCosts: false,
     isOpenModalTable: false,
     id: '',
@@ -37,10 +37,11 @@ class DashboardPanel extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log(this.props.finance.costs, 'aaaaaa', this.state.dataTable);
     if (
       prevState.date !== this.state.date ||
       prevState.dataTable.length !== this.state.dataTable.length ||
-      prevState.dataCosts.length !== this.state.dataCosts.length ||
+      //prevState.dataCosts.length !== this.state.dataCosts.length ||
       prevProps.finance.costs.length !== this.props.finance.costs.length
     ) {
       this.handleGetDataTable();
@@ -62,28 +63,6 @@ class DashboardPanel extends Component {
     return summary;
   };
 
-  handleChangeModalCosts = () => {
-    this.setState(state => ({ isOpenModalCosts: !state.isOpenModalCosts }));
-  };
-
-  handlegetIdTable = e => {
-    e.persist();
-    this.setState({
-      id: e.target.id,
-      deleteId: e.target.value,
-    });
-  };
-
-  handleChangeModal = () => {
-    this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
-  };
-
-  handleGetDate = e => {
-    this.setState({
-      date: e.target.parentElement.dataset.month,
-    });
-  };
-
   handleGetDataTable = () => {
     let arr = [];
     this.props.finance.costs.map(
@@ -103,6 +82,28 @@ class DashboardPanel extends Component {
     );
     this.setState({
       dataTable: arr.reverse(),
+    });
+  };
+
+  handleChangeModalCosts = () => {
+    this.setState(state => ({ isOpenModalCosts: !state.isOpenModalCosts }));
+  };
+
+  handleChangeModalTable = () => {
+    this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
+  };
+
+  handlegetIdTable = e => {
+    e.persist();
+    this.setState({
+      id: e.target.id,
+      deleteId: e.target.value,
+    });
+  };
+
+  handleGetDate = e => {
+    this.setState({
+      date: e.target.parentElement.dataset.month,
     });
   };
 
@@ -150,7 +151,7 @@ class DashboardPanel extends Component {
           <div className={styles.dashboardPanel_DashboardTable}>
             {this.state.isOpenModalTable && (
               <ModalDashboardTable
-                handleChangeModal={this.handleChangeModal}
+                handleChangeModal={this.handleChangeModalTable}
                 changeModal={this.handlegetIdTable}
                 id={this.state.id}
                 forDeleteId={this.state.deleteId}
@@ -160,7 +161,7 @@ class DashboardPanel extends Component {
             <DashboardTable
               dataTable={dataTable}
               changeModal={this.handlegetIdTable}
-              handleChangeModal={this.handleChangeModal}
+              handleChangeModal={this.handleChangeModalTable}
             />
           </div>
           <div className={styles.dashboardPanel_tableExample}>
