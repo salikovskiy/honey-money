@@ -8,19 +8,8 @@ import BarChart from '../../components/barChart/BarChart';
 import moment from 'moment';
 import s from './StatisticsPage.module.css';
 
-const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'January',
-  'February',
-  'March',
-];
-const data = [65, 59, 80, 11, 56, 55, 40, 3, 59, 80];
+
+const data = [65, 59, 80, 11, 56, 55, 40, 3, 59, 80, 90];
 
 let costsMonth = 0;
 let incomesMonth = 0;
@@ -33,6 +22,7 @@ class StatisticsPage extends Component {
     // allCategories: [],
     date: dateNow,
     dateRegistration: this.props.finance.authReducer.createdAt,
+   labels: []
   };
 
   async componentDidMount() {
@@ -41,15 +31,22 @@ class StatisticsPage extends Component {
         .format('MMMM YYYY')
         .toUpperCase(),
     });
-    const data = await getCategories();
-    console.log('data :', data);
-    // this.setState({
-    //   allCategories: this.props.finance.categories,
-    // });
+    const data =  await this.props.getCategories();
+  //   const labels = await data.map(elem=>elem.name)
+  //  this.setState({labels})
+    console.log('DATAAAAAAAAAAA', this.props.finance.categories.map(elem=>elem.name));
+    const labels = this.props.finance.categories.map(elem=>elem.name)
+ 
   }
 
-  componentDidUpdate() {
-    console.log('this.props2222', this.props.finance.categories);
+ async componentDidUpdate(prevProps, prevState) {
+    // console.log('this.props2222', this.props.finance.categories);
+    if(JSON.stringify(prevState.labels) !== JSON.stringify(this.state.labels)) {
+  //     const data =  await this.props.getCategories();
+  //   const labels = await data.map(elem=>elem.name)
+  //  this.setState({labels})
+  console.log("YESS")
+    }
   }
 
   handleMonthChange = e => {
@@ -97,11 +94,12 @@ class StatisticsPage extends Component {
   };
 
   render() {
+    console.log("LABELS",this.state.labels)
     const balance = this.props.finance.balance;
     const costsMonth = this.handleGetCostsMonth();
     const incomesMonth = this.handleGetIncomeMonth();
     const categories = this.props.finance.categories;
-    // console.log('3333333333333333 :', categories);
+    console.log('3333333333333333 :', categories);
 
     return (
       <div className={s.wrapper}>
@@ -117,7 +115,7 @@ class StatisticsPage extends Component {
           incomesMonth={incomesMonth}
         />
         <CategoriesList categories={categories} />
-        <BarChart labels={labels} data={data} />
+        <BarChart labels={this.props.finance.categories.map(elem=>elem.name)} data={data} />
       </div>
     );
   }
