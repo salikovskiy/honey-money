@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import AuthPage from './pages/authPage/AuthPage';
 import DashboardPage from './pages/dashboardPage/DashboardPage';
-import StatisticPage from './pages/statisticsPage/StatisticPage';
+import StatisticPage from './pages/StatisticsPage/StatisticPage';
 import Footer from './components/footer/Footer';
 import css from './routes.module.css'
 
