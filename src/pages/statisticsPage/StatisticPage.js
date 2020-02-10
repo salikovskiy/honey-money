@@ -1,6 +1,6 @@
 import React from 'react';
 import StatisticsMenu from '../../components/statisticsMenu/StatisticsMenu';
-import StatisticAmounts from './../../components/statisticAmounts/StatisticAmounts';
+import StatisticAmounts from '../../components/statisticAmounts/StatisticAmounts';
 
 const StatisticPage = () => (
   <>

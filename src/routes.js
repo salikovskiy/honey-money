@@ -4,7 +4,7 @@ import AuthPage from './pages/authPage/AuthPage';
 import DashboardPage from './pages/dashboardPage/DashboardPage';
 import StatisticPage from './pages/statisticsPage/StatisticPage';
 import Footer from './components/footer/Footer';
-import css from './routes.module.css'
+import css from './routes.module.css';
 
 export const useRoute = isAuth => {
   if (isAuth) {
