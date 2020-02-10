@@ -29,8 +29,6 @@ const dateNow = moment().format();
 class StatisticsPage extends Component {
   state = {
     selectedCategory: 'продукты',
-    currentDate: '',
-    // allCategories: [],
     date: dateNow,
     dateRegistration: this.props.finance.authReducer.createdAt,
   };
@@ -41,15 +39,6 @@ class StatisticsPage extends Component {
         .format('MMMM YYYY')
         .toUpperCase(),
     });
-    const data = await getCategories();
-    console.log('data :', data);
-    // this.setState({
-    //   allCategories: this.props.finance.categories,
-    // });
-  }
-
-  componentDidUpdate() {
-    console.log('this.props2222', this.props.finance.categories);
   }
 
   handleMonthChange = e => {
@@ -101,7 +90,7 @@ class StatisticsPage extends Component {
     const costsMonth = this.handleGetCostsMonth();
     const incomesMonth = this.handleGetIncomeMonth();
     const categories = this.props.finance.categories;
-    // console.log('3333333333333333 :', categories);
+    console.log('categories :', categories);
 
     return (
       <div className={s.wrapper}>
@@ -117,7 +106,7 @@ class StatisticsPage extends Component {
           incomesMonth={incomesMonth}
         />
         <CategoriesList categories={categories} />
-        <BarChart labels={labels} data={data} />
+        <BarChart labels={categories} data={data} />
       </div>
     );
   }

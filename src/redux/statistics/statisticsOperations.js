@@ -9,7 +9,6 @@ export const getCategories = () => async (dispatch, getState) => {
       getState().finance.authReducer.token,
     );
     dispatch(getCategoriesSuccess(response.data.categories));
-    console.log('getCategoriesSuccess', response.data.categories);
     return response.data.categories;
   } catch (error) {
     dispatch(fetchError(error.message));
