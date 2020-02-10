@@ -3,7 +3,7 @@ import css from '../dashboardTable/DashBoardTable.module.css';
 import moment from 'moment';
 // import ModalDashboardTable from "../dashboardTable/modalDashboardTable/ModalDashboardTable"
 
-const DashboardTable = ({ dataTable }) => {
+const DashboardTable = ({ dataTable, changeModal }) => {
   if (window.innerWidth < 768) {
     return (
       <div className={css.tableWrapper}>
@@ -28,7 +28,7 @@ const DashboardTable = ({ dataTable }) => {
                     <span className={css.overModile}>
                       <span className={css.price}>{item.amount}</span>
                       <span>
-                        <button className={css.btn} type="button"></button>
+                        <button onClick={changeModal} className={css.btn} type="button"></button>
                       </span>
                     </span>
                   </td>
@@ -114,7 +114,7 @@ const DashboardTable = ({ dataTable }) => {
                     <span className={css.overlay}>
                       <span>{item.amount}</span>
                       <span>
-                        <button className={css.btn} type="button"></button>
+                        <button onClick={changeModal} className={css.btn} type="button"></button>
                       </span>
                     </span>
                   </td>
@@ -204,7 +204,7 @@ const DashboardTable = ({ dataTable }) => {
                     <span className={css.overlayDesc}>
                       <span>{item.amount}</span>
                       <span>
-                        <button className={css.btn} type="button"></button>
+                        <button onClick={changeModal} className={css.btn} type="button"></button>
                       </span>
                     </span>
                   </td>
