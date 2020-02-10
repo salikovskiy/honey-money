@@ -41,9 +41,9 @@ const ModalBackDrop = WrappedComponent => {
           data-modal={'true'}
           onClick={this.outsideClick}
         >
-          <button className={styles.lightboxBtn} onClick={this.closeBackDrop}>
+          {/* <button className={styles.lightboxBtn} onClick={this.closeBackDrop}>
             <i className="material-icons">close</i>
-          </button>
+          </button> */}
           <WrappedComponent {...this.props} />
         </div>
       ) : null;

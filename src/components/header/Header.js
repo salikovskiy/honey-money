@@ -1,27 +1,55 @@
+import React, { Component } from 'react';
+import svg from '../../assets/img/logo/svg/logo_146x34.svg';
+import style from './header.module.css';
+import Modal from "../modal/Modal"
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {logOut} from '../../redux/actions'
 
-const Header = (props) => {
-    console.log('props', props)
+class Header extends Component {
+  state = { 
+    isOpenModal:false,
+  };
+
+  onChengeModal = () => {
+    this.setState(state => ({isOpenModal: !state.isOpenModal}));
+  };
+
+  render () {
     return (
-  <div className={style.header}>
+        <div className={style.header}>
     <Link to="/dashboard">
       <img className={style.header_logo} src={svg} alt="logo" />
     </Link>
     <div className={style.header_user}>
       {/* <p className={style.header_user_name}>User Name</p> */}
-      <button onClick={()=>props.logOut()} type="button" className={style.header_user_logout}>Выйти</button>
+      <button onClick={this.onChengeModal} type="button" className={style.header_user_logout}>Выйти</button>
     </div>
+
+     {this.state.isOpenModal && (
+       <Modal  isOpen={this.state.isOpenModal} isClose={this.onChengeModal}/>
+     )}
+
   </div>
-//   <div className={style.modal}>
-//     <p className={style.modal_text}>Вы действительно хотите выйти?</p>
-//     <div className={style.modal_button}>
-//     <button type="button" className={style.modal_button_yes}>Да</button>
-//     <button type="button" className={style.modal_button_no}>Нет</button>
+    )
+  }
+}
+
+
+// const Header = (props) => {
+
+//     return (
+//   <div className={style.header}>
+//     <Link to="/dashboard">
+//       <img className={style.header_logo} src={svg} alt="logo" />
+//     </Link>
+//     <div className={style.header_user}>
+//       {/* <p className={style.header_user_name}>User Name</p> */}
+//       <button type="button" className={style.header_user_logout}>Выйти</button>
 //     </div>
 //   </div>
   
-)};
+// )};
 const mapDispatchToProps =  {
     logOut,
   };
