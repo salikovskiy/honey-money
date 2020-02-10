@@ -4,6 +4,7 @@ import { Bar } from 'react-chartjs-2';
 class BarChart extends Component {
   constructor(props) {
     super(props);
+    // console.log("PROPSLABLES",props.labels)
     this.chartReference = React.createRef();
     this.data = {
       labels: props.labels,

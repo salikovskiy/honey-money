@@ -8,11 +8,11 @@ export const getCategories = () => async (dispatch, getState) => {
     const response = await services.getAllCategories(
       getState().finance.authReducer.token,
     );
+    console.log("HERE", response)
     dispatch(getCategoriesSuccess(response.data.categories));
     return response.data.categories;
   } catch (error) {
     dispatch(fetchError(error.message));
-    console.log(error);
     throw new Error(error);
   }
 };
