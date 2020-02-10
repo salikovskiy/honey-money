@@ -17,6 +17,7 @@
   align-items: center;
   margin-right: 40px;
   padding-bottom: 50px;
+ 
 }
 
 .categoryWrapper:nth-child(3n + 3) {
@@ -83,6 +84,7 @@
     width: 688px;
     height: 335px;
     box-shadow: 7px 12.124px 20px 0px rgba(179, 185, 200, 0.4);
+    margin-bottom: 40px;
   }
 
   .categoryAmount {
