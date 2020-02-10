@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import css from './css/addIncome.module.css';
 import Calendar from 'react-calendar';
-//import Moment from 'react-moment';
+import ModalBackDrop from './../modalBackDrop/ModalBackDrop';
 var moment = require('moment');
 
 class AddIncome extends Component {
@@ -26,7 +26,6 @@ class AddIncome extends Component {
   };
 
   handleClearForm = e => {
-    /* e.preventDefault(); */
     this.setState({ value: '' });
   };
 
@@ -39,83 +38,96 @@ class AddIncome extends Component {
         date: moment(this.state.date).format('MM.DD.YYYY'),
       });
       this.handleClearForm();
-      this.props.closeModal();
-      // alert(`Вы внесли ${value} на баланс!`);
+      this.props.isOpen();
     } else {
-      alert('Внесите положительный баланс!');
+      alert('Внесите положительную сумму на баланс!');
     }
   };
   pickDate = async () => {
     await this.onChange();
     this.calendarOpen();
   };
-  /* backDropClick = e => {
-    console.log(e.target.className);
-    if (e.target.classList.contains('overlay')) {
-      alert('close!');
+
+  // handleKeyPress = async event => {
+  //   console.log('event', event.target.className);
+  //   if (event.code === 'Escape') {
+  //     this.setState({ calendar: false });
+  //   }
+  // };
+  backDropCalendar = event => {
+    const dataset = event.target.dataset;
+    if (dataset && dataset.modalcal === 'true') {
+      this.calendarOpen();
     }
-  }; */
+  };
 
   render() {
+    window.addEventListener('keyup', this.handleKeyPress);
+    console.log(this.props);
+
     return (
       <>
-        <div className={css.overlay} onClick={this.backDropClick}>
-          <div className={css.modalIncome}>
-            <span onClick={this.props.closeModal} className={css.close}></span>
+        <div className={css.modalIncome}>
+          <span onClick={this.props.isOpen} className={css.close}></span>
 
-            <form className={css.form} onSubmit={this.handleSubmit}>
-              <h2 className={css.addIncomeTittle}>Ввести доход</h2>
-              <div className={css.calendarDesk}>
+          <form className={css.form} onSubmit={this.handleSubmit}>
+            <h2 className={css.addIncomeTittle}>Ввести доход</h2>
+            <div className={css.calendarDesk}>
+              <div
+                onClick={this.calendarOpen}
+                className={css.calendarIconWrapper}
+              >
+                <i className={css.calendarIcon}></i>
+              </div>
+              {this.state.calendar && (
                 <div
-                  onClick={this.calendarOpen}
-                  className={css.calendarIconWrapper}
+                  data-modalcal={'true'}
+                  className={css.calendarOverlay}
+                  onClick={this.backDropCalendar}
                 >
-                  <i className={css.calendarIcon}></i>
-                </div>
-                {this.state.calendar && (
                   <Calendar
                     className={css.calendar}
                     onChange={this.onChange}
                     value={this.state.date}
                     maxDate={new Date()}
-                    minDate={this.props.regDate}
+                    minDate={new Date(this.props.date)}
                     onClickDay={this.pickDate}
                   />
-                )}
+                </div>
+              )}
 
-                <span className={css.dateLine}>
-                  {moment(this.state.date).format('MM.DD.YYYY')}
-                </span>
+              <span className={css.dateLine}>
+                {moment(this.state.date).format('MM.DD.YYYY')}
+              </span>
 
-                <input
-                  className={css.inptAddIncome}
-                  placeholder="введите сумму"
-                  value={this.state.value}
-                  onChange={this.handleChangeIncome}
-                  type="text"
-                />
-              </div>
-              <div className={css.btnWrapper}>
-                <button
-                  type="submit"
-                  className={`${css.btnAddIncome} ${css.btn}`}
-                >
-                  Ввод
-                </button>
-                <button
-                  type="reset"
-                  onClick={this.handleClearForm}
-                  className={`${css.btnReset} ${css.btn}`}
-                >
-                  Очистить
-                </button>
-              </div>
-            </form>
-          </div>
+              <input
+                className={css.inptAddIncome}
+                placeholder="00.00 грн"
+                value={this.state.value}
+                onChange={this.handleChangeIncome}
+                type="text"
+              />
+            </div>
+            <div className={css.btnWrapper}>
+              <button
+                type="submit"
+                className={`${css.btnAddIncome} ${css.btn}`}
+              >
+                Ввод
+              </button>
+              <button
+                type="reset"
+                onClick={this.handleClearForm}
+                className={`${css.btnReset} ${css.btn}`}
+              >
+                Очистить
+              </button>
+            </div>
+          </form>
         </div>
       </>
     );
   }
 }
 
-export default AddIncome;
+export default ModalBackDrop(AddIncome);

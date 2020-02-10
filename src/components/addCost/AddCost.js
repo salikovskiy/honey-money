@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
-import shortId from 'shortid';
-// import Select from "react-select";
+import CreatableSelect from 'react-select/creatable';
 import onFormatDate from '../../utilities/formatDate';
 import css from './addCost.module.css';
 import calendar from '../../assets/img/svg/calendar.svg';
+import services from '../../services/services';
+var moment = require('moment');
 
 class AddCost extends Component {
   state = {
@@ -13,6 +14,11 @@ class AddCost extends Component {
     openCalendar: false,
     descriptionCost: '',
     amountCost: '',
+    dateForBackend: moment(new Date()).format('YYYY-MM-DD'),
+    dateForBackendFull: moment(new Date()).format(),
+    options: [],
+    valueSelect: {},
+    id: 1,
   };
 
   componentDidMount() {
@@ -22,89 +28,166 @@ class AddCost extends Component {
   }
 
   onChangeDate = date => {
+    const dateForBackend = moment(date).format('YYYY-MM-DD');
+    const dateForBackendFull = moment(date).format();
     this.setState({ date: date, openCalendar: false });
     const newFormatDate = onFormatDate(date);
-    this.setState({ formatDate: newFormatDate });
+    this.setState({
+      formatDate: newFormatDate,
+      dateForBackend,
+      dateForBackendFull,
+    });
   };
 
   onOpenCalendar = () => {
     this.setState({ openCalendar: true });
   };
 
+  handleKeyPressCalendar = async event => {
+    if (event.code === 'Escape') {
+      this.setState({ openCalendar: false });
+    }
+  };
+
+  //   backDropCalendar = event => {
+  //     const dataset = event.target.dataset;
+  //     if (dataset && dataset.modal === 'true') {
+  //       this.setState({ openCalendar: false });
+  //     }
+  //   };
+
   onAddCost = e => {
     e.preventDefault();
     if (this.props.balance >= this.state.amountCost) {
-      this.props.getCost({
-        date: this.state.date,
-        formatDate: this.state.formatDate,
-        cost: this.state.descriptionCost,
-        sum: this.state.amountCost,
-        id: shortId(),
-      });
+      const objPostCost = {
+        date: this.state.dateForBackend,
+        product: {
+          productId: this.state.id,
+          amount: parseFloat(Number(this.state.amountCost).toFixed(2)),
+
+          date: this.state.dateForBackendFull,
+        },
+      };
+      console.log('objPostCost', objPostCost);
+      this.props.postCosts(objPostCost);
     } else {
       alert('Недостаточно средств!');
+    }
+    if (window.innerWidth < 768) {
+      this.props.closeModal();
     }
     this.onResetForm();
   };
 
   onResetForm = () => {
-    this.setState({ descriptionCost: '', amountCost: '' });
+    this.setState({
+      descriptionCost: {},
+      amountCost: '',
+      options: [],
+      date: new Date(),
+      formatDate: onFormatDate(new Date()),
+    });
   };
 
   onChangeInput = e => {
-    let result = '';
-    if (e.target.name === 'amountCost') {
-      if (!isNaN(e.target.value)) {
-        result = Number.parseFloat(e.target.value);
-      }
-    } else {
-      result = e.target.value;
+    if (e.target.value <= 99999999.99) {
+      this.setState({
+        amountCost: e.target.value,
+      });
     }
-    // const result =
-    //   e.target.name === 'amountCost' ? Number(e.target.value) : e.target.value;
-    this.setState({
-      [e.target.name]: result,
+  };
+
+  createOptions = async () => {
+    const responce = await services.getAllProducts(this.props.token);
+    const productArray = await responce.data.products;
+    const productOptions = await productArray.map(product => {
+      return {
+        value: `${product.name}  --- ${product.category.name}`,
+        label: `${product.name}  --- ${product.category.name}`,
+        id: product._id,
+      };
     });
+    this.setState({ options: productOptions });
+  };
+
+  handleChangeSelect = (newValue, actionMeta) => {
+    if (actionMeta.action === 'create-option') {
+      this.createNewProduct(newValue.value);
+    }
+
+    // console.dir(newValue);
+    const productId = newValue.id ? newValue.id : '';
+    // const productId = newValue.id;
+    console.log('newValue.id', newValue.id);
+    console.log('newValue', newValue);
+    this.setState({
+      descriptionCost: newValue,
+      id: productId,
+      //   valueSelect: newValue,
+    });
+  };
+
+  handleInputChangeSelect = (inputValue, actionMeta) => {
+    if (inputValue.length > 0) {
+      this.createOptions();
+    } else {
+      this.setState({ options: [] });
+    }
+    //   console.log(`action: ${actionMeta.action}`);
+  };
+
+  createNewProduct = value => {
+    console.log(`Нужно создать статью расходов ${value}`);
   };
 
   render() {
     const {
       openCalendar,
       formatDate,
-      descriptionCost,
       amountCost,
+      options,
+      valueSelect,
+      descriptionCost,
     } = this.state;
-    const { dateRegistration } = this.props;
+    const { dateRegistration, closeModal } = this.props;
+    window.addEventListener('keyup', this.handleKeyPressCalendar);
+
     return (
       <div className={css.container}>
         <h3 className={css.title}>Ввести расход</h3>
-        <span className={css.close}></span>
+        <span className={css.close} onClick={closeModal}></span>
         <button onClick={this.onOpenCalendar} className={css.cal}>
           <img src={calendar} alt="cal" />
         </button>
         {openCalendar && (
           <Calendar
+            className={css.calendar}
             onChange={this.onChangeDate}
             maxDate={new Date()}
-            minDate={dateRegistration}
+            minDate={new Date(dateRegistration)}
           />
         )}
         <span className={css.formatDate}>{formatDate}</span>
         <form className={css.form} onSubmit={this.onAddCost}>
           <div className={css.formOverlay}>
-            <input
+            <CreatableSelect
+              //   onClick={this.createOptions()}
               className={css.inputDescription}
-              required
-              tipe="text"
+              isClearable
+              onChange={this.handleChangeSelect}
+              onInputChange={this.handleInputChangeSelect}
               placeholder="Ввести расходы..."
-              name="descriptionCost"
-              onChange={this.onChangeInput}
+              noOptionsMessage={() => 'Уточните поиск...'}
+              formatCreateLabel={inputValue =>
+                `Создать новый типа расхода: ${inputValue}`
+              }
+              options={options}
               value={descriptionCost}
-            ></input>
+            />
             <input
               className={css.inputAmount}
               required
-              tipe="text"
+              type="text"
               placeholder="00.00 грн"
               name="amountCost"
               onChange={this.onChangeInput}

@@ -1,26 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import 'notyf/notyf.min.css';
-import { Notyf } from 'notyf/';
-import moment from 'moment';
+import { Notification } from 'react-pnotify';
 import css from './dashboardMenu.module.css';
-
-const notyf = new Notyf();
-const notyfMessage = notyf.error(
-  'Привет! Для начала работы внеси текущий баланс своего счета! Ты не можешь тратить деньги пока их у тебя нет :)',
-);
 
 const DashboardMenu = ({ changeModal, balance, date }) => (
   <div className={css.dashMenu__container}>
-    {moment().format('YYYYMMDD') !== moment(date).format('YYYYMMDD') &&
-    balance === 0
-      ? notyfMessage
-      : null}
+    {balance === 0 && (
+      <Notification
+        type="error"
+        title="Введите Ваш доход!"
+        text="Вы не можете вести расходы, пока ваш баланс 0, пополните пожалуйста баланс"
+        delay={2500}
+        shadow={true}
+      />
+    )}
     <div className={css.balance__wrapper}>
       <h2 htmlFor="input" className={css.balance__title}>
         БАЛАНС:
       </h2>
-      <span className={css.balance__value}>{balance}</span>
+      <span className={css.balance__value}>{balance}грн</span>
     </div>
 
     <button className={css.dashMenu__incomeBtn} onClick={changeModal}>
