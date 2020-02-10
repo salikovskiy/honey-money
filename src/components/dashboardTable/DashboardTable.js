@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../dashboardTable/DashBoardTable.module.css';
 import moment from 'moment';
-// import ModalDashboardTable from "../dashboardTable/modalDashboardTable/ModalDashboardTable"
+import shortid from 'shortid';
 
 const DashboardTable = ({ dataTable }) => {
   if (window.innerWidth < 768) {
