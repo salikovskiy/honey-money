@@ -60,6 +60,7 @@ class StatisticsPage extends Component {
   // передать пропами сумму расходов в CategoriesList
 
   render() {
+    console.log(this.props);
     const { currentDate } = this.state;
     // Компонент рендерит: StatisticMenu, StatisticAmounts,
     // CategoriesList, Chart

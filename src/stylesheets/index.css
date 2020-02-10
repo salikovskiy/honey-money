@@ -1,3 +1,7 @@
 @import './normalize.css';
 @import './fonts.css';
 @import './vars.css';
+
+* {
+    font-family: "Roboto", sans-serif;
+}
