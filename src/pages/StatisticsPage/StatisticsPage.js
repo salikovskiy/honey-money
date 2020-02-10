@@ -30,8 +30,7 @@ class StatisticsPage extends Component {
   state = {
     selectedCategory: 'продукты',
     currentDate: '',
-    allCategories: [],
-
+    // allCategories: [],
     date: dateNow,
     dateRegistration: this.props.finance.authReducer.createdAt,
   };
@@ -44,9 +43,9 @@ class StatisticsPage extends Component {
     });
     const data = await getCategories();
     console.log('data :', data);
-    this.setState({
-      allCategories: this.props.finance.categories,
-    });
+    // this.setState({
+    //   allCategories: this.props.finance.categories,
+    // });
   }
 
   componentDidUpdate() {
@@ -101,6 +100,8 @@ class StatisticsPage extends Component {
     const balance = this.props.finance.balance;
     const costsMonth = this.handleGetCostsMonth();
     const incomesMonth = this.handleGetIncomeMonth();
+    const categories = this.props.finance.categories;
+    // console.log('3333333333333333 :', categories);
 
     return (
       <div className={s.wrapper}>
@@ -110,8 +111,12 @@ class StatisticsPage extends Component {
           balance={balance}
           monthChange={this.handleMonthChange}
         />
-        <StatisticAmounts costsMonth={costsMonth} incomesMonth={incomesMonth} />
-        <CategoriesList categories={this.props.finance.categories} />
+        <StatisticAmounts
+          categories={categories}
+          costsMonth={costsMonth}
+          incomesMonth={incomesMonth}
+        />
+        <CategoriesList categories={categories} />
         <BarChart labels={labels} data={data} />
       </div>
     );
