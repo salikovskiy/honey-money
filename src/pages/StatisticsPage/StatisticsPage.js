@@ -22,126 +22,51 @@ const labels = [
 ];
 const data = [65, 59, 80, 11, 56, 55, 40, 3, 59, 80];
 
-// class StatisticsPage extends Component {
-//   state = {
-//     // Хранить в стейте какая именно категория
-//     // выбрана и текущуюю дату (по ней определяется месяц)
-//     selectedCategory: 'продукты',
-//     currentDate: '',
-//     allCategories: [],
-//   };
-
-//   async componentDidMount() {
-//     this.setState({
-//       currentDate: moment()
-//         .format('MMMM YYYY')
-//         .toUpperCase(),
-//     });
-//     const data = await getCategories();
-//     console.log('data :', data);
-//   }
-
-//   // Написать операцию (ГЕТ запрос) с измененным
-//   // месяцем и текущей категорией в стейте и прокинуть
-//   // в StatisticsMenu на переключение месяцев
-
-//   componentDidUpdate() {
-//     // console.log('this.props2222', this.props);
-//     // Из текущего массива расходов, формирует каждый
-//     // раз в componentDidUpdate объект категории и
-//     // суммарной сумме по данной категории и передает
-//     // его пропом в ChartStatisticByCategory для
-//     // отображения  (формат объекта согласовать с тем
-//     //   кто будет делать ChartStatisticByCategory)
-//   }
-
-//   // передать пропами data в StatisticAmounts
-
-//   // передать пропами сумму расходов в CategoriesList
-
-//   render() {
-//     const { currentDate } = this.state;
-//     // Компонент рендерит: StatisticMenu, StatisticAmounts,
-//     // CategoriesList, Chart
-//     return (
-//       <div className={s.wrapper}>
-//         <StatisticsMenu currentDate={currentDate} />
-//         <StatisticAmounts />
-//         <CategoriesList />
-//         <BarChart labels={labels} data={data} />
-//       </div>
-//     );
-//   }
-// }
-
-let costsMonth = 0;
-let incomesMonth = 0;
-
-const dateNow = moment().format();
-
 class StatisticsPage extends Component {
   state = {
-    date: dateNow,
-    dateRegistration: this.props.finance.authReducer.createdAt,
+    // Хранить в стейте какая именно категория
+    // выбрана и текущуюю дату (по ней определяется месяц)
+    selectedCategory: 'продукты',
+    currentDate: '',
+    allCategories: [],
   };
 
-  handleMonthChange = e => {
-    if (e.target.name === 'leftBtn') {
-      this.setState({
-        date: moment(this.state.date)
-          .add(-1, 'month')
-          .format(),
-      });
-    }
+  async componentDidMount() {
+    this.setState({
+      currentDate: moment()
+        .format('MMMM YYYY')
+        .toUpperCase(),
+    });
+    const data = await getCategories();
+    console.log('data :', data);
+  }
 
-    if (e.target.name === 'rightBtn') {
-      this.setState({
-        date: moment(this.state.date)
-          .add(+1, 'month')
-          .format(),
-      });
-    }
-  };
+  // Написать операцию (ГЕТ запрос) с измененным
+  // месяцем и текущей категорией в стейте и прокинуть
+  // в StatisticsMenu на переключение месяцев
 
-  handleGetCostsMonth = () => {
-    if (this.props.finance.costs.length > 0) {
-      costsMonth = this.props.finance.costs
-        .filter(
-          item =>
-            moment(item.date).format('YYYYMM') ===
-            moment(this.state.date).format('YYYYMM'),
-        )
-        .reduce((acc, el) => acc + el.amount, 0);
-    }
-    return costsMonth;
-  };
+  componentDidUpdate() {
+    // console.log('this.props2222', this.props);
+    // Из текущего массива расходов, формирует каждый
+    // раз в componentDidUpdate объект категории и
+    // суммарной сумме по данной категории и передает
+    // его пропом в ChartStatisticByCategory для
+    // отображения  (формат объекта согласовать с тем
+    //   кто будет делать ChartStatisticByCategory)
+  }
 
-  handleGetIncomeMonth = () => {
-    if (this.props.finance.incomes.length > 0) {
-      incomesMonth = this.props.finance.incomes
-        .filter(
-          item =>
-            moment(item.date).format('YYYYMM') ===
-            moment(this.state.date).format('YYYYMM'),
-        )
-        .reduce((acc, el) => acc + el.amount, 0);
-    }
-    return incomesMonth;
-  };
+  // передать пропами data в StatisticAmounts
+
+  // передать пропами сумму расходов в CategoriesList
 
   render() {
-    const balance = this.props.finance.balance;
-    const costsMonth = this.handleGetCostsMonth();
-    const incomesMonth = this.handleGetIncomeMonth();
+    const { currentDate } = this.state;
+    // Компонент рендерит: StatisticMenu, StatisticAmounts,
+    // CategoriesList, Chart
     return (
       <div className={s.wrapper}>
-        <StatisticsMenu
-          date={this.state.date}
-          dateRegistration={this.state.dateRegistration}
-          balance={balance}
-          monthChange={this.handleMonthChange}
-        />
-        <StatisticAmounts costsMonth={costsMonth} incomesMonth={incomesMonth} />
+        <StatisticsMenu currentDate={currentDate} />
+        <StatisticAmounts />
         <CategoriesList />
         <BarChart labels={labels} data={data} />
       </div>
