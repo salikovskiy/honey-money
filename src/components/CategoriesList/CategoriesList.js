@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import './CategoriesList.css';
+import categoriesData from './categoryData.json';
+import './CategoriesList.module.css';
+import css from './CategoriesList.module.css';
 import alcohol from '../../assets/icons/alcohol/cocktail.svg';
 import invorce from '../../assets/icons/communal/invoice.svg';
 import entertaiment from '../../assets/icons/entertainment/kite.svg';
@@ -12,102 +14,82 @@ import tools from '../../assets/icons/tools/tools.svg';
 import transport from '../../assets/icons/transport/car.svg';
 import other from '../../assets/icons/ufo/ufo.svg';
 
+const transformIcon = {
+  Транспорт: transport,
+  Хобби: hobby,
+  Прочее: other,
+  Алкоголь: alcohol,
+  Здоровье: health,
+  'Все для дома': household,
+  Техника: tools,
+  'Коммуналка,Связь': invorce,
+  Образование: learning,
+  Развлечение: entertaiment,
+  Продукты: products,
+  'Все категории': other,
+};
+
 class CategoriesList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentId: null,
+    };
+  }
+
+  handleChangeBackground = (evt, id) => {
+    evt.target
+      .closest('ul')
+      .querySelectorAll('img')
+      .forEach(elem => {
+        elem.parentElement.classList.replace(css.selected, css.svgWrapper);
+      });
+    if (!evt.target.parentElement.classList.contains(css.selected)) {
+      evt.target.parentElement.classList.replace(css.selected, css.svgWrapper);
+    } else if (evt.target.parentElement.id) {
+      evt.target.parentElement.classList.replace(css.svgWrapper, css.selected);
+    }
+  };
+
+  backgroundChange(e, id) {
+    let unicId = id === this.state.currentId ? null : id;
+    this.setState({
+      currentId: unicId,
+    });
+  }
   render() {
     // console.log('this.props 5555555555555555:', this.props);
     return (
-      <div className="categoriesWrap">
-        <ul className="categoryList">
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper">
-              <img alt="products" className="categoryIcon" src={products} />
-            </div>
-            <p className="categoryName">Продукты</p>
-          </li>
-
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper">
-              <img alt="alcohol" className="categoryIcon" src={alcohol}></img>
-            </div>
-            <p className="categoryName">алкоголь</p>
-          </li>
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper">
-              <img
-                alt="entertaiment"
-                className="categoryIcon"
-                src={entertaiment}
-              ></img>
-            </div>
-            <p className="categoryName">развлечение</p>
-          </li>
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper">
-              <img alt="health" className="categoryIcon" src={health}></img>
-            </div>
-            <p className="categoryName">здоровье</p>
-          </li>
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper ">
-              <img
-                alt="transport"
-                className="categoryIcon"
-                src={transport}
-              ></img>
-            </div>
-            <p className="categoryName">транспорт</p>
-          </li>
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper ">
-              <img
-                alt="household"
-                className="categoryIcon"
-                src={household}
-              ></img>
-            </div>
-            <p className="categoryName">все для дома</p>
-          </li>
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper ">
-              <img alt="tools" className="categoryIcon" src={tools}></img>
-            </div>
-            <p className="categoryName">техника</p>
-          </li>
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper ">
-              <img alt="communals" className="categoryIcon" src={invorce}></img>
-            </div>
-            <p className="categoryName">комуналка</p>
-          </li>
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper">
-              <img alt="hobby" className="categoryIcon" src={hobby}></img>
-            </div>
-            <p className="categoryName">хобби</p>
-          </li>
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper ">
-              <img alt="book" className="categoryIcon" src={learning}></img>
-            </div>
-            <p className="categoryName">образование</p>
-          </li>
-          <li className="categoryWrapper">
-            <p className="categoryAmount">5000</p>
-            <div className="svgWrapper ">
-              <img alt="ufo" className="categoryIcon" src={other}></img>
-            </div>
-            <p className="categoryName">прочее</p>
-          </li>
+      <div className={css.categoriesWrap}>
+        <ul className={css.categoryList}>
+          {categoriesData.map(item => (
+            <li
+              key={item._id}
+              id={item._id}
+              className={css.categoryWrapper}
+              onClick={e => this.backgroundChange(e, item._id)}
+            >
+              <p className={css.categoryAmount}>5000</p>
+              <div
+                key={item._id}
+                className={
+                  item._id === this.state.currentId
+                    ? css.selected
+                    : css.svgWrapper
+                }
+                id={item._id}
+              >
+                <img
+                  width="100%"
+                  height="100%"
+                  alt={item.name}
+                  src={transformIcon[item.name]}
+                  className={css.categoryIcon}
+                />
+              </div>
+              <p className={css.categoryName}>{item.name}</p>
+            </li>
+          ))}
         </ul>
       </div>
     );
