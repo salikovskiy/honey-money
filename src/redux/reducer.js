@@ -6,6 +6,8 @@ const initState = { authError: null, createdAt: '' };
 
 const costs = (state = [], { type, payload }) => {
   switch (type) {
+    case Type.COSTS_POST_SUCCESS:
+      return [...state, payload.obj];
     case Type.GET_COSTS_SUCCESS:
       return payload.arr;
     case Type.COSTS_DELETE_SUCCESS:

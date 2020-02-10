@@ -58,6 +58,7 @@ class CategoriesList extends Component {
     });
   }
   render() {
+    console.log('this.props 5555555555555555:', this.props);
     return (
       <div className={css.categoriesWrap}>
         <ul className={css.categoryList}>
