@@ -8,7 +8,7 @@ import 'moment/locale/ru';
 import { connect } from 'react-redux';
 import { deleteCosts } from '../../../redux/operations';
 import ModalDashboardTable from '../../dashboardTable/modalDashboardTable/ModalDashboardTable';
-
+import { getTransactions } from '../../../redux/operations';
 //import PropTypes from 'prop-types';
 
 ///В статистике посмотреть оранжевые кнопки!!!!!!
