@@ -16,10 +16,10 @@ const dateNow = moment().format();
 
 class StatisticsPage extends Component {
   state = {
-    selectedCategory: 'продукты',
+    selectedCategory: 'Все категории',
     date: dateNow,
     dateRegistration: this.props.finance.authReducer.createdAt,
-   labels: []
+    statisticListData: [],
   };
 
   async componentDidMount() {
@@ -28,21 +28,40 @@ class StatisticsPage extends Component {
         .format('MMMM YYYY')
         .toUpperCase(),
     });
-    const data =  await this.props.getCategories();
-  //   const labels = await data.map(elem=>elem.name)
-  //  this.setState({labels})
-    console.log('DATAAAAAAAAAAA', this.props.finance.categories.map(elem=>elem.name));
-    const labels = this.props.finance.categories.map(elem=>elem.name)
- 
+
+    console.log('this.props.finance:', this.props.finance);
+    let amount = 0;
+    this.setState({
+      statisticListData: this.props.finance.categories.map(el => {
+        this.props.finance.costs.map(item => {
+          if (el.name === item.product.category.name) {
+            console.log('el2345678 :', (amount += item.amount));
+            amount = item.amount;
+            // console.log('el name :', el.name);
+            // console.log('object :', el.amount);
+            // x = item.amount.reduce((acc, cur) => acc + cur, 0);
+          } else {
+            amount = 0;
+          }
+        });
+        return {
+          name: el.name,
+          id: el._id,
+          amount,
+        };
+      }),
+    });
+
+    await this.props.getCategories();
   }
 
- async componentDidUpdate(prevProps, prevState) {
-    // console.log('this.props2222', this.props.finance.categories);
-    if(JSON.stringify(prevState.labels) !== JSON.stringify(this.state.labels)) {
-  //     const data =  await this.props.getCategories();
-  //   const labels = await data.map(elem=>elem.name)
-  //  this.setState({labels})
-  console.log("YESS")
+  async componentDidUpdate(prevProps, prevState) {
+    if (
+      JSON.stringify(prevState.labels) !== JSON.stringify(this.state.labels)
+    ) {
+      // const data = await this.props.getCategories();
+      // const labels = await data.map(elem => elem.name);
+      // this.setState({ labels });
     }
   }
 
@@ -91,16 +110,13 @@ class StatisticsPage extends Component {
   };
 
   render() {
-    console.log("LABELS",this.state.labels)
     const balance = this.props.finance.balance;
     const costsMonth = this.handleGetCostsMonth();
     const incomesMonth = this.handleGetIncomeMonth();
     const categories = this.props.finance.categories;
-<<<<<<< HEAD
-    console.log('categories :', categories);
-=======
-    console.log('3333333333333333 :', categories);
->>>>>>> dev
+    const selectedCategory = this.state.selectedCategory;
+    const { statisticListData } = this.state;
+    console.log('statisticListData :', statisticListData);
 
     return (
       <div className={s.wrapper}>
@@ -115,12 +131,12 @@ class StatisticsPage extends Component {
           costsMonth={costsMonth}
           incomesMonth={incomesMonth}
         />
-        <CategoriesList categories={categories} />
-<<<<<<< HEAD
-        <BarChart labels={categories} data={data} />
-=======
-        <BarChart labels={this.props.finance.categories.map(elem=>elem.name)} data={data} />
->>>>>>> dev
+        <CategoriesList categoriesData={statisticListData} />
+        <BarChart
+          labels={this.props.finance.categories.map(elem => elem.name)}
+          data={data}
+          selectedCategory={selectedCategory}
+        />
       </div>
     );
   }

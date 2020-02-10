@@ -10,7 +10,7 @@ class BarChart extends Component {
       labels: props.labels,
       datasets: [
         {
-          label: 'Label',
+          label: this.props.selectedCategory,
           backgroundColor: '#fc822c',
           borderColor: '#fc822c',
           borderWidth: 1,

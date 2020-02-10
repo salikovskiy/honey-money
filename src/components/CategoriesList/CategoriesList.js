@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import categoriesData from './categoryData.json';
+// import categoriesData from './categoryData.json';
 import './CategoriesList.module.css';
 import css from './CategoriesList.module.css';
 import alcohol from '../../assets/icons/alcohol/cocktail.svg';
@@ -58,21 +58,17 @@ class CategoriesList extends Component {
     });
   }
   render() {
-<<<<<<< HEAD
-=======
-    console.log('this.props 5555555555555555:', this.props);
->>>>>>> dev
     return (
       <div className={css.categoriesWrap}>
         <ul className={css.categoryList}>
-          {categoriesData.map(item => (
+          {this.props.categoriesData.map(item => (
             <li
               key={item._id}
               id={item._id}
               className={css.categoryWrapper}
               onClick={e => this.backgroundChange(e, item._id)}
             >
-              <p className={css.categoryAmount}>5000</p>
+              <p className={css.categoryAmount}>{item.amount}</p>
               <div
                 key={item._id}
                 className={
