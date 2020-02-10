@@ -1,5 +1,6 @@
 .categoriesWrap {
   width: 320px;
+  margin: 0 auto;
 }
 
 .categoryList {
@@ -116,6 +117,7 @@
     margin-right: 90px;
   }
 }
+
 @media (min-width: 1280px) {
   .categoriesWrap {
     border-radius: 20px;

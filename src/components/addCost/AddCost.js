@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
-// import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import onFormatDate from '../../utilities/formatDate';
 import css from './addCost.module.css';
@@ -18,6 +17,8 @@ class AddCost extends Component {
     dateForBackend: moment(new Date()).format('YYYY-MM-DD'),
     dateForBackendFull: moment(new Date()).format(),
     options: [],
+    valueSelect: {},
+    id: 1,
   };
 
   componentDidMount() {
@@ -42,12 +43,18 @@ class AddCost extends Component {
     this.setState({ openCalendar: true });
   };
 
-  backDropCalendar = event => {
-    const dataset = event.target.dataset;
-    if (dataset && dataset.modal === 'true') {
+  handleKeyPressCalendar = async event => {
+    if (event.code === 'Escape') {
       this.setState({ openCalendar: false });
     }
   };
+
+  //   backDropCalendar = event => {
+  //     const dataset = event.target.dataset;
+  //     if (dataset && dataset.modal === 'true') {
+  //       this.setState({ openCalendar: false });
+  //     }
+  //   };
 
   onAddCost = e => {
     e.preventDefault();
@@ -61,21 +68,28 @@ class AddCost extends Component {
           date: this.state.dateForBackendFull,
         },
       };
-      //   console.log('objPostCost->', objPostCost);
-      //   console.log('this.props', this.props);
+      console.log('objPostCost', objPostCost);
       this.props.postCosts(objPostCost);
     } else {
       alert('Недостаточно средств!');
+    }
+    if (window.innerWidth < 768) {
+      this.props.closeModal();
     }
     this.onResetForm();
   };
 
   onResetForm = () => {
-    this.setState({ descriptionCost: '', amountCost: '', options: [] });
+    this.setState({
+      descriptionCost: {},
+      amountCost: '',
+      options: [],
+      date: new Date(),
+      formatDate: onFormatDate(new Date()),
+    });
   };
 
   onChangeInput = e => {
-    // let result = '';
     if (e.target.value <= 99999999.99) {
       this.setState({
         amountCost: e.target.value,
@@ -85,24 +99,15 @@ class AddCost extends Component {
 
   createOptions = async () => {
     const responce = await services.getAllProducts(this.props.token);
-    // console.log('responce', responce.data.products);
     const productArray = await responce.data.products;
-    // console.log('productArray', productArray);
-    // console.log('this.props.products in createOptions', this.props.products);
-    // const productOptions = this.props.products.map(product => {
     const productOptions = await productArray.map(product => {
-      //   console.log('product', product.category.name);
-      // let productName = product.name;
-      // let categoryName = product.category.name;
       return {
         value: `${product.name}  --- ${product.category.name}`,
         label: `${product.name}  --- ${product.category.name}`,
         id: product._id,
       };
     });
-    // console.log('productOptions', productOptions);
     this.setState({ options: productOptions });
-    // return productOptions;
   };
 
   handleChangeSelect = (newValue, actionMeta) => {
@@ -110,27 +115,25 @@ class AddCost extends Component {
       this.createNewProduct(newValue.value);
     }
 
-    console.dir(newValue);
-    // console.group('Value Changed');
+    // console.dir(newValue);
     const productId = newValue.id ? newValue.id : '';
-    console.log('newValue.id', newValue.id);
     // const productId = newValue.id;
-    this.setState({ descriptionCost: newValue, id: productId });
-    // console.log(newValue);
-    // console.log(`action: ${actionMeta.action}`);
-    // console.groupEnd();
+    console.log('newValue.id', newValue.id);
+    console.log('newValue', newValue);
+    this.setState({
+      descriptionCost: newValue,
+      id: productId,
+      //   valueSelect: newValue,
+    });
   };
 
   handleInputChangeSelect = (inputValue, actionMeta) => {
-    // if (inputValue.length > 2) {
-    //   //   console.log('открываем селект');
-    //   this.createOptions();
-    // } else {
-    //   this.setState({ options: [] });
-    // }
-    //   console.group('Input Changed');
+    if (inputValue.length > 0) {
+      this.createOptions();
+    } else {
+      this.setState({ options: [] });
+    }
     //   console.log(`action: ${actionMeta.action}`);
-    //   console.groupEnd();
   };
 
   createNewProduct = value => {
@@ -141,86 +144,70 @@ class AddCost extends Component {
     const {
       openCalendar,
       formatDate,
-      descriptionCost,
       amountCost,
       options,
+      valueSelect,
+      descriptionCost,
     } = this.state;
-    const { dateRegistration } = this.props;
+    const { dateRegistration, closeModal } = this.props;
+    window.addEventListener('keyup', this.handleKeyPressCalendar);
 
     return (
-      <div className={css.overlay}>
-        <div className={css.container}>
-          <h3 className={css.title}>Ввести расход</h3>
-          <span className={css.close}></span>
-          <button onClick={this.onOpenCalendar} className={css.cal}>
-            <img src={calendar} alt="cal" />
-          </button>
-          {openCalendar && (
-            <div
-              data-modal={'true'}
-              className={css.calendarOverlay}
-              onClick={this.backDropCalendar}
-            >
-              <Calendar
-                className={css.calendar}
-                onChange={this.onChangeDate}
-                maxDate={new Date()}
-                minDate={new Date(dateRegistration)}
-              />
-            </div>
-          )}
-          <span className={css.formatDate}>{formatDate}</span>
-          <form className={css.form} onSubmit={this.onAddCost}>
-            <div className={css.formOverlay}>
-              <CreatableSelect
-                onClick={this.createOptions()}
-                className={css.inputDescription}
-                isClearable
-                //   onCreateOption={()}
-                onChange={this.handleChangeSelect}
-                onInputChange={this.handleInputChangeSelect}
-                placeholder="Ввести расходы..."
-                noOptionsMessage={() => 'Уточните поиск...'}
-                formatCreateLabel={inputValue =>
-                  `Создать новый типа расхода: ${inputValue}`
-                }
-                options={options}
-                //   options={options}
-              />
-              {/* <input
+      <div className={css.container}>
+        <h3 className={css.title}>Ввести расход</h3>
+        <span className={css.close} onClick={closeModal}></span>
+        <button onClick={this.onOpenCalendar} className={css.cal}>
+          <img src={calendar} alt="cal" />
+        </button>
+        {openCalendar && (
+          <Calendar
+            className={css.calendar}
+            onChange={this.onChangeDate}
+            maxDate={new Date()}
+            minDate={new Date(dateRegistration)}
+          />
+        )}
+        <span className={css.formatDate}>{formatDate}</span>
+        <form className={css.form} onSubmit={this.onAddCost}>
+          <div className={css.formOverlay}>
+            <CreatableSelect
+              //   onClick={this.createOptions()}
               className={css.inputDescription}
-              required
-              tipe="text"
+              isClearable
+              onChange={this.handleChangeSelect}
+              onInputChange={this.handleInputChangeSelect}
               placeholder="Ввести расходы..."
-              name="descriptionCost"
-              onChange={this.onChangeInput}
+              noOptionsMessage={() => 'Уточните поиск...'}
+              formatCreateLabel={inputValue =>
+                `Создать новый типа расхода: ${inputValue}`
+              }
+              options={options}
               value={descriptionCost}
-            ></input> */}
-              <input
-                className={css.inputAmount}
-                required
-                type="text"
-                placeholder="00.00 грн"
-                name="amountCost"
-                onChange={this.onChangeInput}
-                value={amountCost}
-                pattern="[0-9]+([.][0-9]{1,2}){0,1}"
-              ></input>
-            </div>
-            <div className={css.overlayBtn}>
-              <button className={`${css.btn} ${css.btnSubmit}`} type="submit">
-                Подтвердить
-              </button>
-              <button
-                className={`${css.btn} ${css.btnReset}`}
-                type="reset"
-                onClick={this.onResetForm}
-              >
-                Очистить
-              </button>
-            </div>
-          </form>
-        </div>
+            />
+            <input
+              className={css.inputAmount}
+              required
+              type="text"
+              placeholder="00.00 грн"
+              name="amountCost"
+              onChange={this.onChangeInput}
+              value={amountCost}
+              pattern="[0-9]+([.][0-9]{1,2}){0,1}"
+            ></input>
+          </div>
+          <div className={css.overlayBtn}>
+            <button className={`${css.btn} ${css.btnSubmit}`} type="submit">
+              Подтвердить
+            </button>
+            <button
+              className={`${css.btn} ${css.btnReset}`}
+              type="reset"
+              onClick={this.onResetForm}
+            >
+              Очистить
+            </button>
+          </div>
+        </form>
       </div>
     );
   }
