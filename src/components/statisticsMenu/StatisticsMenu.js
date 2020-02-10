@@ -92,8 +92,8 @@ class StatisticsMenu extends Component {
                 disabled={this.handlePrevMonth()}
               ></button>
               <p className={styles.statisticsMenu_calendar_months}>
-                {/* {moment(this.state.date).format('MMMM YYYY')} */}
-                {this.props.currentDate}
+                {moment(this.state.date).format('MMMM YYYY')}
+                {/* {this.props.currentDate} */}
               </p>
               <button
                 className={
