@@ -20,22 +20,22 @@
   position: relative;
 }
 .tableScroll {
-  width: 312px;
-  height: 331px;
-  padding-left: 17px;
-  padding-top: 10px;
+  width: 295px;
+  height: 323px;
+  padding-left: 1px;
+  padding-top: 1px;
   margin-bottom: 25px;
   overflow: auto;
+  padding-bottom: 1px;
 }
 .tableWrapper .table {
-  width: 670px;
   height: 320px;
 }
 
 .tableWrapper .table .thead .th .text {
   position: absolute;
   top: -20px;
-  z-index: 2;
+  /* z-index: 2; */
   width: 35%;
   border: 1px solid red;
 }
@@ -80,41 +80,58 @@
 }
 
 .price {
-  margin-top: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 19px;
   color: #ff6c00;
   margin-bottom: 15px;
   background: white;
 }
 
 .cover {
+  width: 65px;
   display: flex;
   flex-direction: column;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-left: 10px;
+  margin-right: 5px;
 }
 
 .discription {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
   font-weight: 700;
-  color: #52555f;
+  font-size: 12px;
+  padding-bottom: 5px;
   margin: 0;
   display: block;
+  color: rgba(82, 85, 95, 255);
 }
 
 .date {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 9px;
   display: block;
   margin-right: 15px;
+  color: rgba(138, 140, 149, 255);
 }
 
 .categore {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;
+  font-size: 12px;
   margin-top: 26px;
   margin-right: 30px;
+  color: rgba(138, 140, 149, 255);
 }
 
 .btn {
-  margin-left: 6px;
+  margin-top: 15px;
   width: 20px;
   height: 20px;
   background-color: transparent;
@@ -160,14 +177,20 @@
   border-top: 1px solid #959595;
 }
 
+.overModile {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (min-width: 768px) {
   .tableWrapper {
     position: relative;
   }
   .tableScroll {
-    width: 690px;
+    width: 680px;
     height: 451px;
-    padding: 10px;
+    /* padding: 10px; */
     overflow: auto;
   }
   .tableWrapper table {
@@ -197,6 +220,7 @@
     text-align: left;
     border-collapse: collapse;
     border-radius: 5px;
+    padding-bottom: 5px;
     box-shadow: 0 0 0 1px #959595;
     color: #323232;
   }
@@ -207,7 +231,6 @@
 
   .price {
     border-top: 1px solid #959595;
-
     width: 134px;
   }
   .tbody {
@@ -217,6 +240,11 @@
 
   .tbody .tr {
     height: 45px;
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(82, 85, 95, 255);
   }
 
   .th {
@@ -236,11 +264,12 @@
   }
 
   .btn {
-    margin-left: 10px;
+    margin-right: 30px;
     width: 20px;
     height: 20px;
     background-color: transparent;
     border: none;
+    margin-top: -5px;
   }
   .btn:hover {
     background-color: #f5f7fa;
@@ -264,11 +293,22 @@
   .table .th:first-child {
     border-top-left-radius: 5px;
   }
+
+  .table .td:first-child {
+    border-bottom-left-radius: 0px;
 }
+
+
+.overlay {
+  display: flex;
+  justify-content: space-between;
+}
+  }
+
 
 @media (min-width: 1280px) {
   .tableScroll {
-    width: 780px;
+    width: 770px;
     height: 502px;
   }
 
@@ -287,5 +327,18 @@
     background-color: #f5f7fa;
     background-position: bottom;
     border-radius: 50%;
+  }
+
+  .overlayDesc {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .tbody .tr {
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      color: rgba(82, 85, 95, 255);
   }
 }

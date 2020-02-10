@@ -1,6 +1,20 @@
 /* body {
   background-color: grey;
 } */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.149);
+  z-index: 1;
+}
+
 .container {
   position: relative;
   width: 320px;
@@ -8,7 +22,11 @@
   border-radius: 25px;
   background-color: #fff;
   padding: 42px 20px 50px;
+  /* z-index: 3; */
 }
+/* .select {
+  widows: 300px;
+} */
 
 .close {
   position: absolute;
@@ -68,6 +86,27 @@
   width: 20px;
   height: 20px;
   margin: auto;
+}
+
+.calendarOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  z-index: 10;
+}
+
+.calendar {
+  position: absolute;
+  z-index: 1000;
+  width: 320px;
+  /* left: 50%;
+  transform: translateX(-50%);
+  top: 200px; */
 }
 
 .formatDate {
@@ -156,7 +195,50 @@
   transform: translateY(2px);
 }
 
+.inputDescription {
+  padding: 0;
+}
+
+.inputDescription > div:nth-child(1) {
+  height: 100%;
+  border: none;
+}
+
+.inputDescription > div:nth-child(2) {
+  height: 100%;
+  border: none;
+  margin: 0;
+}
+.inputDescription > div:nth-child(3)::-webkit-scrollbar {
+  width: 6px;
+}
+
+.inputDescription > div:nth-child(3)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.inputDescription > div:nth-child(3)::-webkit-scrollbar-thumb {
+  background: #ff6c00;
+  border-radius: 10px;
+}
+
+.inputDescription > div:nth-child(3)::-webkit-scrollbar-thumb:hover {
+  background: #e6660c;
+}
+
 @media (min-width: 768px) {
+  .overlay {
+    position: relative;
+    width: 670px;
+    height: 104px;
+    border-radius: 0;
+    padding: 0;
+    background-color: transparent;
+    /* background-color: #fff; */
+    display: flex;
+    /* display: none; */
+    /* z-index: 0; */
+  }
   .container {
     width: 670px;
     height: 104px;
@@ -222,6 +304,11 @@
 }
 
 @media (min-width: 1280px) {
+  .overlay {
+    width: 1028px;
+    height: 46px;
+    /* z-index: 0; */
+  }
   .container {
     width: 1028px;
     height: 46px;

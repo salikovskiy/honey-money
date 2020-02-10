@@ -24,12 +24,17 @@
 
 .mounth {
   font-family: 'Roboto', sans-serif;
-  color: #52555f;
   font-weight: 700;
   text-align: left;
   font-size: 14px;
-
   padding: 17px 17px;
+}
+.mounth:first-letter {
+  text-transform: uppercase;
+}
+
+.mounth:first-letter {
+  text-transform: uppercase;
 }
 
 .mounth:first-letter {
@@ -38,7 +43,6 @@
 
 .price {
   font-family: 'Roboto', sans-serif;
-  color: #52555f;
   font-size: 14px;
   font-weight: 700;
   padding-right: 17px;
@@ -53,9 +57,15 @@
   text-align: center;
 }
 
-.tr:hover td {
+/* .tr:active td {
   color: #fe710d;
   cursor: pointer;
+} */
+.orange {
+  color: #fe710d;
+}
+.tr {
+  color: #52555f;
 }
 
 @media (min-width: 768px) {

@@ -6,19 +6,19 @@ class BarChart extends Component {
     super(props);
     this.chartReference = React.createRef();
     this.data = {
-        labels: props.labels,
-        datasets: [
-          {
-            label: "Label",
-            backgroundColor: '#fc822c',
-            borderColor: '#fc822c',
-            borderWidth: 1,
-            hoverBackgroundColor: '#fedac2',
-            hoverBorderColor: '#fedac2',
-            data: props.data
-          },
-        ],
-      };
+      labels: props.labels,
+      datasets: [
+        {
+          label: 'Label',
+          backgroundColor: '#fc822c',
+          borderColor: '#fc822c',
+          borderWidth: 1,
+          hoverBackgroundColor: '#fedac2',
+          hoverBorderColor: '#fedac2',
+          data: props.data,
+        },
+      ],
+    };
   }
 
   componentDidMount() {
@@ -27,7 +27,6 @@ class BarChart extends Component {
 
   render() {
     return (
-   
       <div style={{
               width: "688px",
               height: '350px',

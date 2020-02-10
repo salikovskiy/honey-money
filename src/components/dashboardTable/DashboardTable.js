@@ -1,295 +1,275 @@
-import React, { Component } from 'react';
+import React from 'react';
 import css from '../dashboardTable/DashBoardTable.module.css';
+import moment from 'moment';
+import shortid from 'shortid';
 
-export default class App extends Component {
-  render() {
-    if (window.innerWidth < 768) {
-      console.log('min 768');
-      // modalWindow.innerHTML = modalMobile(data.goal);
-      return (
-        <div className={css.tableWrapper}>
-          <div className={css.tableScroll}>
-            <table className={css.table}>
-              <thead className={css.thead}>
-                <tr className={css.tr}>
-                  <th className={css.th}>Расходы</th>
-                </tr>
-              </thead>
-              <tbody className={css.tbody}>
-                <tr className={css.tr}>
-                  <td className={css.row}>
-                    <span className={css.cover}>
-                      <p className={css.discription}>Метро</p>
-                      <span className={css.date}>30.01.2020</span>
-                    </span>
-                    <span className={css.categore}>Транспорт</span>
-                    <p className={css.price}>
-                      -30.00 грн.
-                      <button className={css.btn} type="button"></button>
-                    </p>
-                  </td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.row}>
-                    <span className={css.cover}>
-                      <p className={css.discription}>Метро</p>
-                      <span className={css.date}>30.01.2020</span>
-                    </span>
-                    <span className={css.categore}>Транспорт</span>
-                    <p className={css.price}>
-                      -30.00 грн.
-                      <button className={css.btn} type="button"></button>
-                    </p>
-                  </td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.row}>
-                    <span className={css.cover}>
-                      <p className={css.discription}></p>
-                      <span className={css.date}></span>
-                    </span>
-                    <span className={css.categore}></span>
-                    <p className={css.price}></p>
-                  </td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.row}>
-                    <span className={css.cover}>
-                      <p className={css.discription}></p>
-                      <span className={css.date}></span>
-                    </span>
-                    <span className={css.categore}></span>
-                    <p className={css.price}></p>
-                  </td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.row}>
-                    <span className={css.cover}>
-                      <p className={css.discription}></p>
-                      <span className={css.date}></span>
-                    </span>
-                    <span className={css.categore}></span>
-                    <p className={css.price}></p>
-                  </td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.row}>
-                    <span className={css.cover}>
-                      <p className={css.discription}></p>
-                      <span className={css.date}></span>
-                    </span>
-                    <span className={css.categore}></span>
-                    <p className={css.price}></p>
-                  </td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.row}>
-                    <span className={css.cover}>
-                      <p className={css.discription}></p>
-                      <span className={css.date}></span>
-                    </span>
-                    <span className={css.categore}></span>
-                    <p className={css.price}></p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      );
-    } else if (window.innerWidth >= 768 && window.innerWidth <= 1280) {
-      // modalWindow.innerHTML = modal(data.goal);
-      console.log('max 768');
-      return (
-        <div className={css.tableWrapper}>
+const DashboardTable = ({ dataTable, changeModal }) => {
+  if (window.innerWidth < 768) {
+    return (
+      <div className={css.tableWrapper}>
         <div className={css.tableScroll}>
-            <table className={css.table}>
-              <thead className={css.thead}>
-                <tr className={css.tr}>
-                  <th className={css.th}>Дата</th>
-                  <th className={css.th}>Описание</th>
-                  <th className={css.th}>Категория</th>
-                  <th className={css.th}>Сумма</th>
-                </tr>
-              </thead>
-              <tbody className={css.tbody}>
-                <tr className={css.tr}>
-                  <td className={css.td}>30.01.2020</td>
-                  <td className={css.td}>Метро</td>
-                  <td className={css.td}>Транспорт</td>
-                  <td className={css.price}>
-                    <span>
-                      -30.00 грн.
-                      <button className={css.btn} type="button"></button>
+          <table className={css.table}>
+            <thead className={css.thead}>
+              <tr className={css.tr}>
+                <th className={css.th}>Расходы</th>
+              </tr>
+            </thead>
+            <tbody className={css.tbody}>
+              {dataTable.map(item => (
+                <tr className={css.tr} id={item.id} key={item.id}>
+                  <td className={css.row}>
+                    <span className={css.cover}>
+                      <p className={css.discription}>{item.description}</p>
+                      <span className={css.date}>
+                        {moment(item.date).format('DD.MM.YY')}
+                      </span>
+                    </span>
+                    <span className={css.categore}>{item.category}</span>
+                    <span className={css.overModile}>
+                      <span className={css.price}>{item.amount}</span>
+                      <span>
+                        <button onClick={changeModal} className={css.btn} type="button"></button>
+                      </span>
                     </span>
                   </td>
                 </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}>30.01.2020</td>
-                  <td className={css.td}>Метро</td>
-                  <td className={css.td}>Транспорт</td>
-                  <td className={css.price}>
-                    <span>
-                      -30.00 грн.
-                      <button className={css.btn} type="button"></button>
-                    </span>
-                  </td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              ))}
+              <tr className={css.tr}>
+                <td className={css.row}>
+                  <span className={css.cover}>
+                    <p className={css.discription}></p>
+                    <span className={css.date}></span>
+                  </span>
+                  <span className={css.categore}></span>
+                  <p className={css.price}></p>
+                </td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.row}>
+                  <span className={css.cover}>
+                    <p className={css.discription}></p>
+                    <span className={css.date}></span>
+                  </span>
+                  <span className={css.categore}></span>
+                  <p className={css.price}></p>
+                </td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.row}>
+                  <span className={css.cover}>
+                    <p className={css.discription}></p>
+                    <span className={css.date}></span>
+                  </span>
+                  <span className={css.categore}></span>
+                  <p className={css.price}></p>
+                </td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.row}>
+                  <span className={css.cover}>
+                    <p className={css.discription}></p>
+                    <span className={css.date}></span>
+                  </span>
+                  <span className={css.categore}></span>
+                  <p className={css.price}></p>
+                </td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.row}>
+                  <span className={css.cover}>
+                    <p className={css.discription}></p>
+                    <span className={css.date}></span>
+                  </span>
+                  <span className={css.categore}></span>
+                  <p className={css.price}></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      );
-    } else {
-      console.log('more');
-      return (
-        <div className={css.tableWrapper}>
+      </div>
+    );
+  } else if (window.innerWidth >= 768 && window.innerWidth <= 1280) {
+    return (
+      <div className={css.tableWrapper}>
         <div className={css.tableScroll}>
-            <table className={css.table}>
-              <thead className={css.thead}>
-                <tr className={css.tr}>
-                  <th className={css.th}>Дата</th>
-                  <th className={css.th}>Описание</th>
-                  <th className={css.th}>Категория</th>
-                  <th className={css.th}>Сумма</th>
-                </tr>
-              </thead>
-              <tbody className={css.tbody}>
-                <tr className={css.tr}>
-                  <td className={css.td}>30.01.2020</td>
-                  <td className={css.td}>Метро</td>
-                  <td className={css.td}>Транспорт</td>
+          <table className={css.table}>
+            <thead className={css.thead}>
+              <tr className={css.tr}>
+                <th className={css.th}>Дата</th>
+                <th className={css.th}>Описание</th>
+                <th className={css.th}>Категория</th>
+                <th className={css.th}>Сумма</th>
+              </tr>
+            </thead>
+            <tbody className={css.tbody}>
+              {dataTable.map(item => (
+                <tr className={css.tr} id={item.id} key={item.id}>
+                  <td className={css.td}>
+                    {moment(item.date).format('DD.MM.YY')}
+                  </td>
+                  <td className={css.td}>{item.description}</td>
+                  <td className={css.td}>{item.category}</td>
                   <td className={css.price}>
-                    <span>
-                      -30.00 грн.
-                      <button className={css.btn} type="button"></button>
+                    <span className={css.overlay}>
+                      <span>{item.amount}</span>
+                      <span>
+                        <button onClick={changeModal} className={css.btn} type="button"></button>
+                      </span>
                     </span>
                   </td>
                 </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}>30.01.2020</td>
-                  <td className={css.td}>Метро</td>
-                  <td className={css.td}>Транспорт</td>
-                  <td className={css.price}>
-                    <span>
-                      -30.00 грн.
-                      <button className={css.btn} type="button"></button>
-                    </span>
-                  </td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-                <tr className={css.tr}>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                  <td className={css.td}></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              ))}
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      );
-    }
+      </div>
+    );
+  } else {
+    return (
+      <div className={css.tableWrapper}>
+        <div className={css.tableScroll}>
+          <table className={css.table}>
+            <thead className={css.thead}>
+              <tr className={css.tr}>
+                <th className={css.th}>Дата</th>
+                <th className={css.th}>Описание</th>
+                <th className={css.th}>Категория</th>
+                <th className={css.th}>Сумма</th>
+              </tr>
+            </thead>
+            <tbody className={css.tbody}>
+              {dataTable.map(item => (
+                <tr className={css.tr} id={item.id} key={item.id}>
+                  <td className={css.td}>
+                    {moment(item.date).format('DD.MM.YY')}
+                  </td>
+                  <td className={css.td}>{item.description}</td>
+                  <td className={css.td}>{item.category}</td>
+                  <td className={css.price}>
+                    <span className={css.overlayDesc}>
+                      <span>{item.amount}</span>
+                      <span>
+                        <button onClick={changeModal} className={css.btn} type="button"></button>
+                      </span>
+                    </span>
+                  </td>
+                </tr>
+              ))}
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+              <tr className={css.tr}>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+                <td className={css.td}></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
   }
-}
+};
+
+export default DashboardTable;
