@@ -10,6 +10,8 @@ const costs = (state = [], { type, payload }) => {
       return [...state, payload.obj];
     case Type.GET_COSTS_SUCCESS:
       return payload.arr;
+    case Type.COSTS_DELETE_SUCCESS:
+      return state.filter(el => payload.id !== el.forDeleteId);
     default:
       return state;
   }

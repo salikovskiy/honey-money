@@ -5,6 +5,7 @@ import {
   fetchError,
   costsPostSuccess,
   getIncomesSuccess,
+  costsDeleteSuccess,
 } from './actions';
 import services from '../services/services';
 
@@ -49,6 +50,27 @@ export const postCosts = obj => async (dispatch, getState) => {
     );
     console.log(response.data.createdCosts)
     await dispatch(costsPostSuccess(response.data.createdCosts));
+    await dispatch(getBalanceSuccess(response.data.balance));
+  } catch (error) {
+    dispatch(fetchError(error.message));
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
+export const deleteCosts = (forDeleteId, costId) => async (
+  dispatch,
+  getState,
+) => {
+  console.log(forDeleteId, costId);
+  dispatch(fetchStart());
+  try {
+    const response = await services.deleteCost(
+      getState().finance.authReducer.token,
+      forDeleteId,
+      costId,
+    );
+    await dispatch(costsDeleteSuccess(forDeleteId));
     await dispatch(getBalanceSuccess(response.data.balance));
   } catch (error) {
     dispatch(fetchError(error.message));

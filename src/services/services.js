@@ -31,6 +31,21 @@ export default {
     }
   },
 
+  async deleteCost(token, forDeleteId, costsId) {
+    console.log(`/costs/${forDeleteId}/${costsId}`);
+    try {
+      const data = await axios.delete(`/costs/${forDeleteId}/${costsId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  },
+
   async addCosts(token, obj) {
     try {
       const data = await axios.post('/costs', obj, {
