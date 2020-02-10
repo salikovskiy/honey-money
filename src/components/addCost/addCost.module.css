@@ -35,6 +35,7 @@
   width: 14px;
   height: 14px;
   opacity: 0.3;
+  cursor: pointer;
 }
 
 .close:hover {
@@ -79,6 +80,7 @@
   margin: 0 auto;
   margin-bottom: 10px;
   outline: none;
+  cursor: pointer;
 }
 
 .cal img {
@@ -160,6 +162,7 @@
   font-weight: normal;
   font-size: 14px;
   outline: none;
+  cursor: pointer;
 }
 
 .btnSubmit {
