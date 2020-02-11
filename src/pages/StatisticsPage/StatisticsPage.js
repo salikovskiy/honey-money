@@ -26,6 +26,7 @@ class StatisticsPage extends Component {
   };
 
   async componentDidMount() {
+    console.log("didmount Statistics", this.props);
     this.setState({
       currentDate: moment()
         .format('MMMM YYYY')
@@ -115,7 +116,7 @@ class StatisticsPage extends Component {
           incomesMonth={incomesMonth}
         />
         <CategoriesList categories={categories} />
-        <BarChart labels={this.props.finance.categories.map(elem=>elem.name)} data={data} />
+        <BarChart labels={this.props.finance.costs.map(elem=>elem.product.category.name)} data={this.props.finance.costs.map(elem=>elem.amount)} />
       </div>
     );
   }
