@@ -116,7 +116,7 @@ class StatisticsPage extends Component {
           incomesMonth={incomesMonth}
         />
         <CategoriesList categories={categories} />
-        <BarChart labels={this.props.finance.categories.map(elem=>elem.name)} data={data} />
+        <BarChart labels={this.props.finance.costs.map(elem=>elem.product.category.name)} data={this.props.finance.costs.map(elem=>elem.amount)} />
       </div>
     );
   }
