@@ -41,8 +41,9 @@ class AddIncome extends Component {
         amount: value,
         date: moment(this.state.date).format('MM.DD.YYYY'),
       });
-      this.handleClearForm();
-      this.props.isOpen();
+      this.onHandleClickExit();
+      // this.handleClearForm();
+      // this.props.isOpen();
     } else {
       alert('Внесите положительную сумму на баланс!');
     }
@@ -65,7 +66,7 @@ class AddIncome extends Component {
     }
   };
   onHandleClickExit = async () => {
-   await this.setState({ work: false });
+    await this.setState({ work: false });
     this.props.isOpen();
   };
 
