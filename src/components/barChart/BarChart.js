@@ -5,12 +5,13 @@ class BarChart extends Component {
   constructor(props) {
     super(props);
     // console.log("PROPSLABLES",props.labels)
+    console.log('props :', props);
     this.chartReference = React.createRef();
     this.data = {
       labels: props.labels,
       datasets: [
         {
-          label: this.props.selectedCategory,
+          label: props.selectedCategory,
           backgroundColor: '#fc822c',
           borderColor: '#fc822c',
           borderWidth: 1,
@@ -23,10 +24,27 @@ class BarChart extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.chartReference.current); // returns a Chart.js instance reference
+    // console.log('this.props.dataghgfhfhfghfghgfh :', this.props.data);
+    // this.data.datasets[0].data = this.props.data.map(el => el.name);
+    // this.data.datasets[0].data = this.props.data.map(el => el.amount);
+    // console.log('this.data.datasets.data', this.data.datasets.data);
+    // this.data.labels = this.props.data.map(el => el.name);
+    // this.data.datasets.label = this.props.selectedCategory;
+    // // this.data.datasets.label = this.props.data.map(el => el.name);
+    // this.data.datasets.data = this.props.data.map(el => el.amount);
+  }
+
+  componentDidUpdate() {
+    this.data.labels = this.props.data.map(el => el.name);
+    this.data.datasets.label = this.props.selectedCategory;
+    // this.data.datasets.label = this.props.data.map(el => el.name);
+    this.data.datasets.data = this.props.data.map(el => +el.amount);
+    // console.log('this.datammmmmmmmmmmmmmmmmmm :', this.data);
   }
 
   render() {
+    // console.log('this.props.datammmmmmmmmmmm :', this.props.data);
+    // console.log('this.props.data :', this.props.data);
     return (
       <div
         style={{
