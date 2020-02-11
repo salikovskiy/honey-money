@@ -6,7 +6,7 @@ import AddCost from '../../addCost/AddCost';
 import moment from 'moment';
 import 'moment/locale/ru';
 import { connect } from 'react-redux';
-import { deleteCosts } from '../../../redux/operations';
+import { deleteCosts, getTransactions } from '../../../redux/operations';
 import ModalDashboardTable from '../../dashboardTable/modalDashboardTable/ModalDashboardTable';
 //import PropTypes from 'prop-types';
 
@@ -25,7 +25,6 @@ class DashboardPanel extends Component {
   state = {
     date: moment().format('YYYYMM'),
     dataTable: [],
-    //dataCosts: this.props.finance.costs,
     isOpenModalCosts: false,
     isOpenModalTable: false,
     id: '',
@@ -37,11 +36,8 @@ class DashboardPanel extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.props.finance.costs, 'aaaaaa', this.state.dataTable);
     if (
       prevState.date !== this.state.date ||
-      prevState.dataTable.length !== this.state.dataTable.length ||
-      //prevState.dataCosts.length !== this.state.dataCosts.length ||
       prevProps.finance.costs.length !== this.props.finance.costs.length
     ) {
       this.handleGetDataTable();
@@ -60,6 +56,7 @@ class DashboardPanel extends Component {
         isActive: monthTable === this.state.date,
       };
     });
+
     return summary;
   };
 
@@ -128,6 +125,7 @@ class DashboardPanel extends Component {
           <div className={styles.overlay_addCost}>
             <div className={styles.dashboardPanel_addCost}>
               <AddCost
+                getTransactions={this.props.getTransactions}
                 balance={balance}
                 dateRegistration={dateRegistration}
                 postCosts={this.props.postCosts}
@@ -140,6 +138,7 @@ class DashboardPanel extends Component {
         {window.innerWidth > 767 && (
           <div className={styles.dashboardPanel_addCost}>
             <AddCost
+              getTransactions={this.props.getTransactions}
               balance={balance}
               dateRegistration={dateRegistration}
               postCosts={this.props.postCosts}
@@ -180,6 +179,7 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   deleteCosts,
+  getTransactions,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPanel);
