@@ -54,7 +54,9 @@
   margin: 0 auto;
   margin-bottom: 50px;
   border-radius: 20px;
+  cursor: pointer;
 }
+
 .dashMenu__incomeBtn:hover {
   background-color: #df6107;
   transition: 0.2s;

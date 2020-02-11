@@ -48,8 +48,8 @@ export const postCosts = obj => async (dispatch, getState) => {
       getState().finance.authReducer.token,
       obj,
     );
-    console.log(response.data.createdCosts)
-    await dispatch(costsPostSuccess(response.data.createdCosts));
+    console.log('olua', response.data.createdCosts);
+    // await dispatch(costsPostSuccess(response.data.createdCosts));
     await dispatch(getBalanceSuccess(response.data.balance));
   } catch (error) {
     dispatch(fetchError(error.message));
@@ -70,7 +70,7 @@ export const deleteCosts = (forDeleteId, costId) => async (
       forDeleteId,
       costId,
     );
-    await dispatch(costsDeleteSuccess(forDeleteId));
+    await dispatch(costsDeleteSuccess(costId));
     await dispatch(getBalanceSuccess(response.data.balance));
   } catch (error) {
     dispatch(fetchError(error.message));
