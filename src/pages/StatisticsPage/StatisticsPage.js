@@ -28,6 +28,7 @@ class StatisticsPage extends Component {
       currentDate: moment()
         .format('MMMM YYYY')
         .toUpperCase(),
+
       costsData: this.props.finance.categories.map(item => {
         return {
           _id: item._id,
@@ -99,8 +100,8 @@ class StatisticsPage extends Component {
     const categories = this.props.finance.categories;
     const selectedCategory = this.state.selectedCategory;
     const { costsData } = this.state;
-    console.log('costsData :', costsData);
-    console.log('selectedCategory :', selectedCategory);
+    // console.log('costsData :', costsData);
+    // console.log('selectedCategory :', selectedCategory);
 
     return (
       <div className={s.wrapper}>
@@ -126,12 +127,6 @@ class StatisticsPage extends Component {
             selectedCategory={selectedCategory}
           />
         )}
-        {/* <BarChart
-          labels={this.props.finance.costs.map(
-            elem => elem.product.category.name,
-          )}
-          data={this.props.finance.costs.map(elem => elem.amount)}
-        /> */}
       </div>
     );
   }
