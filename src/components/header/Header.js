@@ -6,7 +6,6 @@ import style from './header.module.css';
 import svg from '../../assets/img/logo/svg/logo_146x34.svg';
 
 const Header = props => {
-
   return (
     <div className={style.header}>
       <Link to="/dashboard">

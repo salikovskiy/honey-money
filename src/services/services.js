@@ -60,6 +60,20 @@ export default {
     }
   },
 
+  async addProduct(token, obj) {
+    try {
+      const data = await axios.post('/products', obj, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error);
+    }
+  },
+
   // StatisticsPage ----------
   async getAllCategories(token) {
     try {
@@ -88,19 +102,4 @@ export default {
       throw new Error(error);
     }
   },
-
-  async addProduct(token, obj) {
-    try {
-      const data = await axios.post('/products', obj, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return data;
-    } catch (error) {
-      console.log(error);
-      throw new Error(error);
-    }
-  },
-
 };
