@@ -70,7 +70,8 @@ class AddCost extends Component {
     if (window.innerWidth < 768) {
       this.props.closeModal();
     }
-    this.onResetForm();
+    await this.props.getTransactions();
+    await this.onResetForm();
   };
 
   onResetForm = () => {
@@ -137,6 +138,13 @@ class AddCost extends Component {
     this.setState({ id });
   };
 
+  backDropCalendar = event => {
+    const dataset = event.target.dataset;
+    if (dataset && dataset.modalcal === 'true') {
+      this.setState({ openCalendar: false });
+    }
+  };
+
   render() {
     const {
       openCalendar,
@@ -166,12 +174,19 @@ class AddCost extends Component {
             <img src={calendar} alt="cal" />
           </button>
           {openCalendar && (
-            <Calendar
-              className={css.calendar}
-              onChange={this.onChangeDate}
-              maxDate={new Date()}
-              minDate={new Date(dateRegistration)}
-            />
+            <>
+              <div
+                data-modalcal={'true'}
+                className={css.calendarOverlay}
+                onClick={this.backDropCalendar}
+              ></div>
+              <Calendar
+                className={css.calendar}
+                onChange={this.onChangeDate}
+                maxDate={new Date()}
+                minDate={new Date(dateRegistration)}
+              />
+            </>
           )}
           <span className={css.formatDate}>{formatDate}</span>
           <form className={css.form} onSubmit={this.onAddCost}>

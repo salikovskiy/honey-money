@@ -1,5 +1,23 @@
-#barContainer {
-    /* margin: 0 auto; */
-    width: 500;
-    /* height: 200 */
+.barContainer {
+    margin: 0 auto;
+    width: 320px;
+    height: 350px;
+    box-shadow: 7px 12.124px 20px 0px rgba(179, 185, 200, 0.4);
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 40px
+}
+
+@media (min-width: 768px) {
+    .barContainer {
+        width: 688px;
+    }
+
+}
+
+@media (min-width: 1280px) {
+    .barContainer {
+        width: 945px;
+    }
 }

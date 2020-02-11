@@ -23,6 +23,7 @@ class StatisticsPage extends Component {
   async componentDidMount() {
     await this.props.getCategories();
 
+    console.log('didmount Statistics', this.props);
     this.setState({
       currentDate: moment()
         .format('MMMM YYYY')
@@ -84,10 +85,6 @@ class StatisticsPage extends Component {
   };
 
   selectCategoryClick = id => {
-    console.log('m-y------- :', id);
-
-    // const id = e.target.id;
-    // this.setState(prevState=> ({selectedCategory: id}))
     this.setState({
       selectedCategory: this.props.finance.categories.find(
         category => category._id === id,
@@ -102,7 +99,7 @@ class StatisticsPage extends Component {
     const categories = this.props.finance.categories;
     const selectedCategory = this.state.selectedCategory;
     const { costsData } = this.state;
-    // console.log('costsData :', costsData);
+    console.log('costsData :', costsData);
     console.log('selectedCategory :', selectedCategory);
 
     return (
@@ -122,12 +119,19 @@ class StatisticsPage extends Component {
           categoriesData={costsData}
           selectCategoryClick={this.selectCategoryClick}
         />
-        <BarChart
-          // !
-          labels={this.props.finance.categories.map(elem => elem.name)}
-          data={costsData}
-          selectedCategory={selectedCategory}
-        />
+        {costsData.length !== 0 && (
+          <BarChart
+            labels={this.props.finance.categories.map(elem => elem.name)}
+            data={costsData}
+            selectedCategory={selectedCategory}
+          />
+        )}
+        {/* <BarChart
+          labels={this.props.finance.costs.map(
+            elem => elem.product.category.name,
+          )}
+          data={this.props.finance.costs.map(elem => elem.amount)}
+        /> */}
       </div>
     );
   }
