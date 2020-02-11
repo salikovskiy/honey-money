@@ -29,6 +29,7 @@
   font-size: 14px;
   padding: 17px 17px;
 }
+
 .mounth:first-letter {
   text-transform: uppercase;
 }
@@ -63,9 +64,12 @@
 } */
 .orange {
   color: #fe710d;
+  cursor: pointer;
 }
+
 .tr {
   color: #52555f;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {

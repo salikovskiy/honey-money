@@ -106,7 +106,7 @@ class AddIncome extends Component {
               )}
 
               <span className={css.dateLine}>
-                {moment(this.state.date).format('MM.DD.YYYY')}
+                {moment(this.state.date).format('DD.MM.YYYY')}
               </span>
 
               <input
