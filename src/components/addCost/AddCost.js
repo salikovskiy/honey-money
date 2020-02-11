@@ -70,7 +70,8 @@ class AddCost extends Component {
     if (window.innerWidth < 768) {
       this.props.closeModal();
     }
-    this.onResetForm();
+    await this.props.getTransactions();
+    await this.onResetForm();
   };
 
   onResetForm = () => {

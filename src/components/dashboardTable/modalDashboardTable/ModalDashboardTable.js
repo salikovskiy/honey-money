@@ -8,7 +8,6 @@ const ModalDashboardTable = ({
   id,
   handleChangeModal,
 }) => {
-  console.log(forDeleteId, id);
   return (
     <div className={css.modalWindow}>
       <h3 className={css.title}>Вы уверены?</h3>
