@@ -46,7 +46,8 @@ class AddCost extends Component {
       this.setState({ openCalendar: false });
     }
   };
-  onAddCost = e => {
+
+  onAddCost = async e => {
     e.preventDefault();
     if (this.props.balance >= this.state.amountCost) {
       const objPostCost = {
@@ -58,7 +59,7 @@ class AddCost extends Component {
         },
       };
       if (this.state.descriptionCost) {
-        this.props.postCosts(objPostCost);
+        await this.props.postCosts(objPostCost);
       } else {
         alert('Выберите тип расходов!');
       }
@@ -123,8 +124,16 @@ class AddCost extends Component {
   createNewProduct = value => {
     this.isOpenModalAddProductFunction();
   };
+
   cangeProductId = id => {
     this.setState({ id });
+  };
+
+  backDropCalendar = event => {
+    const dataset = event.target.dataset;
+    if (dataset && dataset.modalcal === 'true') {
+      this.setState({ openCalendar: false });
+    }
   };
   render() {
     const {
@@ -154,25 +163,32 @@ class AddCost extends Component {
             <img src={calendar} alt="cal" />
           </button>
           {openCalendar && (
-            <Calendar
-              className={css.calendar}
-              onChange={this.onChangeDate}
-              maxDate={new Date()}
-              minDate={new Date(dateRegistration)}
-            />
+            <>
+              <div
+                data-modalcal={'true'}
+                className={css.calendarOverlay}
+                onClick={this.backDropCalendar}
+              ></div>
+              <Calendar
+                className={css.calendar}
+                onChange={this.onChangeDate}
+                maxDate={new Date()}
+                minDate={new Date(dateRegistration)}
+              />
+            </>
           )}
           <span className={css.formatDate}>{formatDate}</span>
           <form className={css.form} onSubmit={this.onAddCost}>
             <div className={css.formOverlay}>
               <CreatableSelect
                 className={css.inputDescription}
-                //   isClearable
+                // isClearable
                 onChange={this.handleChangeSelect}
                 onInputChange={this.handleInputChangeSelect}
                 placeholder="Ввести расходы..."
                 noOptionsMessage={() => 'Уточните поиск...'}
                 formatCreateLabel={inputValue =>
-                  `Создать новый типа расхода: ${inputValue}`
+                  `Создать новый тип расхода: ${inputValue}`
                 }
                 options={options}
                 value={descriptionCost}

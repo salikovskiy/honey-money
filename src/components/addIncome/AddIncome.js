@@ -9,9 +9,13 @@ class AddIncome extends Component {
     value: '',
     date: new Date(),
     calendar: false,
+    work: true,
   };
 
   componentDidMount() {}
+  componentWillUnmount() {
+    this.state.work && this.props.isOpen();
+  }
 
   handleChangeIncome = e => {
     if (e.target.value <= 99999999.99) {
@@ -37,8 +41,9 @@ class AddIncome extends Component {
         amount: value,
         date: moment(this.state.date).format('MM.DD.YYYY'),
       });
-      this.handleClearForm();
-      this.props.isOpen();
+      this.onHandleClickExit();
+      // this.handleClearForm();
+      // this.props.isOpen();
     } else {
       alert('Внесите положительную сумму на баланс!');
     }
@@ -60,6 +65,10 @@ class AddIncome extends Component {
       this.calendarOpen();
     }
   };
+  onHandleClickExit = async () => {
+    await this.setState({ work: false });
+    this.props.isOpen();
+  };
 
   render() {
     window.addEventListener('keyup', this.handleKeyPress);
@@ -68,7 +77,7 @@ class AddIncome extends Component {
     return (
       <>
         <div className={css.modalIncome}>
-          <span onClick={this.props.isOpen} className={css.close}></span>
+          <span onClick={this.onHandleClickExit} className={css.close}></span>
 
           <form className={css.form} onSubmit={this.handleSubmit}>
             <h2 className={css.addIncomeTittle}>Ввести доход</h2>

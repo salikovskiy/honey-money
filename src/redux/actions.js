@@ -53,16 +53,21 @@ export const logIn = user => {
   };
 };
 
-export const costsPostSuccess = () => ({
+export const costsPostSuccess = obj => ({
+  payload: { obj },
   type: Type.COSTS_POST_SUCCESS,
 });
 
 export const getIncomesSuccess = arr => ({
   type: Type.GET_INCOMES_SUCCESS,
-  payload: {arr},
+  payload: { arr },
 });
-
 
 export const logOut = () => ({
   type: Type.LOG_OUT,
-})
+});
+
+export const costsDeleteSuccess = id => ({
+  type: Type.COSTS_DELETE_SUCCESS,
+  payload: { id },
+});

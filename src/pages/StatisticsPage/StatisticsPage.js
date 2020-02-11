@@ -8,27 +8,21 @@ import BarChart from '../../components/barChart/BarChart';
 import moment from 'moment';
 import s from './StatisticsPage.module.css';
 
-const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'January',
-  'February',
-  'March',
-];
-const data = [65, 59, 80, 11, 56, 55, 40, 3, 59, 80];
+
+const data = [65, 59, 80, 11, 56, 55, 40, 3, 59, 80, 90];
+
+let costsMonth = 0;
+let incomesMonth = 0;
+const dateNow = moment().format();
 
 class StatisticsPage extends Component {
   state = {
-    // Хранить в стейте какая именно категория
-    // выбрана и текущуюю дату (по ней определяется месяц)
     selectedCategory: 'продукты',
     currentDate: '',
-    allCategories: [],
+    // allCategories: [],
+    date: dateNow,
+    dateRegistration: this.props.finance.authReducer.createdAt,
+   labels: []
   };
 
   async componentDidMount() {
@@ -37,38 +31,91 @@ class StatisticsPage extends Component {
         .format('MMMM YYYY')
         .toUpperCase(),
     });
-    const data = await getCategories();
-    console.log('data :', data);
+    const data =  await this.props.getCategories();
+  //   const labels = await data.map(elem=>elem.name)
+  //  this.setState({labels})
+    console.log('DATAAAAAAAAAAA', this.props.finance.categories.map(elem=>elem.name));
+    const labels = this.props.finance.categories.map(elem=>elem.name)
+ 
   }
 
-  // Написать операцию (ГЕТ запрос) с измененным
-  // месяцем и текущей категорией в стейте и прокинуть
-  // в StatisticsMenu на переключение месяцев
-
-  componentDidUpdate() {
-    // console.log('this.props2222', this.props);
-    // Из текущего массива расходов, формирует каждый
-    // раз в componentDidUpdate объект категории и
-    // суммарной сумме по данной категории и передает
-    // его пропом в ChartStatisticByCategory для
-    // отображения  (формат объекта согласовать с тем
-    //   кто будет делать ChartStatisticByCategory)
+ async componentDidUpdate(prevProps, prevState) {
+    // console.log('this.props2222', this.props.finance.categories);
+    if(JSON.stringify(prevState.labels) !== JSON.stringify(this.state.labels)) {
+  //     const data =  await this.props.getCategories();
+  //   const labels = await data.map(elem=>elem.name)
+  //  this.setState({labels})
+  console.log("YESS")
+    }
   }
 
-  // передать пропами data в StatisticAmounts
+  handleMonthChange = e => {
+    if (e.target.name === 'leftBtn') {
+      this.setState({
+        date: moment(this.state.date)
+          .add(-1, 'month')
+          .format(),
+      });
+    }
 
-  // передать пропами сумму расходов в CategoriesList
+    if (e.target.name === 'rightBtn') {
+      this.setState({
+        date: moment(this.state.date)
+          .add(+1, 'month')
+          .format(),
+      });
+    }
+  };
+
+  handleGetCostsMonth = () => {
+    if (this.props.finance.costs.length > 0) {
+      costsMonth = this.props.finance.costs
+        .filter(
+          item =>
+            moment(item.date).format('YYYYMM') ===
+            moment(this.state.date).format('YYYYMM'),
+        )
+        .reduce((acc, el) => acc + el.amount, 0);
+    }
+    return costsMonth;
+  };
+
+  handleGetIncomeMonth = () => {
+    if (this.props.finance.incomes.length > 0) {
+      incomesMonth = this.props.finance.incomes
+        .filter(
+          item =>
+            moment(item.date).format('YYYYMM') ===
+            moment(this.state.date).format('YYYYMM'),
+        )
+        .reduce((acc, el) => acc + el.amount, 0);
+    }
+    return incomesMonth;
+  };
 
   render() {
-    const { currentDate } = this.state;
-    // Компонент рендерит: StatisticMenu, StatisticAmounts,
-    // CategoriesList, Chart
+    console.log("LABELS",this.state.labels)
+    const balance = this.props.finance.balance;
+    const costsMonth = this.handleGetCostsMonth();
+    const incomesMonth = this.handleGetIncomeMonth();
+    const categories = this.props.finance.categories;
+    console.log('3333333333333333 :', categories);
+
     return (
       <div className={s.wrapper}>
-        <StatisticsMenu currentDate={currentDate} />
-        <StatisticAmounts />
-        <CategoriesList />
-        <BarChart labels={labels} data={data} />
+        <StatisticsMenu
+          date={this.state.date}
+          dateRegistration={this.state.dateRegistration}
+          balance={balance}
+          monthChange={this.handleMonthChange}
+        />
+        <StatisticAmounts
+          categories={categories}
+          costsMonth={costsMonth}
+          incomesMonth={incomesMonth}
+        />
+        <CategoriesList categories={categories} />
+        <BarChart labels={this.props.finance.categories.map(elem=>elem.name)} data={data} />
       </div>
     );
   }
