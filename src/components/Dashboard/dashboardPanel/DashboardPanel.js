@@ -6,20 +6,9 @@ import AddCost from '../../addCost/AddCost';
 import moment from 'moment';
 import 'moment/locale/ru';
 import { connect } from 'react-redux';
-import { deleteCosts } from '../../../redux/operations';
+import { deleteCosts, getTransactions } from '../../../redux/operations';
 import ModalDashboardTable from '../../dashboardTable/modalDashboardTable/ModalDashboardTable';
-
 //import PropTypes from 'prop-types';
-
-///В статистике посмотреть оранжевые кнопки!!!!!!
-
-//шрифт в лого, иконка нв выход,
-//шрифты и закрытие модалки при клике на оверлей у Леши,
-//стили, шрифты!!! у Богдана, консоль логи
-//шрифты с засечками
-//функция для удаления, октрытия и закрытия модалки для Богдана,
-//пнотифай и грн. у Миши,
-//варнингы у Оли, Богдана, Ярика
 
 const monthsSummary = [
   moment(),
@@ -36,10 +25,24 @@ class DashboardPanel extends Component {
   state = {
     date: moment().format('YYYYMM'),
     dataTable: [],
-    dataCosts: this.props.finance.costs,
     isOpenModalCosts: false,
     isOpenModalTable: false,
+    id: '',
+    deleteId: '',
   };
+
+  componentDidMount() {
+    this.handleGetDataTable();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.date !== this.state.date ||
+      prevProps.finance.costs.length !== this.props.finance.costs.length
+    ) {
+      this.handleGetDataTable();
+    }
+  }
 
   handleGetSummary = () => {
     const summary = monthsSummary.map(monthTable => {
@@ -53,45 +56,13 @@ class DashboardPanel extends Component {
         isActive: monthTable === this.state.date,
       };
     });
+
     return summary;
-  };
-
-  componentDidMount() {
-    this.handleGetDataTable();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log(this.props.finance.costs, 'aaaaaa', this.state.dataTable);
-    if (prevState.date !== this.state.date) {
-      this.handleGetDataTable();
-    }
-
-    // if (prevProps.finance.costs.length !== this.props.finance.costs.length) {
-    // this.setState({
-    //   dataTable: this.props.costs,
-    // });
-    //   this.handleGetDataTable();
-    // }
-  }
-
-  handleChangeModalCosts = () => {
-    this.setState(state => ({ isOpenModalCosts: !state.isOpenModalCosts }));
-  };
-
-  handleChangeModalTable = e => {
-    console.log(e.target);
-    this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
-  };
-
-  handleGetDate = e => {
-    this.setState({
-      date: e.target.parentElement.dataset.month,
-    });
   };
 
   handleGetDataTable = () => {
     let arr = [];
-    this.state.dataCosts.map(
+    this.props.finance.costs.map(
       elem =>
         moment(elem.date).format('YYYYMM') === this.state.date &&
         (arr = [
@@ -101,13 +72,35 @@ class DashboardPanel extends Component {
             description: elem.product.name,
             category: elem.product.category.name,
             amount: elem.amount,
-            idForDelete: elem.forDeleteId,
-            idCost: elem.costsId,
+            id: elem.costsId,
+            forDeleteId: elem.forDeleteId,
           },
         ]),
     );
     this.setState({
-      dataTable: arr,
+      dataTable: arr.reverse(),
+    });
+  };
+
+  handleChangeModalCosts = () => {
+    this.setState(state => ({ isOpenModalCosts: !state.isOpenModalCosts }));
+  };
+
+  handleChangeModalTable = () => {
+    this.setState(state => ({ isOpenModalTable: !state.isOpenModalTable }));
+  };
+
+  handleGetIdTable = e => {
+    e.persist();
+    this.setState({
+      id: e.target.id,
+      deleteId: e.target.value,
+    });
+  };
+
+  handleGetDate = e => {
+    this.setState({
+      date: e.target.parentElement.dataset.month,
     });
   };
 
@@ -116,10 +109,7 @@ class DashboardPanel extends Component {
     const token = this.props.finance.authReducer.token;
     const dateRegistration = this.props.finance.authReducer.createdAt;
     const summary = this.handleGetSummary();
-    //console.log(summary);
-    // console.log(this.props.finance;
-    // console.log('state date', this.state.date);
-    console.log('state data', this.state.dataTable);
+    const dataTable = this.state.dataTable;
     return (
       <div className={styles.dashboardPanel}>
         {window.innerWidth < 768 && (
@@ -135,6 +125,7 @@ class DashboardPanel extends Component {
           <div className={styles.overlay_addCost}>
             <div className={styles.dashboardPanel_addCost}>
               <AddCost
+                getTransactions={this.props.getTransactions}
                 balance={balance}
                 dateRegistration={dateRegistration}
                 postCosts={this.props.postCosts}
@@ -147,6 +138,7 @@ class DashboardPanel extends Component {
         {window.innerWidth > 767 && (
           <div className={styles.dashboardPanel_addCost}>
             <AddCost
+              getTransactions={this.props.getTransactions}
               balance={balance}
               dateRegistration={dateRegistration}
               postCosts={this.props.postCosts}
@@ -157,12 +149,18 @@ class DashboardPanel extends Component {
         <div className={styles.dashboardPanel_wrap}>
           <div className={styles.dashboardPanel_DashboardTable}>
             {this.state.isOpenModalTable && (
-              <ModalDashboardTable changeModal={this.handleChangeModalTable} />
+              <ModalDashboardTable
+                handleChangeModal={this.handleChangeModalTable}
+                changeModal={this.handleGetIdTable}
+                id={this.state.id}
+                forDeleteId={this.state.deleteId}
+                deleteCost={this.props.deleteCosts}
+              />
             )}
             <DashboardTable
-              deleteCost={this.props.deleteCosts}
-              dataTable={this.state.dataTable}
-              changeModal={this.handleChangeModalTable}
+              dataTable={dataTable}
+              changeModal={this.handleGetIdTable}
+              handleChangeModal={this.handleChangeModalTable}
             />
           </div>
           <div className={styles.dashboardPanel_tableExample}>
@@ -181,6 +179,7 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   deleteCosts,
+  getTransactions,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPanel);

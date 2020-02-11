@@ -5,6 +5,7 @@ import onFormatDate from '../../utilities/formatDate';
 import css from './addCost.module.css';
 import calendar from '../../assets/img/svg/calendar.svg';
 import services from '../../services/services';
+import AddProductModal from './addProductModal/AddProductModal';
 var moment = require('moment');
 
 class AddCost extends Component {
@@ -19,6 +20,7 @@ class AddCost extends Component {
     options: [],
     valueSelect: {},
     id: 1,
+    isOpenModalAddProduct: false,
   };
 
   componentDidMount() {
@@ -49,14 +51,7 @@ class AddCost extends Component {
     }
   };
 
-  //   backDropCalendar = event => {
-  //     const dataset = event.target.dataset;
-  //     if (dataset && dataset.modal === 'true') {
-  //       this.setState({ openCalendar: false });
-  //     }
-  //   };
-
-  onAddCost = e => {
+  onAddCost = async e => {
     e.preventDefault();
     if (this.props.balance >= this.state.amountCost) {
       const objPostCost = {
@@ -64,19 +59,19 @@ class AddCost extends Component {
         product: {
           productId: this.state.id,
           amount: parseFloat(Number(this.state.amountCost).toFixed(2)),
-
           date: this.state.dateForBackendFull,
         },
       };
       console.log('objPostCost', objPostCost);
-      this.props.postCosts(objPostCost);
+      await this.props.postCosts(objPostCost);
     } else {
       alert('Недостаточно средств!');
     }
     if (window.innerWidth < 768) {
       this.props.closeModal();
     }
-    this.onResetForm();
+    await this.props.getTransactions();
+    await this.onResetForm();
   };
 
   onResetForm = () => {
@@ -114,30 +109,40 @@ class AddCost extends Component {
     if (actionMeta.action === 'create-option') {
       this.createNewProduct(newValue.value);
     }
-
-    // console.dir(newValue);
     const productId = newValue.id ? newValue.id : '';
-    // const productId = newValue.id;
-    console.log('newValue.id', newValue.id);
-    console.log('newValue', newValue);
     this.setState({
       descriptionCost: newValue,
       id: productId,
-      //   valueSelect: newValue,
     });
   };
 
   handleInputChangeSelect = (inputValue, actionMeta) => {
     if (inputValue.length > 0) {
-      this.createOptions();
+      this.state.options.length === 0 && this.createOptions();
     } else {
       this.setState({ options: [] });
     }
-    //   console.log(`action: ${actionMeta.action}`);
+  };
+
+  isOpenModalAddProductFunction = () => {
+    this.setState(state => ({
+      isOpenModalAddProduct: !this.state.isOpenModalAddProduct,
+    }));
   };
 
   createNewProduct = value => {
-    console.log(`Нужно создать статью расходов ${value}`);
+    this.isOpenModalAddProductFunction();
+  };
+
+  cangeProductId = id => {
+    this.setState({ id });
+  };
+
+  backDropCalendar = event => {
+    const dataset = event.target.dataset;
+    if (dataset && dataset.modalcal === 'true') {
+      this.setState({ openCalendar: false });
+    }
   };
 
   render() {
@@ -146,69 +151,85 @@ class AddCost extends Component {
       formatDate,
       amountCost,
       options,
-      valueSelect,
       descriptionCost,
+      isOpenModalAddProduct,
     } = this.state;
-    const { dateRegistration, closeModal } = this.props;
+    const { dateRegistration, closeModal, token } = this.props;
     window.addEventListener('keyup', this.handleKeyPressCalendar);
 
     return (
-      <div className={css.container}>
-        <h3 className={css.title}>Ввести расход</h3>
-        <span className={css.close} onClick={closeModal}></span>
-        <button onClick={this.onOpenCalendar} className={css.cal}>
-          <img src={calendar} alt="cal" />
-        </button>
-        {openCalendar && (
-          <Calendar
-            className={css.calendar}
-            onChange={this.onChangeDate}
-            maxDate={new Date()}
-            minDate={new Date(dateRegistration)}
+      <>
+        {isOpenModalAddProduct && (
+          <AddProductModal
+            token={token}
+            descriptionCost={descriptionCost}
+            isOpenModal={this.isOpenModalAddProductFunction}
+            cangeProductId={this.cangeProductId}
           />
         )}
-        <span className={css.formatDate}>{formatDate}</span>
-        <form className={css.form} onSubmit={this.onAddCost}>
-          <div className={css.formOverlay}>
-            <CreatableSelect
-              //   onClick={this.createOptions()}
-              className={css.inputDescription}
-              isClearable
-              onChange={this.handleChangeSelect}
-              onInputChange={this.handleInputChangeSelect}
-              placeholder="Ввести расходы..."
-              noOptionsMessage={() => 'Уточните поиск...'}
-              formatCreateLabel={inputValue =>
-                `Создать новый типа расхода: ${inputValue}`
-              }
-              options={options}
-              value={descriptionCost}
-            />
-            <input
-              className={css.inputAmount}
-              required
-              type="text"
-              placeholder="00.00 грн"
-              name="amountCost"
-              onChange={this.onChangeInput}
-              value={amountCost}
-              pattern="[0-9]+([.][0-9]{1,2}){0,1}"
-            ></input>
-          </div>
-          <div className={css.overlayBtn}>
-            <button className={`${css.btn} ${css.btnSubmit}`} type="submit">
-              Подтвердить
-            </button>
-            <button
-              className={`${css.btn} ${css.btnReset}`}
-              type="reset"
-              onClick={this.onResetForm}
-            >
-              Очистить
-            </button>
-          </div>
-        </form>
-      </div>
+        <div className={css.container}>
+          <h3 className={css.title}>Ввести расход</h3>
+          <span className={css.close} onClick={closeModal}></span>
+          <button onClick={this.onOpenCalendar} className={css.cal}>
+            <img src={calendar} alt="cal" />
+          </button>
+          {openCalendar && (
+            <>
+              <div
+                data-modalcal={'true'}
+                className={css.calendarOverlay}
+                onClick={this.backDropCalendar}
+              ></div>
+              <Calendar
+                className={css.calendar}
+                onChange={this.onChangeDate}
+                maxDate={new Date()}
+                minDate={new Date(dateRegistration)}
+              />
+            </>
+          )}
+          <span className={css.formatDate}>{formatDate}</span>
+          <form className={css.form} onSubmit={this.onAddCost}>
+            <div className={css.formOverlay}>
+              <CreatableSelect
+                className={css.inputDescription}
+                // isClearable
+                onChange={this.handleChangeSelect}
+                onInputChange={this.handleInputChangeSelect}
+                placeholder="Ввести расходы..."
+                noOptionsMessage={() => 'Уточните поиск...'}
+                formatCreateLabel={inputValue =>
+                  `Создать новый тип расхода: ${inputValue}`
+                }
+                options={options}
+                value={descriptionCost}
+              />
+              <input
+                className={css.inputAmount}
+                required
+                type="text"
+                placeholder="00.00 грн"
+                name="amountCost"
+                onChange={this.onChangeInput}
+                value={amountCost}
+                pattern="[0-9]+([.][0-9]{1,2}){0,1}"
+              ></input>
+            </div>
+            <div className={css.overlayBtn}>
+              <button className={`${css.btn} ${css.btnSubmit}`} type="submit">
+                Подтвердить
+              </button>
+              <button
+                className={`${css.btn} ${css.btnReset}`}
+                type="reset"
+                onClick={this.onResetForm}
+              >
+                Очистить
+              </button>
+            </div>
+          </form>
+        </div>
+      </>
     );
   }
 }
