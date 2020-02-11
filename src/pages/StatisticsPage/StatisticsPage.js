@@ -26,6 +26,7 @@ class StatisticsPage extends Component {
   };
 
   async componentDidMount() {
+    console.log("didmount Statistics", this.props);
     this.setState({
       currentDate: moment()
         .format('MMMM YYYY')
