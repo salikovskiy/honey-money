@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import css from './css/addIncome.module.css';
 import Calendar from 'react-calendar';
 import ModalBackDrop from './../modalBackDrop/ModalBackDrop';
+import PNotify from 'pnotify/dist/es/PNotify';
 var moment = require('moment');
 
 class AddIncome extends Component {
@@ -10,6 +11,7 @@ class AddIncome extends Component {
     date: new Date(),
     calendar: false,
     work: true,
+    notification: false,
   };
 
   componentDidMount() {}
@@ -42,10 +44,8 @@ class AddIncome extends Component {
         date: moment(this.state.date).format('MM.DD.YYYY'),
       });
       this.onHandleClickExit();
-      // this.handleClearForm();
-      // this.props.isOpen();
     } else {
-      alert('Внесите положительную сумму на баланс!');
+      PNotify.notice('Внесите положительную сумму на баланс!');
     }
   };
   pickDate = async () => {
@@ -53,12 +53,6 @@ class AddIncome extends Component {
     this.calendarOpen();
   };
 
-  // handleKeyPress = async event => {
-  //   console.log('event', event.target.className);
-  //   if (event.code === 'Escape') {
-  //     this.setState({ calendar: false });
-  //   }
-  // };
   backDropCalendar = event => {
     const dataset = event.target.dataset;
     if (dataset && dataset.modalcal === 'true') {
@@ -78,7 +72,6 @@ class AddIncome extends Component {
       <>
         <div className={css.modalIncome}>
           <span onClick={this.onHandleClickExit} className={css.close}></span>
-
           <form className={css.form} onSubmit={this.handleSubmit}>
             <h2 className={css.addIncomeTittle}>Ввести доход</h2>
             <div className={css.calendarDesk}>
