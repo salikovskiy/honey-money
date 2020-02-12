@@ -8,7 +8,6 @@ import DashboardPanel from '../../components/Dashboard/dashboardPanel/DashboardP
 // import DashboardTable from '../../components/dashboardTable/DashboardTable';
 import AddIncome from '../../components/addIncome/AddIncome';
 
-
 class DashboardPage extends Component {
   state = {
     isOpenModalIncome: false,
@@ -24,7 +23,7 @@ class DashboardPage extends Component {
   };
 
   render() {
-    const { isOpenModalIncome} = this.state;
+    const { isOpenModalIncome } = this.state;
     const date = this.props.finance.authReducer.createdAt;
     const postIncome = this.props.postIncome;
     const balance = this.props.finance.balance;

@@ -11,7 +11,7 @@ const costs = (state = [], { type, payload }) => {
     case Type.GET_COSTS_SUCCESS:
       return payload.arr;
     case Type.COSTS_DELETE_SUCCESS:
-      return state.filter(el => payload.id !== el.forDeleteId);
+      return state.filter(el => payload.id !== el.costsId);
     default:
       return state;
   }
@@ -26,12 +26,14 @@ const isLoading = (state = false, { type, payload }) => {
     case Type.FETCH_ERROR:
     case Type.COSTS_POST_SUCCESS:
       return (state = false);
+    case Type.GET_CATEGORIES_SUCCESS:
+      return (state = false);
     default:
       return state;
   }
 };
 
-const balance = (state = 0, { type, payload }) => {
+const balance = (state = null, { type, payload }) => {
   switch (type) {
     case Type.GET_BALANCE_SUCCESS:
       return payload.value;

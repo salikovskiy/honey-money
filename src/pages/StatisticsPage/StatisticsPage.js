@@ -8,45 +8,37 @@ import BarChart from '../../components/barChart/BarChart';
 import moment from 'moment';
 import s from './StatisticsPage.module.css';
 
-
-const data = [65, 59, 80, 11, 56, 55, 40, 3, 59, 80, 90];
-
 let costsMonth = 0;
 let incomesMonth = 0;
 const dateNow = moment().format();
 
 class StatisticsPage extends Component {
   state = {
-    selectedCategory: 'продукты',
-    currentDate: '',
-    // allCategories: [],
+    selectedCategory: 'Все категории',
     date: dateNow,
     dateRegistration: this.props.finance.authReducer.createdAt,
-   labels: []
+    costsData: [],
   };
 
   async componentDidMount() {
+    await this.props.getCategories();
+
+    console.log('didmount Statistics', this.props);
     this.setState({
       currentDate: moment()
         .format('MMMM YYYY')
         .toUpperCase(),
-    });
-    const data =  await this.props.getCategories();
-  //   const labels = await data.map(elem=>elem.name)
-  //  this.setState({labels})
-    console.log('DATAAAAAAAAAAA', this.props.finance.categories.map(elem=>elem.name));
-    const labels = this.props.finance.categories.map(elem=>elem.name)
- 
-  }
 
- async componentDidUpdate(prevProps, prevState) {
-    // console.log('this.props2222', this.props.finance.categories);
-    if(JSON.stringify(prevState.labels) !== JSON.stringify(this.state.labels)) {
-  //     const data =  await this.props.getCategories();
-  //   const labels = await data.map(elem=>elem.name)
-  //  this.setState({labels})
-  console.log("YESS")
-    }
+      costsData: this.props.finance.categories.map(item => {
+        return {
+          _id: item._id,
+          name: item.name,
+          amount: this.props.finance.costs
+            .filter(el => el.product.category.name === item.name)
+            .reduce((acc, cur) => acc + cur.amount, 0),
+        };
+      }),
+    });
   }
 
   handleMonthChange = e => {
@@ -93,13 +85,23 @@ class StatisticsPage extends Component {
     return incomesMonth;
   };
 
+  selectCategoryClick = id => {
+    this.setState({
+      selectedCategory: this.props.finance.categories.find(
+        category => category._id === id,
+      ).name,
+    });
+  };
+
   render() {
-    console.log("LABELS",this.state.labels)
     const balance = this.props.finance.balance;
     const costsMonth = this.handleGetCostsMonth();
     const incomesMonth = this.handleGetIncomeMonth();
     const categories = this.props.finance.categories;
-    console.log('3333333333333333 :', categories);
+    const selectedCategory = this.state.selectedCategory;
+    const { costsData } = this.state;
+    // console.log('costsData :', costsData);
+    // console.log('selectedCategory :', selectedCategory);
 
     return (
       <div className={s.wrapper}>
@@ -114,8 +116,17 @@ class StatisticsPage extends Component {
           costsMonth={costsMonth}
           incomesMonth={incomesMonth}
         />
-        <CategoriesList categories={categories} />
-        <BarChart labels={this.props.finance.categories.map(elem=>elem.name)} data={data} />
+        <CategoriesList
+          categoriesData={costsData}
+          selectCategoryClick={this.selectCategoryClick}
+        />
+        {costsData.length !== 0 && (
+          <BarChart
+            labels={this.props.finance.categories.map(elem => elem.name)}
+            data={costsData}
+            selectedCategory={selectedCategory}
+          />
+        )}
       </div>
     );
   }
