@@ -27,8 +27,8 @@ const DashboardTable = ({ dataTable, changeModal, handleChangeModal }) => {
                       <span className={css.date}>
                         {moment(item.date).format('DD.MM.YY')}
                       </span>
-                    </span>
-                    <span className={css.categore}>{item.category}</span>
+                      </span>
+                      <span className={css.categore}>{item.category}</span>
                     <span className={css.overModile}>
                       <span className={css.price}>{item.amount}</span>
                       <span>
