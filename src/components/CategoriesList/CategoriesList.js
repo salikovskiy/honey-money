@@ -38,6 +38,7 @@ class CategoriesList extends Component {
   }
 
   handleChangeBackground = (evt, id) => {
+    // console.dir('evtHCB :', evt.target);
     evt.target
       .closest('ul')
       .querySelectorAll('img')
@@ -52,24 +53,26 @@ class CategoriesList extends Component {
   };
 
   backgroundChange(e, id) {
+    e.persist();
+    this.props.selectCategoryClick(id);
     let unicId = id === this.state.currentId ? null : id;
     this.setState({
       currentId: unicId,
     });
   }
   render() {
-    console.log('this.props 5555555555555555:', this.props);
+    // console.log('props :', this.props);
     return (
       <div className={css.categoriesWrap}>
         <ul className={css.categoryList}>
-          {categoriesData.map(item => (
+          {this.props.categoriesData.map(item => (
             <li
               key={item._id}
               id={item._id}
               className={css.categoryWrapper}
               onClick={e => this.backgroundChange(e, item._id)}
             >
-              <p className={css.categoryAmount}>5000</p>
+              <p className={css.categoryAmount}>{item.amount}</p>
               <div
                 key={item._id}
                 className={
