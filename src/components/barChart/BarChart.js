@@ -1,57 +1,69 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
+import styles from './BarChart.module.css';
+const sortData = data => {
+  console.log('sort :', data);
+  if (data.length) {
+    return data.sort((a, b) => (a.amount < b.amount ? 1 : -1));
+  }
+};
 
 class BarChart extends Component {
-  constructor(props) {
-    super(props);
-    // console.log("PROPSLABLES",props.labels)
-    this.chartReference = React.createRef();
-    this.data = {
-      labels: props.labels,
-      datasets: [
-        {
-          label: 'Label',
-          backgroundColor: '#fc822c',
-          borderColor: '#fc822c',
-          borderWidth: 1,
-          hoverBackgroundColor: '#fedac2',
-          hoverBorderColor: '#fedac2',
-          data: props.data,
-        },
-      ],
-    };
-  }
+  state = {
+    innerData: this.props.data,
+    chartReference: React.createRef(),
+    isRender: false,
+  };
 
-  componentDidMount() {
-    console.log(this.chartReference.current); // returns a Chart.js instance reference
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.selectedCategory !== this.props.selectedCategory) {
+      const res = this.props.costs
+        .filter(
+          elem => elem.product.category.name === this.props.selectedCategory,
+        )
+        .reduce(
+          (acc, el) => [...acc, { name: el.product.name, amount: el.amount }],
+          [],
+        );
+
+      console.log(res);
+      this.setState({
+        innerData: sortData(res),
+        isRender: true,
+      });
+    }
   }
 
   render() {
-    return(
-      <div
-      style={{
-        width: '688px',
-        height: '350px',
-        margin: '0 auto',
-        boxShadow: '7px 12.124px 20px 0px rgba(179, 185, 200, 0.4)',
-        backgroundColor: 'rgb(255, 255, 255)',
-        borderRadius: '20px',
-        padding: '10px',
-        marginBottom: '40px',
-      }}
-    >
-      <Bar
-        ref={this.chartReference}
-        data={this.data}
-        width={10}
-        height={5}
-        options={{ maintainAspectRatio: false }}
-      />
-    </div>
-    )
-
-  
+    console.log('innerDat', this.state.innerData);
+    return (
+      <div className={styles.barContainer}>
+        <Bar
+          ref={this.state.chartReference}
+          data={{
+            labels: this.state.innerData.map(elem => elem.name),
+            datasets: [
+              {
+                label: this.props.selectedCategory,
+                backgroundColor: '#fc822c',
+                borderColor: '#fc822c',
+                borderWidth: 1,
+                hoverBackgroundColor: '#fedac2',
+                hoverBorderColor: '#fedac2',
+                data: this.state.innerData.map(elem => elem.amount),
+              },
+            ],
+          }}
+          width={10}
+          height={5}
+          options={{ maintainAspectRatio: false }}
+        />
+      </div>
+    );
   }
 }
 
-export default BarChart;
+const MSTP = state => ({ costs: state.finance.costs });
+
+export default connect(MSTP)(BarChart);

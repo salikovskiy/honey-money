@@ -19,6 +19,7 @@
   height: auto;
   position: relative;
 }
+
 .tableScroll {
   width: 295px;
   height: 323px;
@@ -28,6 +29,7 @@
   overflow: auto;
   padding-bottom: 1px;
 }
+
 .tableWrapper .table {
   height: 320px;
 }
@@ -132,13 +134,16 @@
 
 .btn {
   margin-top: 15px;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .btn {
+  width: 20px;
+  height: 20px;
   background-repeat: no-repeat;
   background-image: url(../../assets/icons/IconDelete.png);
   background-position: bottom;
@@ -158,9 +163,11 @@
   border-top: 1px solid #959595;
   background: white;
 }
+
 .table .td:first-child {
   border-bottom-left-radius: 20px;
 }
+
 .table .td:last-child {
   border-bottom-right-radius: 20px;
 }
@@ -187,12 +194,14 @@
   .tableWrapper {
     position: relative;
   }
+
   .tableScroll {
     width: 680px;
     height: 451px;
     /* padding: 10px; */
     overflow: auto;
   }
+
   .tableWrapper table {
     width: 669px;
   }
@@ -233,6 +242,7 @@
     border-top: 1px solid #959595;
     width: 134px;
   }
+
   .tbody {
     overflow: scroll;
     height: 451px;
@@ -240,23 +250,26 @@
 
   .tbody .tr {
     height: 45px;
-      font-family: 'Roboto', sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 14px;
-      color: rgba(82, 85, 95, 255);
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(82, 85, 95, 255);
   }
 
   .th {
     padding: 10px 8px;
     background: white;
   }
+
   .table .th:first-child {
     border-top-left-radius: 20px;
   }
+
   .table .th:last-child {
     border-top-right-radius: 20px;
   }
+
   .td {
     border-top: 1px solid #959595;
     padding: 8px;
@@ -265,12 +278,13 @@
 
   .btn {
     margin-right: 30px;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     background-color: transparent;
     border: none;
     margin-top: -5px;
   }
+
   .btn:hover {
     background-color: #f5f7fa;
     background-position: bottom;
@@ -278,6 +292,8 @@
   }
 
   .btn {
+    width: 20px;
+    height: 20px;
     background-repeat: no-repeat;
     background-image: url(../../assets/icons/IconDelete.png);
     background-position: bottom;
@@ -286,6 +302,7 @@
   .price {
     color: #ff6c00;
   }
+
   .table .th:last-child {
     border-top-right-radius: 5px;
   }
@@ -296,14 +313,14 @@
 
   .table .td:first-child {
     border-bottom-left-radius: 0px;
-}
-
-
-.overlay {
-  display: flex;
-  justify-content: space-between;
-}
   }
+
+
+  .overlay {
+    display: flex;
+    justify-content: space-between;
+  }
+}
 
 
 @media (min-width: 1280px) {
@@ -316,6 +333,7 @@
     height: 504px;
     width: 760px;
   }
+
   .table .th:last-child {
     border-top-right-radius: 5px;
   }
@@ -323,11 +341,13 @@
   .table .th:first-child {
     border-top-left-radius: 5px;
   }
+
   .btn:hover {
     background-color: #f5f7fa;
     background-position: bottom;
     border-radius: 50%;
   }
+  
 
   .overlayDesc {
     display: flex;
@@ -335,10 +355,10 @@
   }
 
   .tbody .tr {
-      font-family: 'Roboto', sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 14px;
-      color: rgba(82, 85, 95, 255);
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(82, 85, 95, 255);
   }
 }
