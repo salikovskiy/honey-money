@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
 import CreatableSelect from 'react-select/creatable';
+import PNotify from 'pnotify/dist/es/PNotify';
 import onFormatDate from '../../utilities/formatDate';
 import css from './addCost.module.css';
 import calendar from '../../assets/img/svg/calendar.svg';
@@ -22,13 +23,11 @@ class AddCost extends Component {
     id: 1,
     isOpenModalAddProduct: false,
   };
-
   componentDidMount() {
     const curentDate = new Date();
     const newFormatDate = onFormatDate(curentDate);
     this.setState({ formatDate: newFormatDate });
   }
-
   onChangeDate = date => {
     const dateForBackend = moment(date).format('YYYY-MM-DD');
     const dateForBackendFull = moment(date).format();
@@ -40,11 +39,9 @@ class AddCost extends Component {
       dateForBackendFull,
     });
   };
-
   onOpenCalendar = () => {
     this.setState({ openCalendar: true });
   };
-
   handleKeyPressCalendar = async event => {
     if (event.code === 'Escape') {
       this.setState({ openCalendar: false });
@@ -62,10 +59,13 @@ class AddCost extends Component {
           date: this.state.dateForBackendFull,
         },
       };
-      console.log('objPostCost', objPostCost);
-      await this.props.postCosts(objPostCost);
+      if (this.state.descriptionCost) {
+        await this.props.postCosts(objPostCost);
+      } else {
+        PNotify.notice('Выберите тип расходов!');
+      }
     } else {
-      alert('Недостаточно средств!');
+      PNotify.notice('Недостаточно средств!');
     }
     if (window.innerWidth < 768) {
       this.props.closeModal();
@@ -73,17 +73,15 @@ class AddCost extends Component {
     await this.props.getTransactions();
     await this.onResetForm();
   };
-
   onResetForm = () => {
     this.setState({
-      descriptionCost: {},
+      descriptionCost: '',
       amountCost: '',
       options: [],
       date: new Date(),
       formatDate: onFormatDate(new Date()),
     });
   };
-
   onChangeInput = e => {
     if (e.target.value <= 99999999.99) {
       this.setState({
@@ -91,7 +89,6 @@ class AddCost extends Component {
       });
     }
   };
-
   createOptions = async () => {
     const responce = await services.getAllProducts(this.props.token);
     const productArray = await responce.data.products;
@@ -104,7 +101,6 @@ class AddCost extends Component {
     });
     this.setState({ options: productOptions });
   };
-
   handleChangeSelect = (newValue, actionMeta) => {
     if (actionMeta.action === 'create-option') {
       this.createNewProduct(newValue.value);
@@ -115,7 +111,6 @@ class AddCost extends Component {
       id: productId,
     });
   };
-
   handleInputChangeSelect = (inputValue, actionMeta) => {
     if (inputValue.length > 0) {
       this.state.options.length === 0 && this.createOptions();
@@ -123,13 +118,11 @@ class AddCost extends Component {
       this.setState({ options: [] });
     }
   };
-
   isOpenModalAddProductFunction = () => {
     this.setState(state => ({
       isOpenModalAddProduct: !this.state.isOpenModalAddProduct,
     }));
   };
-
   createNewProduct = value => {
     this.isOpenModalAddProductFunction();
   };
@@ -144,7 +137,6 @@ class AddCost extends Component {
       this.setState({ openCalendar: false });
     }
   };
-
   render() {
     const {
       openCalendar,
@@ -156,7 +148,6 @@ class AddCost extends Component {
     } = this.state;
     const { dateRegistration, closeModal, token } = this.props;
     window.addEventListener('keyup', this.handleKeyPressCalendar);
-
     return (
       <>
         {isOpenModalAddProduct && (
@@ -233,5 +224,4 @@ class AddCost extends Component {
     );
   }
 }
-
 export default AddCost;
