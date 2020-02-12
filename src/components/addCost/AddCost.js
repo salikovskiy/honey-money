@@ -225,12 +225,3 @@ class AddCost extends Component {
   }
 }
 export default AddCost;
-
-//   backDropCalendar = event => {
-//     const dataset = event.target.dataset;
-//     if (dataset && dataset.modal === 'true') {
-//       this.setState({ openCalendar: false });
-//     }
-//   };
-
-// import PNotify from 'pnotify/dist/es/PNotify';
