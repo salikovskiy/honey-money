@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
 import CreatableSelect from 'react-select/creatable';
+import PNotify from 'pnotify/dist/es/PNotify';
 import onFormatDate from '../../utilities/formatDate';
 import css from './addCost.module.css';
 import calendar from '../../assets/img/svg/calendar.svg';
@@ -61,10 +62,10 @@ class AddCost extends Component {
       if (this.state.descriptionCost) {
         await this.props.postCosts(objPostCost);
       } else {
-        alert('Выберите тип расходов!');
+        PNotify.notice('Выберите тип расходов!');
       }
     } else {
-      alert('Недостаточно средств!');
+      PNotify.notice('Недостаточно средств!');
     }
     if (window.innerWidth < 768) {
       this.props.closeModal();
