@@ -26,6 +26,8 @@ const isLoading = (state = false, { type, payload }) => {
     case Type.FETCH_ERROR:
     case Type.COSTS_POST_SUCCESS:
       return (state = false);
+    case Type.GET_CATEGORIES_SUCCESS:
+      return (state = false);
     default:
       return state;
   }
