@@ -18,12 +18,12 @@ class StatisticsPage extends Component {
     date: dateNow,
     dateRegistration: this.props.finance.authReducer.createdAt,
     costsData: [],
+    allCategoriesCostsData: [],
   };
 
   async componentDidMount() {
     await this.props.getCategories();
 
-    console.log('didmount Statistics', this.props);
     this.setState({
       currentDate: moment()
         .format('MMMM YYYY')
@@ -38,7 +38,36 @@ class StatisticsPage extends Component {
             .reduce((acc, cur) => acc + cur.amount, 0),
         };
       }),
+
+      allCategoriesCostsData: this.props.finance.categories.map(item => {
+        return {
+          _id: item._id,
+          name: item.name,
+          amount: this.props.finance.costs
+            .filter(el => el.product.category.name === item.name)
+            .reduce((acc, cur) => acc + cur.amount, 0),
+        };
+      }),
     });
+  }
+
+  async componentDidUpdate() {
+    if (
+      this.state.selectedCategory === 'Все категории' &&
+      this.state.costsData.length !== this.state.allCategoriesCostsData.length
+    ) {
+      this.setState({
+        allCategoriesCostsData: this.props.finance.categories.map(item => {
+          return {
+            _id: item._id,
+            name: item.name,
+            amount: this.props.finance.costs
+              .filter(el => el.product.category.name === item.name)
+              .reduce((acc, cur) => acc + cur.amount, 0),
+          };
+        }),
+      });
+    }
   }
 
   handleMonthChange = e => {
@@ -86,11 +115,14 @@ class StatisticsPage extends Component {
   };
 
   selectCategoryClick = id => {
-    this.setState({
-      selectedCategory: this.props.finance.categories.find(
-        category => category._id === id,
-      ).name,
-    });
+    this.setState(prevState => ({
+      selectedCategory:
+        prevState.selectedCategory ===
+        this.props.finance.categories.find(category => category._id === id).name
+          ? 'Все категории'
+          : this.props.finance.categories.find(category => category._id === id)
+              .name,
+    }));
   };
 
   render() {
@@ -100,8 +132,6 @@ class StatisticsPage extends Component {
     const categories = this.props.finance.categories;
     const selectedCategory = this.state.selectedCategory;
     const { costsData } = this.state;
-    // console.log('costsData :', costsData);
-    // console.log('selectedCategory :', selectedCategory);
 
     return (
       <div className={s.wrapper}>
@@ -122,8 +152,11 @@ class StatisticsPage extends Component {
         />
         {costsData.length !== 0 && (
           <BarChart
-            labels={this.props.finance.categories.map(elem => elem.name)}
-            data={costsData}
+            data={
+              this.state.selectedCategory === 'Все категории'
+                ? this.state.allCategoriesCostsData
+                : costsData
+            }
             selectedCategory={selectedCategory}
           />
         )}
