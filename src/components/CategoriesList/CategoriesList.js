@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import categoriesData from './categoryData.json';
-import './CategoriesList.module.css';
 import css from './CategoriesList.module.css';
 import alcohol from '../../assets/icons/alcohol/cocktail.svg';
 import invorce from '../../assets/icons/communal/invoice.svg';
@@ -38,7 +36,6 @@ class CategoriesList extends Component {
   }
 
   handleChangeBackground = (evt, id) => {
-    // console.dir('evtHCB :', evt.target);
     evt.target
       .closest('ul')
       .querySelectorAll('img')
@@ -61,7 +58,6 @@ class CategoriesList extends Component {
     });
   }
   render() {
-    // console.log('props :', this.props);
     return (
       <div className={css.categoriesWrap}>
         <ul className={css.categoryList}>

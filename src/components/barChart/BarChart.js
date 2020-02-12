@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 import styles from './BarChart.module.css';
+
 const sortData = data => {
-  console.log('sort :', data);
   if (data.length) {
     return data.sort((a, b) => (a.amount < b.amount ? 1 : -1));
   }
@@ -11,7 +11,7 @@ const sortData = data => {
 
 class BarChart extends Component {
   state = {
-    innerData: this.props.data,
+    innerData: sortData(this.props.data),
     chartReference: React.createRef(),
     isRender: false,
   };
@@ -27,22 +27,31 @@ class BarChart extends Component {
           [],
         );
 
-      console.log(res);
       this.setState({
         innerData: sortData(res),
         isRender: true,
       });
     }
+
+    if (
+      this.props.selectedCategory === 'Все категории' &&
+      this.props.data.length !== this.state.innerData.length
+    )
+      this.setState({
+        innerData: sortData(this.props.data),
+        isRender: true,
+      });
   }
 
   render() {
-    console.log('innerDat', this.state.innerData);
     return (
       <div className={styles.barContainer}>
         <Bar
           ref={this.state.chartReference}
           data={{
-            labels: this.state.innerData.map(elem => elem.name),
+            labels: this.state.innerData
+              ? this.state.innerData.map(elem => elem.name)
+              : [],
             datasets: [
               {
                 label: this.props.selectedCategory,
@@ -51,7 +60,9 @@ class BarChart extends Component {
                 borderWidth: 1,
                 hoverBackgroundColor: '#fedac2',
                 hoverBorderColor: '#fedac2',
-                data: this.state.innerData.map(elem => elem.amount),
+                data: this.state.innerData
+                  ? this.state.innerData.map(elem => elem.amount)
+                  : [],
               },
             ],
           }}
