@@ -9,8 +9,8 @@ const DashboardMenu = ({ changeModal, balance, date }) => (
       <Notification
         type="error"
         title="Введите Ваш доход!"
-        text="Вы не можете вести расходы, пока ваш баланс 0, пополните пожалуйста баланс"
-        delay={2500}
+        text="Вы не можете вести расходы, пока ваш баланс 0. Пополните пожалуйста баланс"
+        delay={3500}
         shadow={true}
       />
     )}
@@ -18,7 +18,7 @@ const DashboardMenu = ({ changeModal, balance, date }) => (
       <h2 htmlFor="input" className={css.balance__title}>
         БАЛАНС:
       </h2>
-      <span className={css.balance__value}>{balance}грн</span>
+      <span className={css.balance__value}>{balance} грн.</span>
     </div>
 
     <button className={css.dashMenu__incomeBtn} onClick={changeModal}>

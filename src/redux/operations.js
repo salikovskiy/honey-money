@@ -3,7 +3,6 @@ import {
   getBalanceSuccess,
   getCostsSuccess,
   fetchError,
-  costsPostSuccess,
   getIncomesSuccess,
   costsDeleteSuccess,
 } from './actions';

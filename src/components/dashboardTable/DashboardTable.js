@@ -16,19 +16,15 @@ const DashboardTable = ({ dataTable, changeModal, handleChangeModal }) => {
             </thead>
             <tbody className={css.tbody}>
               {dataTable.map(item => (
-                <tr
-                  className={css.tr}
-                  id={item.idForDelete}
-                  key={item.idForDelete}
-                >
+                <tr className={css.tr} id={item.idForDelete} key={item.id}>
                   <td className={css.row}>
                     <span className={css.cover}>
                       <p className={css.discription}>{item.description}</p>
                       <span className={css.date}>
                         {moment(item.date).format('DD.MM.YY')}
                       </span>
-                      </span>
-                      <span className={css.categore}>{item.category}</span>
+                    </span>
+                    <span className={css.categore}>{item.category}</span>
                     <span className={css.overModile}>
                       <span className={css.price}>{item.amount}</span>
                       <span>
@@ -117,11 +113,7 @@ const DashboardTable = ({ dataTable, changeModal, handleChangeModal }) => {
             </thead>
             <tbody className={css.tbody}>
               {dataTable.map(item => (
-                <tr
-                  className={css.tr}
-                  id={item.idForDelete}
-                  key={item.idForDelete}
-                >
+                <tr className={css.tr} id={item.idForDelete} key={item.id}>
                   <td className={css.td}>
                     {moment(item.date).format('DD.MM.YY')}
                   </td>
@@ -220,11 +212,7 @@ const DashboardTable = ({ dataTable, changeModal, handleChangeModal }) => {
             </thead>
             <tbody className={css.tbody}>
               {dataTable.map(item => (
-                <tr
-                  className={css.tr}
-                  id={item.idForDelete}
-                  key={item.idForDelete}
-                >
+                <tr className={css.tr} id={item.idForDelete} key={item.id}>
                   <td className={css.td}>
                     {moment(item.date).format('DD.MM.YY')}
                   </td>
