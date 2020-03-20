@@ -1,6 +1,12 @@
 .header {
+<<<<<<< HEAD
+  padding-top: 7px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+=======
   padding-left: 20px;
   padding-right: 20px;
+>>>>>>> dev
 }
 
 .header_logo {
@@ -9,6 +15,16 @@
 }
 
 .header_user_name {
+<<<<<<< HEAD
+font-family: "Roboto", sans-serif;
+font-size: 14px;
+color: #52555f;
+/* position: relative; */
+}
+
+/* .header_user_name::before {
+  content: "";
+=======
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #52555f;
@@ -17,6 +33,7 @@
 
 .header_user_name::before {
   content: '';
+>>>>>>> dev
   position: absolute;
   top: 23px;
   left: 0;
@@ -24,6 +41,23 @@
   width: 20px;
   height: 3px;
   background-color: #f38181;
+<<<<<<< HEAD
+  opacity: 0
+
+} */
+
+.header_user_logout {
+font-family: "Roboto", sans-serif;
+font-size: 14px;
+color: #52555f;
+background-color: transparent;
+border: none;
+margin-left: 96px;
+
+}
+
+
+=======
   opacity: 0;
 }
 
@@ -36,6 +70,7 @@
   /* padding-left: 103px; */
 }
 
+>>>>>>> dev
 .header_user_logout:hover {
   border-bottom: 1px solid #52555f;
 }
@@ -47,7 +82,11 @@
 }
 
 .header_user {
+<<<<<<< HEAD
+  min-width: 190px;
+=======
   /* min-width: 190px; */
+>>>>>>> dev
   min-height: 58px;
   display: flex;
   justify-content: space-between;
@@ -55,6 +94,29 @@
   padding-right: 20px;
 }
 
+<<<<<<< HEAD
+
+
+@media (min-width: 768px) {
+
+  .header {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 16px;
+  }
+
+  .header_user_logout {
+    margin-left: 42px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header_user_logout {
+    margin-left: -33px;
+  }
+
+}
+=======
 .modal {
   width: 440px;
   height: 202px;
@@ -112,3 +174,4 @@
   box-shadow: 2px 2px 4px rgba(233, 97, 5, 0.5);
   transition: all 200ms linear;
 }
+>>>>>>> dev
