@@ -1,8 +1,8 @@
 # Honey Money
 ## Overview
-
-This project was made when running the final bootcamp test. The purpose of the project was to learn how to work as a team, as well as to help people who have problems with the organization of finances.
 ### [Check it live here](https://honeymoney.netlify.app/)
+This project was made when running the final bootcamp test. The purpose of the project was to learn how to work as a team, as well as to help people who have problems with the organization of finances.
+
 
 ## Features 
 
