@@ -24,3 +24,7 @@ This project includes:
   <img src="https://contributors-img.web.app/image?repo=salikovskiy/honey-money" />
 </a>
 
+## Preview
+
+<img src="https://i.ibb.co/hghV7f3/honey-money.jpg" />
+
