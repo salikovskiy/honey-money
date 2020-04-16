@@ -2,6 +2,7 @@
 ## Overview
 
 This project was made when running the final bootcamp test. The purpose of the project was to learn how to work as a team, as well as to help people who have problems with the organization of finances.
+### [Check it live here](https://honeymoney.netlify.app/)
 
 ## Features 
 
@@ -24,9 +25,9 @@ This project includes:
   <img src="https://contributors-img.web.app/image?repo=salikovskiy/honey-money" />
 </a>
 
-## Preview samples
-Our application is fully optimized for correct work on all devices.
-From smartphone to computer.
+## Preview
+Our application is fully optimized for correct work on all devices,
+from smartphone to computer.
 
 <img src="https://i.ibb.co/xfMGG6z/honey-money1.jpg" />
 
