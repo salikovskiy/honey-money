@@ -28,9 +28,4 @@ This project includes:
   <img src="https://contributors-img.web.app/image?repo=salikovskiy/honey-money" />
 </a>
 
-## Preview
-Our application is fully optimized for correct work on all devices,
-from smartphone to computer.
-
-<img src="https://i.ibb.co/xfMGG6z/honey-money1.jpg" />
 
