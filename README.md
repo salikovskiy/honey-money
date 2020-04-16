@@ -10,3 +10,9 @@
 
 > [Backlog](https://drive.google.com/file/d/1fKpZREgyVuV9IvpnXcGBntaiJ9jFNnUA/view?usp=sharing)
 
+## Contributors
+
+<a href="https://github.com/salikovskiy/honey-money/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=salikovskiy/honey-money" />
+</a>
+
