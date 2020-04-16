@@ -26,5 +26,5 @@ This project includes:
 
 ## Preview
 
-<img src="https://i.ibb.co/hghV7f3/honey-money.jpg" />
+<img src="https://i.ibb.co/xfMGG6z/honey-money1.jpg" />
 
