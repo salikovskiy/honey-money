@@ -1,10 +1,10 @@
 # Honey Money 
 
 ## Overview
+[Check it live here](https://honeymoney.netlify.app/)
 
 This project was made when running the final bootcamp test. The purpose of the project was to learn how to work as a team, as well as to help people who have problems with the organization of finances.
 
-[Check it live here](https://honeymoney.netlify.app/)
 
 
 ## Features 
@@ -16,11 +16,11 @@ This project includes:
 - [x] Keep track of how much money you have left
 
 ## Project documentation
-> [API](https://drive.google.com/file/d/1AVK6wPQoBmPHilBE8SMISRGmZEkzD-w5/view?usp=sharing)
+- [API](https://drive.google.com/file/d/1AVK6wPQoBmPHilBE8SMISRGmZEkzD-w5/view?usp=sharing)
 
-> [Components structure](https://drive.google.com/file/d/11AzMZKc2hJw2uCkFejJcD1Jo9e-iuzlw/view?usp=sharing)
+- [Components structure](https://drive.google.com/file/d/11AzMZKc2hJw2uCkFejJcD1Jo9e-iuzlw/view?usp=sharing)
 
-> [Backlog](https://drive.google.com/file/d/1fKpZREgyVuV9IvpnXcGBntaiJ9jFNnUA/view?usp=sharing)
+- [Backlog](https://drive.google.com/file/d/1fKpZREgyVuV9IvpnXcGBntaiJ9jFNnUA/view?usp=sharing)
 
 ## Contributors
 
