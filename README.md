@@ -15,11 +15,16 @@ This project includes:
 - [x] Page to view all of your expenses sort by categories
 - [x] Keep track of how much money you have left
 
+## Build with:
+
+- React
+- Redux
+- Thunk
+- Chart.js
+
 ## Project documentation
 - [API](https://drive.google.com/file/d/1AVK6wPQoBmPHilBE8SMISRGmZEkzD-w5/view?usp=sharing)
-
 - [Components structure](https://drive.google.com/file/d/11AzMZKc2hJw2uCkFejJcD1Jo9e-iuzlw/view?usp=sharing)
-
 - [Backlog](https://drive.google.com/file/d/1fKpZREgyVuV9IvpnXcGBntaiJ9jFNnUA/view?usp=sharing)
 
 ## Contributors
